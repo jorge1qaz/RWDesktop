@@ -1,0 +1,9 @@
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
+D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
