@@ -32,7 +32,11 @@ namespace RWeb
         decimal margenUtil;
         private void pruebas_Load(object sender, EventArgs e)
         {
-            margenUtilidad.StartModule();
+            //margenUtilidad.StartModule();
+            grdPruebas.DataSource = cons.GetFullTableC1a("C:/Contasis14/2017/01/STOCK", 3);
+            grdPruebas2.DataSource = cons.GetFullTableC1b("C:/Contasis14/2017/01/STOCK", 3);
+            grdPruebas3.DataSource = cons.GetFullTableC1c("C:/Contasis14/2017/01/STOCK", 3);
+            //grdPruebas2.DataSource = cons.ListProducts(12, "C:/Contasis14/2017/01/STOCK");
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();

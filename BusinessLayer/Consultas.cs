@@ -321,27 +321,12 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist ltrim(vl.CCOD_PRO) as b, v.CID as a  " + // a = CID; b = CCOD_PRO
+                " select dist ltrim(vl.CCOD_PRO) as a  " + // a = CCOD_PRO
                 " from VENTASL as vl " +
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
-                " where v.CMES = '" + mesParametro + "' "
-                , pathConection
-                );
-        }
-        /*Jorge Luis|14/11/2017|RW-*
-        /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
-        public List<string> ListProducts(string pathConection)
-        {
-            string mes = "01";
-            return dat.extraeList(
-                " select dist vl.CCOD_PRO  " +
-                " from VENTASL as vl " +
-                " inner join VENTAS as v " +
-                " on vl.CID = v.CID " +
-                " inner join PROD as p " +
-                " on p.CCOD_PRO = vl.CCOD_PRO " +
-                " where v.CMES = '" + mes + "' "
+                " where v.CMES = '" + mesParametro + "' " +
+                " group by vl.CCOD_PRO "
                 , pathConection
                 );
         }
@@ -461,11 +446,10 @@ namespace BusinessLayer
                 , pathConection
                 );
         }
-
-        //pruebas
         //Jorge Luis|14/11/2017|RW-*
-        /*Consulta para **/
-        public DataTable GetFullTable(string pathConnection, Int16 mesProcesoCalculado)
+        /*Consulta para  obtener los productos, pero solo los cuales tengan el campo de COSTO1 lleno
+         Primero se toma el COSTO1 de la tabla ventasl*/
+        public DataTable GetFullTableC1a(string pathConnection, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -474,14 +458,71 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select vl.CID as a, v.CMES as b, (vl.CCOD_PRO) as c, (trim(p.CDSC)) as d, vl.NUNI as e, (p.CMEDIDA) as f, " +
-                " (vl.NCOSTOD) as k, (vl.NPU) as g, (vl.NPIGV) as h, (vl.NCOSTO) as i, (vl.NPUD) as j " +
+                " select (vl.CCOD_PRO) as a, (trim(p.CDSC)) as b, vl.NUNI as c, (p.CMEDIDA) as d, " +
+                "  (vl.NPU) as e, (vl.NPIGV) as f, (vl.NCOSTO) as g, (vl.NPUD) as h, (vl.NCOSTOD) as i, " +
+                //Filtros
+                "  v.CCOD_CLI as j, v.CCOD_ALMA as k, vl.CCOD_COSTO as m, (vl.CCOD_COS2) as n, (v.CCOD_VEND) as o, (v.LSTOCK) as l, (v.LREG) as lr " +
                 " from VENTASL as vl " +
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
                 " inner join PROD as p " +
                 " on p.CCOD_PRO = vl.CCOD_PRO " +
-                " where v.CMES = '" + mesParametro + "' " 
+                " where v.CMES = '" + mesParametro + "' " +
+                " and vl.CCOD_COSTO != ' ' "
+                , pathConnection
+                );
+        }
+        //Jorge Luis|14/11/2017|RW-*
+        /*Consulta para  obtener los productos, pero solo los cuales tengan el campo de COSTO1 vacio, 
+         entonce se busca en la tabla "ventas"*/
+        public DataTable GetFullTableC1b(string pathConnection, Int16 mesProcesoCalculado)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                " select (vl.CCOD_PRO) as a, (trim(p.CDSC)) as b, vl.NUNI as c, (p.CMEDIDA) as d, " +
+                "  (vl.NPU) as e, (vl.NPIGV) as f, (vl.NCOSTO) as g, (vl.NPUD) as h, (vl.NCOSTOD) as i, " +
+                //Filtros
+                "  v.CCOD_CLI as j, v.CCOD_ALMA as k, v.CCOD_COSTO as m, (v.CCOD_VEND) as o, (v.LSTOCK) as l, (v.LREG) as lr " +
+                " from VENTASL as vl " +
+                " inner join VENTAS as v " +
+                " on vl.CID = v.CID " +
+                " inner join PROD as p " +
+                " on p.CCOD_PRO = vl.CCOD_PRO " +
+                " where v.CMES = '" + mesParametro + "' " +
+                " and vl.CCOD_COSTO = ' ' " +
+                " and v.CCOD_COSTO != ' ' "
+                , pathConnection
+                );
+        }
+        //Jorge Luis|14/11/2017|RW-*
+        /*Consulta para  obtener los productos, pero solo los cuales tengan el campo de COSTO1 vacio 
+         en las tablas ventas y ventasl*/
+        public DataTable GetFullTableC1c(string pathConnection, Int16 mesProcesoCalculado)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                " select (vl.CCOD_PRO) as a, (trim(p.CDSC)) as b, vl.NUNI as c, (p.CMEDIDA) as d, " +
+                "  (vl.NPU) as e, (vl.NPIGV) as f, (vl.NCOSTO) as g, (vl.NPUD) as h, (vl.NCOSTOD) as i, " +
+                //Filtros
+                "  v.CCOD_CLI as j, v.CCOD_ALMA as k, vl.CCOD_COSTO as m, (vl.CCOD_COS2) as n, (v.CCOD_VEND) as o, (v.LSTOCK) as l, (v.LREG) as lr " +
+                " from VENTASL as vl " +
+                " inner join VENTAS as v " +
+                " on vl.CID = v.CID " +
+                " inner join PROD as p " +
+                " on p.CCOD_PRO = vl.CCOD_PRO " +
+                " where v.CMES = '" + mesParametro + "' " +
+                " and vl.CCOD_COSTO = ' ' " +
+                " and v.CCOD_COSTO = ' ' "
                 , pathConnection
                 );
         }
@@ -496,7 +537,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist vl.CID as a, RTRIM(vl.CCOD_PRO) as b " + // A = CID; B = CCOD_PRO
+                " select dist RTRIM(vl.CCOD_PRO) as a, v.CCOD_ALMA as b " + // A = CCOD_PRO
                 " from VENTASL as vl " +
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
@@ -516,7 +557,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist vl.CID as a, vl.CCOD_PRO as b from VENTASL as vl " +
+                " select dist vl.CCOD_PRO as a, vl.CCOD_COSTO as b from VENTASL as vl " +
                 " inner join COSTOS as c " +
                 " on vl.CCOD_COSTO = c.CCOD_COSTO " +
                 " inner join VENTAS as v " +
@@ -539,7 +580,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist v.CID as a, vl.CCOD_PRO as b from VENTAS as v " +
+                " select dist vl.CCOD_PRO as a, v.CCOD_COSTO as b  from VENTAS as v " +
                 " inner join VENTASL as vl " +
                 " on v.CID = vl.CID " +
                 " inner join COSTOS as c " +

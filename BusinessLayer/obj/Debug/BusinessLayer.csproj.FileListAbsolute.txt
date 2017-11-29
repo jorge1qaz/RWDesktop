@@ -7,3 +7,12 @@ D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\DotNetZip.xml
 D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
 D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
 D:\Jorge Luis\Back End\RWeb\RWeb\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\DotNetZip.dll
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\DotNetZip.xml
+D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
+D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.pdb

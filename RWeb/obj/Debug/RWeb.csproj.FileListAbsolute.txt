@@ -20,3 +20,25 @@ D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\System.IO.Compression.dll
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\System.Shim.dll
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\DotNetZip.xml
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\obj\Debug\RWeb.frmLogin.resources
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe.config
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.pdb
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.pdb
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\BusinessLayer.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\DotNetZip.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\MetroFramework.Design.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\MetroFramework.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\MetroFramework.Fonts.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\Newtonsoft.Json.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\System.IO.Compression.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\System.Shim.dll
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\DotNetZip.xml
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\Newtonsoft.Json.xml
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csprojResolveAssemblyReference.cache
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmLogin.resources
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmRWeb.resources
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.Properties.Resources.resources
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.pruebas.resources
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csproj.GenerateResource.Cache

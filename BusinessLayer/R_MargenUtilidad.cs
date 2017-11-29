@@ -84,7 +84,7 @@ namespace BusinessLayer
                 /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Querys" + j + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListQuerys, Formatting.None).ToString());
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListQuerys, Formatting.None).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -93,13 +93,22 @@ namespace BusinessLayer
             for (Int16 i = 0; i <= 12; i++)
             {
                 DataSet dsListProducts = new DataSet();
-                DataTable datos = new DataTable();
-                datos = cons.GetFullTable(pathConnection, i);
-                dsListProducts.Tables.Add(datos);
+                DataTable datos1 = new DataTable();
+                datos1 = cons.GetFullTableC1a(pathConnection, i);
+                DataTable datos2 = new DataTable();
+                datos2 = cons.GetFullTableC1b(pathConnection, i);
+                DataTable datos3 = new DataTable();
+                datos3 = cons.GetFullTableC1c(pathConnection, i);
+
+                datos2.Merge(datos3); //Fusiona los datos del los registros que no tengan COSTO1
+                datos1.Merge(datos2); //Fusiona los datos del los registros que no tengan COSTO1 en la tabla ventasl, 
+                //con esto se tiene todos los datos de la base de datos con sus respectivos códigos de COSTO1
+
+                dsListProducts.Tables.Add(datos1);
                 dsListProducts.Tables[0].TableName = "data";
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "FullTable" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString());
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -117,7 +126,7 @@ namespace BusinessLayer
                 /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Products" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString());
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace(" ", ""));
                 }
             }
         }
@@ -143,7 +152,7 @@ namespace BusinessLayer
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "StoreProducts" + j + ".json", false))
                     {
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim());
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace(" ", ""));
                     }
                 }
             }
@@ -198,9 +207,9 @@ namespace BusinessLayer
                     dsListProductsByCOSTO1.Tables.Add(ProductsVentas);
                     dsListProductsByCOSTO1.Tables[0].TableName = "data";
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
-                    using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "Costo1Products" + j + ".json", false))
+                    using (StreamWriter json = new StreamWriter(pathSaveFile + "Costo1Products" + j + ".json", false))
                     {
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCOSTO1, Formatting.None).ToString().Trim());
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCOSTO1, Formatting.None).ToString().Trim().Replace(" ", ""));
                     }
                 }
             }
@@ -224,7 +233,7 @@ namespace BusinessLayer
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "Costo2Products" + j + ".json", false))
                     {
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim());
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace(" ",""));
                     }
                 }
             }
