@@ -537,7 +537,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist RTRIM(vl.CCOD_PRO) as a, v.CCOD_ALMA as b " + // A = CCOD_PRO
+                " select dist RTRIM(vl.CCOD_PRO) as a " + // A = CCOD_PRO
                 " from VENTASL as vl " +
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
@@ -557,7 +557,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist vl.CCOD_PRO as a, vl.CCOD_COSTO as b from VENTASL as vl " +
+                " select dist vl.CCOD_PRO as a from VENTASL as vl " +
                 " inner join COSTOS as c " +
                 " on vl.CCOD_COSTO = c.CCOD_COSTO " +
                 " inner join VENTAS as v " +
@@ -580,7 +580,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist vl.CCOD_PRO as a, v.CCOD_COSTO as b  from VENTAS as v " +
+                " select dist vl.CCOD_PRO as a  from VENTAS as v " +
                 " inner join VENTASL as vl " +
                 " on v.CID = vl.CID " +
                 " inner join COSTOS as c " +

@@ -142,18 +142,16 @@ namespace BusinessLayer
                 store = cons.ListAlmacen(pathConnection, j); // Obtiene la lista de almacenes 
                 DataRow[] currentRows = store.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
                 DataTable almacenesProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los almacenes
+                Int32 val = 0;
                 foreach (DataRow item in currentRows) //Recorre la lista de alamacenes
                 {
-                    almacenesProducts = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 
-                                        //3 parámetros (path de la base de datos, el mes, id del almacén), con esto obtiene la lista de productos
-                                        // de acuerdo al mes y id de almacén.
-                    dsListProductsByStore.Tables.Add(almacenesProducts); // Se agrega la tabla al datalist 
-                    dsListProductsByStore.Tables[0].TableName = "data"; // Se le asigna un nombre a esta tabla
+                    almacenesProducts = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del almacén), con esto obtiene la lista de productos de acuerdo al mes y id de almacén.
+                    dsListProductsByStore.Tables.Add(almacenesProducts); // Se agrega la tabla al datalist
+                    dsListProductsByStore.Tables[val].TableName = item[0].ToString().Trim(); //// Se le asigna un nombre a esta tabla
+                    val++;
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
-                    using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "StoreProducts" + j + ".json", false))
-                    {
+                    using (StreamWriter json = new StreamWriter(pathSaveFile + "StoreProducts" + j + ".json", false))
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace(" ", ""));
-                    }
                 }
             }
         }
@@ -175,9 +173,7 @@ namespace BusinessLayer
                     dsListProductsByStore.Tables[0].TableName = "data";
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "EmployeeProducts" + j + ".json", false))
-                    {
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim());
-                    }
                 }
             }
         }
@@ -190,27 +186,32 @@ namespace BusinessLayer
                 DataSet dsListProductsByCOSTO1 = new DataSet();
                 DataTable tableVENTASL = new DataTable();
                 tableVENTASL = cons.ListCOSTO1(pathConnection, j);
-
                 DataTable tableVENTAS = new DataTable();
                 tableVENTAS = cons.ListCOSTO1Nulls(pathConnection, j);
-
                 tableVENTASL.Merge(tableVENTAS);
 
                 DataRow[] currentRows = tableVENTASL.Select(null, null, DataViewRowState.CurrentRows);
                 DataTable ProductsVentas = new DataTable();
                 DataTable ProductsVentasL = new DataTable();
+                Int32 val = 0;
                 foreach (DataRow item in currentRows)
                 {
                     ProductsVentas = cons.GetProductsByCOSTO1Ventas(pathConnection, j, item[0].ToString().Trim());
                     ProductsVentasL = cons.GetProductsByCOSTO1VentasL(pathConnection, j, item[0].ToString().Trim());
                     ProductsVentas.Merge(ProductsVentasL);
                     dsListProductsByCOSTO1.Tables.Add(ProductsVentas);
-                    dsListProductsByCOSTO1.Tables[0].TableName = "data";
+                    try
+                    {
+                        dsListProductsByCOSTO1.Tables[val].TableName = item[0].ToString().Trim();
+                    }
+                    catch
+                    {
+                        dsListProductsByCOSTO1.Tables[val].TableName = item[0].ToString().Trim() + "1";
+                    }
+                    val++;
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + "Costo1Products" + j + ".json", false))
-                    {
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCOSTO1, Formatting.None).ToString().Trim().Replace(" ", ""));
-                    }
                 }
             }
         }
