@@ -33,10 +33,21 @@ namespace RWeb
         private void pruebas_Load(object sender, EventArgs e)
         {
             //margenUtilidad.StartModule();
-            grdPruebas.DataSource = cons.GetFullTableC1a("C:/Contasis14/2017/01/STOCK", 3);
-            grdPruebas2.DataSource = cons.GetFullTableC1b("C:/Contasis14/2017/01/STOCK", 3);
-            grdPruebas3.DataSource = cons.GetFullTableC1c("C:/Contasis14/2017/01/STOCK", 3);
-            //grdPruebas2.DataSource = cons.ListProducts(12, "C:/Contasis14/2017/01/STOCK");
+            //grdPruebas.DataSource = cons.GetFullTableC1a("C:/Contasis14/2017/01/STOCK", 3);
+            //grdPruebas2.DataSource = cons.GetFullTableC1b("C:/Contasis14/2017/01/STOCK", 3);
+            //grdPruebas3.DataSource = cons.GetFullTableC1c("C:/Contasis14/2017/01/STOCK", 3);
+            //grdPruebas2.DataSource = cons.FullTableRequired("C:/Contasis14/2017/01/STOCK");
+
+            List<string> databases = new List<string>();
+            databases = dirs.CheckDataBaseStock();
+            MessageBox.Show(databases[0].ToString());
+            DataTable dataCompany = cons.CheckDataBaseStock();
+            DataRow[] currentRows = dataCompany.Select(null, null, DataViewRowState.CurrentRows);
+            MessageBox.Show(currentRows.Count().ToString());
+            foreach (DataRow item in currentRows)
+            {
+                MessageBox.Show(item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString() + " - " + item[3].ToString());
+            }
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
@@ -44,7 +55,6 @@ namespace RWeb
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         Paths paths = new Paths();
         Directorios dirs = new Directorios();
-
         //Jorge Luis|14/11/2017|RW-*
         /*Método para **/
         public void GenerarReportesSoles(string pathSaveFile, string pathConnection)
