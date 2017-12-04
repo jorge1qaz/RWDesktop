@@ -204,7 +204,7 @@ namespace BusinessLayer
             datasetCompany.Tables.Add(datatableInfoCompany);
             datasetCompany.Tables[0].TableName = "data";
             /*Recorre y crea  archivos json de acuerdo a la información de la base de datos, empleando la tablas dbfs PATH y EMPRESAS*/
-            using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoElectronico.json", false))
+            using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoConta.json", false))
                 json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.Indented).ToString().Trim().Replace(" ", ""));
         }
     }

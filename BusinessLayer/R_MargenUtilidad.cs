@@ -21,19 +21,16 @@ namespace BusinessLayer
         /*Método para generar  listas de las diversas consultas*/
         public void StartModule()
         {
-            List<string> databases = new List<string>();
-            databases = dirs.CheckDataBaseStock();
-            DataTable dataCustomer = new DataTable();
-            DataSet prueba = new DataSet();
-            foreach (string item in databases)
+            DataTable listDB = new DataTable();
+            listDB = cons.CheckDataBaseStock();
+            DataRow[] currentRows = listDB.Select(null, null, DataViewRowState.CurrentRows);
+            foreach (DataRow item in currentRows)
             {
-                DataTable datosPath = new DataTable();
-                DataRow[] currentRows = datosPath.Select(null, null, DataViewRowState.CurrentRows);
-                foreach (DataRow item2 in currentRows)
+                if (File.Exists(item[4].ToString() + "/VENTASL.DBF"))
                 {
-                    dirs.CreateDirectory(paths.PathMU + "/" + item2[0].ToString().Trim());
-                    dirs.CreateDirectory(paths.PathMU + "/" + item2[0].ToString().Trim() + "/" + item2[2].ToString().Trim());
-                    CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item2[0].ToString().Trim() + "/" + item2[2].ToString().Trim() + "/", item2[3].ToString().Trim());
+                    dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim());
+                    dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
+                    CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
                 }
             }
             dirs.CheckDataBaseStockJson();

@@ -42,8 +42,8 @@ namespace RWeb
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         public void StartMassiveUpdate()
         {
-            rcp.StartModule();
             margenUtilidad.StartModule();
+            rcp.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
@@ -55,8 +55,8 @@ namespace RWeb
             btnUpdateNow.Enabled = false;
             Task task = new Task(() =>
             {
-                rcp.StartModule();
                 margenUtilidad.StartModule();
+                rcp.StartModule();
             });
             task.Start();
             lblProcessing.Text = "Procesando datos...";
