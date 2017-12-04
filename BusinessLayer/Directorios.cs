@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -102,6 +104,108 @@ namespace BusinessLayer
                     databases.Add(item[0].ToString());
             }
             return databases;
+        }
+        //Jorge Luis|01/12/2017|RW-19
+        /*Método para crear una lista con todos los datos pertenecientes a las bases de datos que tengan información*/
+        public void CheckDataBaseStockJson()
+        {
+            DataSet datasetCompany = new DataSet();
+            DataTable listDB = new DataTable();
+            listDB = cons.CheckDataBaseStock();
+            DataRow[] currentRows = listDB.Select(null, null, DataViewRowState.CurrentRows);
+            DataTable datatableInfoCompany = new DataTable();
+
+            DataColumn column;
+            #region DeclaracionColumnas
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "a";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "b";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "c";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "d";
+            datatableInfoCompany.Columns.Add(column);
+            #endregion
+            foreach (DataRow item in currentRows)
+            {
+                DataRow row;
+                if (File.Exists(item[4].ToString() + "/VENTASL.DBF"))
+                {
+                    row = datatableInfoCompany.NewRow();
+                    row["a"] = item[0].ToString().Trim();
+                    row["b"] = item[1].ToString().Trim();
+                    row["c"] = item[2].ToString().Trim();
+                    row["d"] = item[3].ToString().Trim();
+                    datatableInfoCompany.Rows.Add(row);
+                }
+            }
+            datasetCompany.Tables.Add(datatableInfoCompany);
+            datasetCompany.Tables[0].TableName = "data";
+            /*Recorre y crea  archivos json de acuerdo a la información de la base de datos, empleando la tablas dbfs PATH y EMPRESAS*/
+            using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoStock.json", false))
+                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.Indented).ToString().Trim().Replace(" ", ""));
+        }
+        //Jorge Luis|01/12/2017|RW-19
+        /*Método para crear una lista con todos los datos pertenecientes a las bases de datos que tengan información*/
+        public void CheckDataBaseContaJson() //Gestión contable financiero
+        {
+            DataSet datasetCompany = new DataSet();
+            DataTable listDB = new DataTable();
+            listDB = cons.CheckDataBaseConta();
+            DataRow[] currentRows = listDB.Select(null, null, DataViewRowState.CurrentRows);
+            DataTable datatableInfoCompany = new DataTable();
+
+            DataColumn column;
+            #region DeclaracionColumnas
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "a";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "b";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "c";
+            datatableInfoCompany.Columns.Add(column);
+
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "d";
+            datatableInfoCompany.Columns.Add(column);
+            #endregion
+            foreach (DataRow item in currentRows)
+            {
+                DataRow row;
+                if (File.Exists(item[4].ToString() + "/DIARIO.DBF"))
+                {
+                    row = datatableInfoCompany.NewRow();
+                    row["a"] = item[0].ToString().Trim();
+                    row["b"] = item[1].ToString().Trim();
+                    row["c"] = item[2].ToString().Trim();
+                    row["d"] = item[3].ToString().Trim();
+                    datatableInfoCompany.Rows.Add(row);
+                }
+            }
+            datasetCompany.Tables.Add(datatableInfoCompany);
+            datasetCompany.Tables[0].TableName = "data";
+            /*Recorre y crea  archivos json de acuerdo a la información de la base de datos, empleando la tablas dbfs PATH y EMPRESAS*/
+            using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoElectronico.json", false))
+                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.Indented).ToString().Trim().Replace(" ", ""));
         }
     }
 }

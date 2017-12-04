@@ -38,16 +38,21 @@ namespace RWeb
             //grdPruebas3.DataSource = cons.GetFullTableC1c("C:/Contasis14/2017/01/STOCK", 3);
             //grdPruebas2.DataSource = cons.FullTableRequired("C:/Contasis14/2017/01/STOCK");
 
-            List<string> databases = new List<string>();
-            databases = dirs.CheckDataBaseStock();
-            MessageBox.Show(databases[0].ToString());
-            DataTable dataCompany = cons.CheckDataBaseStock();
-            DataRow[] currentRows = dataCompany.Select(null, null, DataViewRowState.CurrentRows);
-            MessageBox.Show(currentRows.Count().ToString());
-            foreach (DataRow item in currentRows)
-            {
-                MessageBox.Show(item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString() + " - " + item[3].ToString());
-            }
+            //List<string> databases = new List<string>();
+            //databases = dirs.CheckDataBaseStock();
+            //MessageBox.Show(databases[0].ToString());
+            //DataTable dataCompany = dirs.CheckDataBaseStock();
+            //DataRow[] currentRows = dataCompany.Select(null, null, DataViewRowState.CurrentRows);
+            //MessageBox.Show(currentRows.Count().ToString());
+            //foreach (DataRow item in currentRows)
+            //{
+            //    MessageBox.Show(item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString() + " - " + item[3].ToString());
+            //}
+
+            //grdPruebas2.DataSource = cons.consultasDBF();
+            dirs.CheckDataBaseStockJson();
+            dirs.CheckDataBaseContaJson();
+            //grdPruebas2.DataSource = pruebas;
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
@@ -55,6 +60,7 @@ namespace RWeb
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         Paths paths = new Paths();
         Directorios dirs = new Directorios();
+        VerificarInstancia vi = new VerificarInstancia();
         //Jorge Luis|14/11/2017|RW-*
         /*Método para **/
         public void GenerarReportesSoles(string pathSaveFile, string pathConnection)

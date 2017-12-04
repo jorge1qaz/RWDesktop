@@ -42,3 +42,26 @@ D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmRWeb.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.Properties.Resources.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.pruebas.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csproj.GenerateResource.Cache
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.exe.config
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.exe
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.pdb
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\BusinessLayer.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\DotNetZip.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\MetroFramework.Design.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\MetroFramework.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\MetroFramework.Fonts.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\Newtonsoft.Json.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\System.IO.Compression.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\System.Shim.dll
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\BusinessLayer.pdb
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\DotNetZip.xml
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\Newtonsoft.Json.xml
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.csprojResolveAssemblyReference.cache
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.frmLogin.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.frmRWeb.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.Properties.Resources.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.pruebas.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.csproj.GenerateResource.Cache
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.csproj.CoreCompileInputs.cache
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.exe
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.pdb

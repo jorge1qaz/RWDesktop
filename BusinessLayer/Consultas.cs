@@ -211,14 +211,13 @@ namespace BusinessLayer
         }
         //Jorge Luis|27/11/2017|RW-19
         /*Método para obtener la lista de base de datos del módulo CONTA*/
-        public DataTable CheckDataBaseConta(string path)
+        public DataTable CheckDataBaseConta()
         {
             return dat.extraeInit(
-                "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, p.MPATH1 as d from PATH as p" + //a = id, b = descripción, c = año, d = path
+                "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, e.CNIT as d, p.MPATH1 as e from PATH as p" + //a = id, b = descripción, c = año, d = ruc, e = path
                 " inner join EMPRESAS as e" +
                 " on p.CCOD_EMP = e.CCOD_EMP  " +
-                " where MPATH1 != ' ' " +
-                " and  MPATH1 = '" + path + "' "
+                " where MPATH1 != ' ' "
                 );
         }
         //Jorge Luis|27/11/2017|RW-19
@@ -232,15 +231,22 @@ namespace BusinessLayer
         }
         //Jorge Luis|27/11/2017|RW-19
         /*Método para obtener la lista de base de datos del módulo STOCK*/
+        public DataTable consultasDBF()
+        {
+            return dat.extraeInit(
+                "select * from EMPRESAS "
+                //" where MPATH3 != ' ' "
+                );
+        }
+        //Jorge Luis|27/11/2017|RW-19
+        /*Método para obtener la lista de base de datos del módulo STOCK*/
         public DataTable CheckDataBaseStock()
         {
-            string path = "C:/CONTASIS14/2017/01/STOCK/";
             return dat.extraeInit(
-                "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, p.MPATH3 as d from PATH as p" + //a = id, b = descripción, c = año, d = path
+                "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, e.CNIT as d, p.MPATH3 as e from PATH as p" + //a = id, b = descripción, c = año, d = ruc, e = path
                 " inner join EMPRESAS as e" +
                 " on p.CCOD_EMP = e.CCOD_EMP  " +
-                " where p.MPATH3 != ' ' " +
-                " and p.MPATH3 = '" + path + "' "
+                " where p.MPATH3 != ' ' "
                 );
         }
         /*Margen de utilidad*/

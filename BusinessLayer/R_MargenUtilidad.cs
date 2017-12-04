@@ -28,8 +28,6 @@ namespace BusinessLayer
             foreach (string item in databases)
             {
                 DataTable datosPath = new DataTable();
-                //quiiiita ----------------------------------------------------------------------------------- el comentario
-                //datosPath = cons.CheckDataBaseStock(item);
                 DataRow[] currentRows = datosPath.Select(null, null, DataViewRowState.CurrentRows);
                 foreach (DataRow item2 in currentRows)
                 {
@@ -38,6 +36,7 @@ namespace BusinessLayer
                     CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item2[0].ToString().Trim() + "/" + item2[2].ToString().Trim() + "/", item2[3].ToString().Trim());
                 }
             }
+            dirs.CheckDataBaseStockJson();
         }
         public void CreateBigQueryEachOne(string save, string path)
         {

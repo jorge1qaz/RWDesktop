@@ -19,10 +19,13 @@ namespace RWeb
             Application.Run(new pruebas());
 
             //directorios.CreateDirectoryForRCP();
+            ////Comprueba si existe el path de la instancia de contasis
             //if (paths.ComprobarExistenciaPathFile())
             //{
+            //    // Comprueba si el usuario se ha logeado, por medio del txt con el correo del usuario
             //    if (paths.ComprobarExistenciaPathFile(paths.PathUser))
             //        Application.Run(new frmRWeb());
+            //    // Sí existen estos dos archivos, se procede a enviar al formulario principal
             //    else
             //        Application.Run(new frmLogin());
             //}

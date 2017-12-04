@@ -14,6 +14,7 @@ namespace BusinessLayer
         public void StartModule()
         {
             directorios.CreateDirectoryForRCP();
+            directorios.CheckDataBaseContaJson();
             /*Comprueba la existencia del txt con la instancia de Contasis, de encontrarlo procede a generar
              el método principal que realiza todos los bucles. */
             if (paths.ComprobarExistenciaPathFile())
@@ -28,7 +29,6 @@ namespace BusinessLayer
                 if (paths.createPathFile())
                 {
                     paths.ListYearsJson();
-                    MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     directorios.CreateDirectoryStructureForRCP();
                 }
                 else

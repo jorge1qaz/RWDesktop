@@ -9,25 +9,12 @@ namespace BusinessLayer
         //Jorge Luis|04/10/2017|RW-19
         /*Método para realizar la conexión a la base de datos de forma manual*/
         public OdbcConnection cn = new OdbcConnection();
-        public SqlConnection cadena = new SqlConnection("data source=localhost\\MSSQLSERVER01;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
+        //Cadena local Contasis
+        //public SqlConnection cadena = new SqlConnection("data source=localhost\\MSSQLSERVER01;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
+        // Cadena local casa
+        //public SqlConnection cadena = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
+        public SqlConnection cadena = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
         Paths paths = new Paths();
-        public void Conectar()
-        {
-            /*Abre la cadena de conexión*/
-            if (paths.ComprobarExistenciaPathFile())
-            {
-                try
-                {
-                    cn.ConnectionString = "Driver={Microsoft Visual FoxPro Driver};SourceType=DBF;SourceDB=" +
-                       @"" + paths.readPathInstanceIContasis().ToString().Replace('\\', '/') + "/2016/01/conta" + ";";
-                    cn.Open();
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show("Error de tipo:" + ex.Message, "Conexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }  
-        }
         //Jorge Luis|23/10/2017|RW-19
         /*Método para realizar la conexión a la base de datos con parametro*/
         public void Conectar(string path)

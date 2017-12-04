@@ -7,22 +7,7 @@ namespace BusinessLayer
 {
     public class AccesoDatos
     {
-        //Jorge Luis|04/10/2017|RW-19
-        /*Método para extraer datos, mediante una consulta como parámetro*/
         Conexion con = new Conexion();
-        public DataTable extrae(string consulta)
-        {
-            DataTable tabla = new DataTable();
-            con.Conectar();
-            OdbcCommand cmd = new OdbcCommand();
-            cmd.CommandText = consulta;
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = con.cn;
-            OdbcDataAdapter da = new OdbcDataAdapter(cmd);
-            da.Fill(tabla);
-            con.cn.Close();
-            return tabla;
-        }
         //Jorge Luis|23/10/2017|RW-19
         /*Método para extraer datos, mediante una consulta con dos parámetros*/
         public DataTable extrae(string consulta, string path)

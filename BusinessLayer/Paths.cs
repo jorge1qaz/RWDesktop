@@ -17,6 +17,7 @@ namespace BusinessLayer
         public string PathRCP = "rptCntsPndts/";
         public string PathMU = "rptsMrgTld/";
         public string PathImagenLogo = "./images/logo.png";
+        VerificarInstancia verificarInstancia = new VerificarInstancia();
         //Jorge Luis|24/10/2017|RW-19
         /*Método para leer un txt con el path de la instancia de Contasis*/
         public string readPathInstanceIContasis()
@@ -73,37 +74,100 @@ namespace BusinessLayer
         /*Método para crear un txt con la ruta de la instacia de Contasis*/
         public bool createPathFile() {
             bool comprobacionExito = false;
-            FolderBrowserDialog CarpetaDatos = new FolderBrowserDialog();
-            DialogResult resultado = MessageBox.Show("Antes de empezar debe proporcionar su instancia de Contasis. Por favor, ubique la ruta donde realizó la instalación, ejemplo: 'C:/Contasis14'.", "Comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            resultado = CarpetaDatos.ShowDialog();
-            /*Otorga permisos ilimitados*/
-            PermissionSet perms = new PermissionSet(null);
-            perms.AddPermission(new UIPermission(PermissionState.Unrestricted));
-            perms.AddPermission(new RegistryPermission(PermissionState.Unrestricted));
-            /*realiza la creación de un archivo, sólo despues de pasar las siguientes validaciones*/
-            if (ValidateCreationPathFile(CarpetaDatos.SelectedPath.ToString()))
+            List<string> listInstancesContasis = new List<string>();
+            listInstancesContasis = verificarInstancia.getInstanceContasis();
+            if (listInstancesContasis.Count() > 1 || listInstancesContasis.Count() == 0)
             {
-                /*Comprueba que el usuario le haya otorgado una ruta*/
-                if (resultado == DialogResult.OK)
+                FolderBrowserDialog CarpetaDatos = new FolderBrowserDialog();
+                DialogResult resultado = MessageBox.Show("Hemos detectado más de una o ninguna instancia de Contasis. Antes de empezar debe proporcionar su instancia de Contasis. Por favor, ubique la ruta donde realizó la instalación, ejemplo: 'C:/Contasis14'.", "Comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                resultado = CarpetaDatos.ShowDialog();
+                /*Otorga permisos ilimitados*/
+                PermissionSet perms = new PermissionSet(null);
+                perms.AddPermission(new UIPermission(PermissionState.Unrestricted));
+                perms.AddPermission(new RegistryPermission(PermissionState.Unrestricted));
+                /*realiza la creación de un archivo, sólo despues de pasar las siguientes validaciones*/
+                if (ValidateCreationPathFile(CarpetaDatos.SelectedPath.ToString()))
                 {
-                    bool comprobacionFile = ComprobarExistenciaPathFile();
-                    /*Comprueba la existencia de este archivo, y de validarlo, lo crea.*/
-                    if (comprobacionFile)
+                    /*Comprueba que el usuario le haya otorgado una ruta*/
+                    if (resultado == DialogResult.OK)
                     {
-                        File.Delete(PathFile);
-                        using (StreamWriter createFile = new StreamWriter(PathFile, false))
-                            createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                        bool comprobacionFile = ComprobarExistenciaPathFile();
+                        /*Comprueba la existencia de este archivo, y de validarlo, lo crea.*/
+                        if (comprobacionFile)
+                        {
+                            File.Delete(PathFile);
+                            using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                            {
+                                createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                                MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                        else
+                            using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                            { 
+                                createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                                MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        comprobacionExito = true;
                     }
                     else
-                        using (StreamWriter createFile = new StreamWriter(PathFile, false))
-                            createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
-                    comprobacionExito = true;
+                        MessageBox.Show("Lo sentimos, no se pudo ubicar la instancia de Contasis.", "Error de comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                     MessageBox.Show("Lo sentimos, no se pudo ubicar la instancia de Contasis.", "Error de comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show("Lo sentimos, no se pudo ubicar la instancia de Contasis.", "Error de comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                if (ValidateCreationPathFile(listInstancesContasis[0].ToString()))
+                {
+                    /*Comprueba la existencia de este archivo, y de validarlo, lo crea.*/
+                    if (ComprobarExistenciaPathFile())
+                    {
+                        File.Delete(PathFile);
+                        using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                            createFile.WriteLine(listInstancesContasis[0].ToString());
+                    }
+                    else
+                        using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                            createFile.WriteLine(listInstancesContasis[0].ToString());
+                    comprobacionExito = true;
+                }
+                else
+                {
+                    FolderBrowserDialog CarpetaDatos = new FolderBrowserDialog();
+                    DialogResult resultado = MessageBox.Show("Estamos teniendo problemas con la ruta de la instalación de Contasis, probablemente haya realizado la instalación en un disco diferente a 'C', debe proporcionar su instancia de Contasis. Por favor, ubique la ruta donde realizó la instalación, ejemplo: 'C:/Contasis14'.", "Comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    resultado = CarpetaDatos.ShowDialog();
+                    /*Otorga permisos ilimitados*/
+                    PermissionSet perms = new PermissionSet(null);
+                    perms.AddPermission(new UIPermission(PermissionState.Unrestricted));
+                    perms.AddPermission(new RegistryPermission(PermissionState.Unrestricted));
+                    /*realiza la creación de un archivo, sólo despues de pasar las siguientes validaciones*/
+                    if (ValidateCreationPathFile(CarpetaDatos.SelectedPath.ToString()))
+                    {
+                        /*Comprueba que el usuario le haya otorgado una ruta*/
+                        if (resultado == DialogResult.OK)
+                        {
+                            bool comprobacionFile = ComprobarExistenciaPathFile();
+                            /*Comprueba la existencia de este archivo, y de validarlo, lo crea.*/
+                            if (comprobacionFile)
+                            {
+                                File.Delete(PathFile);
+                                using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                                    createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                            }
+                            else
+                                using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                                    createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                            comprobacionExito = true;
+                        }
+                        else
+                            MessageBox.Show("Lo sentimos, no se pudo ubicar la instancia de Contasis.", "Error de comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                        MessageBox.Show("Lo sentimos, no se pudo ubicar la instancia de Contasis.", "Error de comprobación de existencia de path", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            
             return comprobacionExito;
         }
         //Jorge Luis|24/10/2017|RW-19

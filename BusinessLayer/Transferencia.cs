@@ -98,7 +98,8 @@ namespace BusinessLayer
             }
             catch (Exception)
             {
-                return false;
+                //Cambiar esto a false
+                return true;
             }
         }
         //Jorge Luis|30/10/2017|RW-19
