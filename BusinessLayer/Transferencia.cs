@@ -16,8 +16,10 @@ namespace BusinessLayer
         /*Método general para la realización de la tranferencia de los datos compresos*/
         public void StartTransfer(BackgroundWorker backgroundWorker) {
             ComprimirDirectorioCliente();
-            Directory.Delete(paths.PathPrincipalDirectory + paths.PathRCP, true);
-            Directory.Delete(paths.PathPrincipalDirectory + paths.PathMU, true);
+            if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathRCP))
+                Directory.Delete(paths.PathPrincipalDirectory + paths.PathRCP, true);
+            if(Directory.Exists(paths.PathPrincipalDirectory + paths.PathMU))
+                Directory.Delete(paths.PathPrincipalDirectory + paths.PathMU, true);
             paths.WriteLastUpdate();
             SendZip(backgroundWorker);
         }
@@ -98,8 +100,7 @@ namespace BusinessLayer
             }
             catch (Exception)
             {
-                //Cambiar esto a false
-                return true;
+                return false;
             }
         }
         //Jorge Luis|30/10/2017|RW-19
@@ -123,9 +124,9 @@ namespace BusinessLayer
         /*Método para instanciar los datos concernientes al ftp y lanzar el evento de transferencia*/
         public void SendZip(BackgroundWorker backgroundWorker)
         {
-            _inputParameter.UserName = "dosedper";
-            _inputParameter.Password = "l3o_fx6@8l";
-            _inputParameter.Server = "ftp://67.23.255.26/reportes.dosedperu.com/zip/";
+            _inputParameter.UserName = "jorge";
+            _inputParameter.Password = "X@cH7k+t^aC[";
+            _inputParameter.Server = "ftp://70.38.70.172/Datos/";
             _inputParameter.FileName = paths.readFile(paths.PathUser);
             _inputParameter.FullName = paths.PathPrincipalDirectory + "/" + paths.readFile(paths.PathUser);
             backgroundWorker.RunWorkerAsync(_inputParameter);

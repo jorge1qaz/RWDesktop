@@ -65,3 +65,7 @@ D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.cspr
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.exe
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.pdb
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe.manifest
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.application
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe.manifest
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.application

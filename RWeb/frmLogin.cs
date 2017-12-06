@@ -39,7 +39,7 @@ namespace RWeb
 
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
-            Process.Start("http://localhost:3243/Perfiles/frmRegistroUsuario");
+            Process.Start("http://licenciacontasis.net/reportweb/Perfiles/frmRegistroUsuario");
         }
 
         Int16 intentos = 0;

@@ -13,7 +13,7 @@ namespace BusinessLayer
         //public SqlConnection cadena = new SqlConnection("data source=localhost\\MSSQLSERVER01;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
         // Cadena local casa
         //public SqlConnection cadena = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
-        public SqlConnection cadena = new SqlConnection("data source=TOSHIBA;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
+        public SqlConnection cadena = new SqlConnection("data source=70.38.70.172;initial catalog=reportesweb;user id=jorge;password=X@cH7k+t^aC[;MultipleActiveResultSets=True;");
         Paths paths = new Paths();
         //Jorge Luis|23/10/2017|RW-19
         /*Método para realizar la conexión a la base de datos con parametro*/
