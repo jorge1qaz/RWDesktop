@@ -12,7 +12,7 @@ namespace BusinessLayer
         public DataTable ListCuentas(string path)
         {
             return dat.extrae(
-                "SELECT dist p.Ccod_cue, p.Cdsc FROM " + "PLAN.DBF as p " +
+                "SELECT dist p.Ccod_cue as a, p.Cdsc as b FROM  PLAN.DBF as p " +
                 " inner join DIARIO.DBF as d " +
                 " on d.Ccod_cue = p.Ccod_cue " +
                 " Where p.Nanalisis = 2 " +
@@ -136,19 +136,6 @@ namespace BusinessLayer
                 );
         }
         //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos con un parámetro*/
-        public DataTable GetPathBySomething(string idCompany)
-        {
-            return dat.extraeInit(
-                "SELECT dist p.Nyear, e.Ccod_emp, p.Mpath1 " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " Where e.Ccod_emp = '" + idCompany + "' " +
-                " order by p.Nyear desc"
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
         /*Método para extraer datos con tres parámetros*/
         public DataTable GetReporteCuentasPendientesByMesTipo1(string idCuenta, Int16 mesProcesoCalculado, string pathConection)
         {
@@ -159,7 +146,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli, SUM(d.Ndebe), SUM(d.Nhaber), (SUM(d.Ndebe) - SUM(d.Nhaber)) as Total, c.Crazon " +
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Ndebe) - SUM(d.Nhaber)) as d, c.Crazon as e" +
                 " FROM DIARIO.DBF as d" +
                 " inner join CLI_PRO.DBF as c " +
                 " on c.Ccod_cli = d.Ccod_cli " +
@@ -167,7 +154,7 @@ namespace BusinessLayer
                 " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  " +
                 " where d.ccod_cue = '" + idCuenta + "' " +
                 " and d.Cmes <= '" + mesParametro + "' " +
-                " order by Total desc", pathConection
+                " order by e desc", pathConection
                 );
         }
         //Jorge Luis|26/10/2017|RW-19
@@ -181,7 +168,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli, SUM(d.Ndebe), SUM(d.Nhaber), (SUM(d.Nhaber) - SUM(d.Ndebe)) as Total, c.Crazon " +
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Nhaber) - SUM(d.Ndebe)) as d, c.Crazon as e" +
                 " FROM DIARIO.DBF as d" +
                 " inner join CLI_PRO.DBF as c " +
                 " on c.Ccod_cli = d.Ccod_cli " +
@@ -189,7 +176,7 @@ namespace BusinessLayer
                 " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  " +
                 " where d.ccod_cue = '" + idCuenta + "' " +
                 " and d.Cmes <= '" + mesParametro + "' " +
-                " order by Total desc", pathConection
+                " order by e desc", pathConection
                 );
         }
         //Jorge Luis|02/11/2017|RW-19
@@ -529,7 +516,7 @@ namespace BusinessLayer
                 " select (vl.CCOD_PRO) as a, (trim(p.CDSC)) as b, vl.NUNI as c, (p.CMEDIDA) as d, " +
                 "  (vl.NPU) as e, (vl.NPIGV) as f, (vl.NCOSTO) as g, (vl.NPUD) as h, (vl.NCOSTOD) as i, " +
                 //Filtros
-                "  v.CCOD_CLI as j, v.CCOD_ALMA as k, v.CCOD_COSTO as m, (v.CCOD_VEND) as o, (v.LSTOCK) as p, (v.LREG) as q " +
+                "  v.CCOD_CLI as j, v.CCOD_ALMA as k, v.CCOD_COSTO as m, (vl.CCOD_COS2) as n, (v.CCOD_VEND) as o, (v.LSTOCK) as p, (v.LREG) as q " +
                 " from VENTASL as vl " +
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
@@ -650,7 +637,7 @@ namespace BusinessLayer
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
                 " where v.CMES = '" + mesParametro + "' " +
-                " and v.CCOD_CLI = '" + idCustomer + "' "
+                " and v.CCOD_CLI like '%" + idCustomer + "%' "
                 , pathConnection
                 );
         }

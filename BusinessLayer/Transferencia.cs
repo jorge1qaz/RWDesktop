@@ -15,13 +15,22 @@ namespace BusinessLayer
         //Jorge Luis|30/10/2017|RW-19
         /*Método general para la realización de la tranferencia de los datos compresos*/
         public void StartTransfer(BackgroundWorker backgroundWorker) {
-            ComprimirDirectorioCliente();
-            if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathRCP))
-                Directory.Delete(paths.PathPrincipalDirectory + paths.PathRCP, true);
-            if(Directory.Exists(paths.PathPrincipalDirectory + paths.PathMU))
-                Directory.Delete(paths.PathPrincipalDirectory + paths.PathMU, true);
-            paths.WriteLastUpdate();
-            SendZip(backgroundWorker);
+            if (ComprimirDirectorioCliente())
+            {
+                try
+                {
+                    if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathRCP))
+                        Directory.Delete(paths.PathPrincipalDirectory + paths.PathRCP, true);
+                    if(Directory.Exists(paths.PathPrincipalDirectory + paths.PathMU))
+                        Directory.Delete(paths.PathPrincipalDirectory + paths.PathMU, true);
+                    paths.WriteLastUpdate();
+                    SendZip(backgroundWorker);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("No se pudo enviar");
+                }
+            }
         }
         //Jorge Luis|30/10/2017|RW-19
         /*Método para eliminar los datos compresos*/
@@ -31,19 +40,28 @@ namespace BusinessLayer
         }
         //Jorge Luis|30/10/2017|RW-19
         /*Método para comprimir, asignar contraseña y encriptar datos*/
-        public void ComprimirDirectorioCliente() {
-            /*Otorga permisos*/
-            PermissionSet perms = new PermissionSet(null);
-            perms.AddPermission(new UIPermission(PermissionState.Unrestricted));
-            perms.AddPermission(new RegistryPermission(PermissionState.Unrestricted));
-            /*empaqueta y encripta todos los archivos json generados*/            
-            ZipFile zip = new ZipFile();
-            FileInfo fileInfo = new FileInfo(paths.PathPrincipalDirectory);
-            zip.Password = "reportesweb";
-            zip.Encryption = EncryptionAlgorithm.WinZipAes256;
-            zip.AddDirectory(paths.PathPrincipalDirectory);
-            DirectoryInfo directoryInfo = new DirectoryInfo(paths.PathPrincipalDirectory);
-            zip.Save(string.Format("{0}{1}.zip", paths.PathPrincipalDirectory, paths.readFile(paths.PathUser), FileMode.OpenOrCreate, FileAccess.ReadWrite));
+        public bool ComprimirDirectorioCliente() {
+            bool status = false;
+            try
+            {
+                PermissionSet perms = new PermissionSet(null);
+                perms.AddPermission(new UIPermission(PermissionState.Unrestricted));
+                perms.AddPermission(new RegistryPermission(PermissionState.Unrestricted));
+                /*empaqueta y encripta todos los archivos json generados*/            
+                ZipFile zip = new ZipFile();
+                FileInfo fileInfo = new FileInfo(paths.PathPrincipalDirectory);
+                zip.Password = "reportesweb";
+                zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+                zip.AddDirectory(paths.PathPrincipalDirectory);
+                DirectoryInfo directoryInfo = new DirectoryInfo(paths.PathPrincipalDirectory);
+                zip.Save(string.Format("{0}{1}.zip", paths.PathPrincipalDirectory, paths.readFile(paths.PathUser), FileMode.OpenOrCreate, FileAccess.ReadWrite));
+                status = true;
+            }
+            catch (Exception)
+            {
+                status = false;
+            }
+            return status;
         }
         //Jorge Luis|30/10/2017|RW-19
         /*Método para realizar la tranferencia por ftp*/

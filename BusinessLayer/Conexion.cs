@@ -9,6 +9,7 @@ namespace BusinessLayer
         //Jorge Luis|04/10/2017|RW-19
         /*Método para realizar la conexión a la base de datos de forma manual*/
         public OdbcConnection cn = new OdbcConnection();
+        public OdbcConnection cnInit = new OdbcConnection();
         //Cadena local Contasis
         //public SqlConnection cadena = new SqlConnection("data source=localhost\\MSSQLSERVER01;initial catalog=reportesweb;integrated security=True;MultipleActiveResultSets=True;");
         // Cadena local casa
@@ -32,22 +33,35 @@ namespace BusinessLayer
         }
         //Jorge Luis|23/10/2017|RW-19
         /*Método para realizar la conexión a la base de datos empleando path y a las tablas de la raiz del sistema*/
-        public void ConectInit()
+        public void ConnectInit()
         {
             try
             {
-                cn.ConnectionString = "Driver={Microsoft Visual FoxPro Driver};SourceType=DBF;SourceDB=" +
-                    @"" + paths.readPathInstanceIContasis().ToString().Replace('\\', '/') + "/" + ";";
-                cn.Open();
+                cnInit.ConnectionString = "Driver={Microsoft Visual FoxPro Driver};SourceType=DBF;SourceDB=" +
+                    @"" + paths.readPathInstanceIContasisInit().ToString().Replace('\\', '/') + "/" + ";";
+                cnInit.Open();
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        //Jorge Luis|23/10/2017|RW-19
+        /*Método para realizar la desconexión a la base de datos empleando path y a las tablas de la raiz del sistema*/
+        public void DisconnectInit()
+        {
+            try
+            {
+                cnInit.Close();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Jorge Luis|02/11/2017|RW-19
         /*Método para realizar la conexión a la base de datos empleando path y a las tablas de la raiz del sistema*/
-        public void ConectDbWeb()
+        public void ConnectDbWeb()
         {
             try
             {
@@ -56,6 +70,17 @@ namespace BusinessLayer
             catch (System.Exception ex)
             {
                 MessageBox.Show("Error de tipo:" + ex.Message, "Conexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        public void DisconnectDbWeb()
+        {
+            try
+            {
+                cadena.Close();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Error de tipo:" + ex.Message, "Desconexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

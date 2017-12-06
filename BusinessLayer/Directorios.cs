@@ -71,8 +71,6 @@ namespace BusinessLayer
             if (Directory.Exists(paths.PathPrincipalDirectory))
             {
                 Directory.CreateDirectory(paths.PathPrincipalDirectory + "/" + nameDirectory);
-                File.SetAttributes(paths.PathPrincipalDirectory, FileAttributes.Hidden);
-                File.SetAttributes(paths.PathPrincipalDirectory + "/" + nameDirectory, FileAttributes.Hidden);
             }
         }
         //Jorge Luis|27/11/2017|RW-19

@@ -13,22 +13,22 @@ namespace BusinessLayer
         /*Método general para el procesamiento de datos, calculos, bucles y generación de json*/
         public void StartModule()
         {
-            directorios.CreateDirectoryForRCP();
+            //directorios.CreateDirectoryForRCP();
             directorios.CheckDataBaseContaJson();
             /*Comprueba la existencia del txt con la instancia de Contasis, de encontrarlo procede a generar
              el método principal que realiza todos los bucles. */
             if (paths.ComprobarExistenciaPathFile())
             {
-                paths.ListYearsJson();
-                directorios.CreateDirectoryStructureForRCP();
-                CreateBigQueryEachOne();
+                //paths.ListYearsJson();
+                //directorios.CreateDirectoryStructureForRCP();
+                CreateBigQueryEachOneAlter();
             }
             else
             {
                 /*De no encontrar la ruta procede pide al usuario le proporcione el path*/
                 if (paths.createPathFile())
                 {
-                    paths.ListYearsJson();
+                    //paths.ListYearsJson();
                     directorios.CreateDirectoryStructureForRCP();
                 }
                 else
@@ -41,6 +41,27 @@ namespace BusinessLayer
         Directorios directorios = new Directorios();
         ComprobarTablas comptablas = new ComprobarTablas();
         Transferencia trans = new Transferencia();
+
+        public void CreateBigQueryEachOneAlter() {
+
+            DataTable listDB = new DataTable();
+            listDB = cons.CheckDataBaseConta();
+            DataRow[] currentRows = listDB.Select(null, null, DataViewRowState.CurrentRows);
+            foreach (DataRow item in currentRows)
+            {
+                if (File.Exists(item[4].ToString() + "/DIARIO.DBF"))
+                {
+                    directorios.CreateDirectory(paths.PathRCP + "/" + item[0].ToString().Trim());
+                    directorios.CreateDirectory(paths.PathRCP + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
+                    ListaCuentasFiltrada(paths.PathPrincipalDirectory + paths.PathRCP + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                    RecorrerListaCuentasTipo1(paths.PathPrincipalDirectory + paths.PathRCP + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                    RecorrerListaCuentasTipo2(paths.PathPrincipalDirectory + paths.PathRCP + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                }
+            }
+
+
+        }
+
         //Jorge Luis|13/10/2017|RW-19
         /*Método para generar json recorriendo meses y para las cuentas que sean activos*/
         public void StartUpdateTipo1(string idCuenta, string pathDirectory, string pathConectionSU)
@@ -55,7 +76,7 @@ namespace BusinessLayer
                 dsReporte.Tables[0].TableName = "data";
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathDirectory + idCuenta.Trim() + "ReporteCP" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString());
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -73,7 +94,7 @@ namespace BusinessLayer
                 dsReporte.Tables[0].TableName = "data";
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathDirectory + idCuenta.Trim() + "ReporteCP" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString());
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -113,7 +134,7 @@ namespace BusinessLayer
             /*Recorre y crea  archivos json de acuerdo a las cuentas que existen en la base de datos*/
             using (StreamWriter jsonListaCuentas = new StreamWriter(path + "ListaCuentas.json", false))
             {
-                jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListaCuentas, Formatting.Indented).ToString());
+                jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListaCuentas, Formatting.Indented).ToString().Replace("  ", ""));
             }
         }
         //Jorge Luis|12/10/2017|RW-19

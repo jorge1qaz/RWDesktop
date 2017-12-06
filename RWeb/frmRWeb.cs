@@ -95,7 +95,6 @@ namespace RWeb
                 this.lblProcessing.Text = ("Error: " + e.Error.Message);
             else
                 this.lblProcessing.Text = "¡Actualización completada! Revise su navegador.";
-            trans.DeleteZip();
             DateTime localDate = DateTime.Now;
             String cultureName = "en-US";
             var culture = new CultureInfo(cultureName);
@@ -107,6 +106,7 @@ namespace RWeb
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             btnCerrarSesion.Enabled = true;
             btnUpdateNow.Enabled = true;
+            trans.DeleteZip();
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {

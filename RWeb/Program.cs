@@ -33,7 +33,7 @@ namespace RWeb
             {
                 if (paths.createPathFile())
                 {
-                    paths.ListYearsJson();
+                    //paths.ListYearsJson();
                     MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (paths.ComprobarExistenciaPathFile(paths.PathUser))
                         Application.Run(new frmRWeb());

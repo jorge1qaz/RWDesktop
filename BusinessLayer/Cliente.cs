@@ -35,9 +35,9 @@ namespace BusinessLayer
             paramComprobacion.ParameterName = "@Comprobacion";
             cmd.Parameters.Add(paramComprobacion);
 
-            con.ConectDbWeb();
+            con.ConnectDbWeb();
             cmd.ExecuteNonQuery();
-            con.cadena.Close();
+            con.DisconnectDbWeb();
             return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
         }
     }
