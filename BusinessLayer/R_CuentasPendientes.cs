@@ -59,7 +59,6 @@ namespace BusinessLayer
                 }
             }
 
-
         }
 
         //Jorge Luis|13/10/2017|RW-19
@@ -76,7 +75,7 @@ namespace BusinessLayer
                 dsReporte.Tables[0].TableName = "data";
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathDirectory + idCuenta.Trim() + "ReporteCP" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString().Replace("  ", ""));
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -94,7 +93,7 @@ namespace BusinessLayer
                 dsReporte.Tables[0].TableName = "data";
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathDirectory + idCuenta.Trim() + "ReporteCP" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString().Replace("  ", ""));
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.None).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -133,9 +132,7 @@ namespace BusinessLayer
             dsListaCuentas.Tables[0].TableName = "data";
             /*Recorre y crea  archivos json de acuerdo a las cuentas que existen en la base de datos*/
             using (StreamWriter jsonListaCuentas = new StreamWriter(path + "ListaCuentas.json", false))
-            {
-                jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListaCuentas, Formatting.Indented).ToString().Replace("  ", ""));
-            }
+                jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListaCuentas, Formatting.None).ToString().Replace("  ", ""));
         }
         //Jorge Luis|12/10/2017|RW-19
         /*Método general para realizar los procesamientos de cálculos matemáticos y generación de json, de todas las bases de datos en todas 

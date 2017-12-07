@@ -58,20 +58,14 @@ namespace RWeb
                     {
                         File.Delete(paths.PathUser);
                         using (StreamWriter user = new StreamWriter(paths.PathUser, false))
-                        {
                             user.WriteLine(txtEmail.Text.ToString());
-                        }
-                        frm.Show();
-                        this.Hide();
+                        Application.Restart();
                     }
                     else
                     {
                         using (StreamWriter user = new StreamWriter(paths.PathUser, false))
-                        {
                             user.WriteLine(txtEmail.Text.ToString());
-                        }
-                        frm.Show();
-                        this.Hide();
+                        Application.Restart();
                     }
                 }
                 else

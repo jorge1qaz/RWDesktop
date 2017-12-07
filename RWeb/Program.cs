@@ -24,8 +24,13 @@ namespace RWeb
             {
                 // Comprueba si el usuario se ha logeado, por medio del txt con el correo del usuario
                 if (paths.ComprobarExistenciaPathFile(paths.PathUser))
+                {
+                    if (paths.ComprobarExistenciaPathFile(paths.PathRUC))
                     Application.Run(new frmRWeb());
-                // Sí existen estos dos archivos, se procede a enviar al formulario principal
+                    // Sí existen estos dos archivos, se procede a enviar al formulario principal
+                    else
+                        Application.Run(new frmEleccionEmpresa());
+                }
                 else
                     Application.Run(new frmLogin());
             }
@@ -33,10 +38,17 @@ namespace RWeb
             {
                 if (paths.createPathFile())
                 {
-                    //paths.ListYearsJson();
-                    MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Existencia de user
                     if (paths.ComprobarExistenciaPathFile(paths.PathUser))
-                        Application.Run(new frmRWeb());
+                    {
+                        //Existe RUC
+                        if (paths.ComprobarExistenciaPathFile(paths.PathRUC))
+                            Application.Run(new frmRWeb());
+                        //NO existe RUC
+                        else
+                            Application.Run(new frmEleccionEmpresa());
+                    }
+                    //NO existe user
                     else
                         Application.Run(new frmLogin());
                 }

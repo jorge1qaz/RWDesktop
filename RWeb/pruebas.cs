@@ -52,7 +52,9 @@ namespace RWeb
             //grdPruebas2.DataSource = cons.consultasDBF();
             //dirs.CheckDataBaseStockJson();
             //dirs.CheckDataBaseContaJson();
-            grdPruebas2.DataSource = cons.FullTableRequired(@"C:\CONTASIS 13\2015\19\STOCK\");
+            grdPruebas.DataSource = cons.CheckDataBaseConta();
+            grdPruebas3.DataSource = cons.CheckDataBaseStock();
+            //grdPruebas2.DataSource = cons.FullTableRequired(@"C:\CONTASIS 13\2015\19\STOCK\");
             //grdPruebas2.DataSource = pruebas;
         }
         AccesoDatos dat = new AccesoDatos();

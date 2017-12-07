@@ -14,6 +14,8 @@ namespace BusinessLayer
         public string PathFile = @"C:\\rptsGnrl\\pathInstanciaIContasis.txt";
         public string PathFileInit = @"C:\\rptsGnrl\\pathInstanciaIContasisInit.txt";
         public string PathUser = @"C:\\rptsGnrl\\user.txt";
+        public string PathRUC = @"C:\\rptsGnrl\\ruc.txt";
+        public string PathIdCompany = @"C:\\rptsGnrl\\idCompany.txt";
         public string PathPrincipalDirectory = @"C:/rptsGnrl/";
         public string PathRCP = "rptCntsPndts/";
         public string PathMU = "rptsMrgTld/";

@@ -7,6 +7,17 @@ namespace BusinessLayer
     public class Consultas
     {
         AccesoDatos dat = new AccesoDatos();
+        Paths paths = new Paths();
+        //Jorge Luis|07/12/2017|RW-46
+        /*Método para obtener la lista de empresas*/
+        public DataTable GetCompanies()
+        {
+            return dat.extraeInit(
+                "select dist e.CCOD_EMP as Código, e.CNIT as RUC, e.CDSC as 'Razón social' from PATH as a " + 
+                " inner join EMPRESAS as e " +
+                " on e.CCOD_EMP = a.CCOD_EMP "
+                );
+        }
         //Jorge Luis|26/10/2017|RW-19
         /*Método para extraer datos con un parámetro*/
         public DataTable ListCuentas(string path)
@@ -204,7 +215,8 @@ namespace BusinessLayer
                 "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, e.CNIT as d, p.MPATH1 as e from PATH as p" + //a = id, b = descripción, c = año, d = ruc, e = path
                 " inner join EMPRESAS as e" +
                 " on p.CCOD_EMP = e.CCOD_EMP  " +
-                " where MPATH1 != ' ' "
+                " where MPATH1 != ' ' " +
+                " and p.CCOD_EMP = '" + paths.readFile(paths.PathIdCompany) + "' "
                 );
         }
         //Jorge Luis|27/11/2017|RW-19
@@ -233,7 +245,8 @@ namespace BusinessLayer
                 "select p.CCOD_EMP as a, e.CDSC as b, p.NYEAR as c, e.CNIT as d, p.MPATH3 as e from PATH as p" + //a = id, b = descripción, c = año, d = ruc, e = path
                 " inner join EMPRESAS as e" +
                 " on p.CCOD_EMP = e.CCOD_EMP  " +
-                " where p.MPATH3 != ' ' "
+                " where p.MPATH3 != ' ' " +
+                " and p.CCOD_EMP = '" + paths.readFile(paths.PathIdCompany) + "' "
                 );
         }
         /*Margen de utilidad*/
@@ -637,7 +650,7 @@ namespace BusinessLayer
                 " inner join VENTAS as v " +
                 " on vl.CID = v.CID " +
                 " where v.CMES = '" + mesParametro + "' " +
-                " and v.CCOD_CLI like '%" + idCustomer + "%' "
+                " and v.CCOD_CLI = '" + idCustomer + "' "
                 , pathConnection
                 );
         }

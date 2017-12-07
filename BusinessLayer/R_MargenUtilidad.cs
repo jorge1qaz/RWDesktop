@@ -277,27 +277,33 @@ namespace BusinessLayer
                 DataSet dsListProductsByCustomer = new DataSet(); //Inicializa el Dataser principal que será convertido a json
                 DataTable customer = new DataTable(); //Crea una tabla que almacenará la lista de clientes
                 customer = cons.ListCustomer(pathConnection, j); // Obtiene la lista de clientes 
-                DataRow[] currentRows = customer.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
-                DataTable customerProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los clientes
-                Int32 val = 0;
-                Int16 valError = 0;
-                foreach (DataRow item in currentRows) //Recorre la lista de clientes
+                int totalcustomer = customer.Rows.Count;
+                if (totalcustomer != 0)
                 {
-                    customerProducts = cons.GetProductsByCustomer(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del cliente), con esto obtiene la lista de productos de acuerdo al mes y id de cliente.
-                    dsListProductsByCustomer.Tables.Add(customerProducts); // Se agrega la tabla al datalist
-                    try
+                    DataRow[] currentRows = customer.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
+                    DataTable customerProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los clientes
+                    Int32 val = 0;
+                    Int16 valError = 0;
+                    foreach (DataRow item in currentRows) //Recorre la lista de clientes
                     {
-                        dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim(); // Se le asigna un nombre a esta tabla
+                        customerProducts = cons.GetProductsByCustomer(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del cliente), con esto obtiene la lista de productos de acuerdo al mes y id de cliente.
+                        dsListProductsByCustomer.Tables.Add(customerProducts); // Se agrega la tabla al datalist
+                        try
+                        {
+                            dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim(); // Se le asigna un nombre a esta tabla
+                        }
+                        catch (Exception)
+                        {
+                            dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim() + valError.ToString();
+                        }
+                        val++;
+                        /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de cliente*/
+                        using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false))
+                            json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCustomer, Formatting.None).ToString().Trim().Replace("  ", ""));
                     }
-                    catch (Exception)
-                    {
-                        dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim() + valError.ToString();
-                    }
-                    val++;
-                    /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de cliente*/
-                    using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false))
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCustomer, Formatting.None).ToString().Trim().Replace("  ", ""));
                 }
+                else
+                    j++;
             }
         }
     }
