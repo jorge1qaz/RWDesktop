@@ -69,3 +69,4 @@ D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe.manifest
 D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.application
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe.manifest
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.application
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmEleccionEmpresa.resources

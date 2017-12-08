@@ -27,8 +27,8 @@ namespace RWeb
                 this.Close();
             }
             ex.EventTimer(60, HideForm);
-            ex.EventTimer(300, StartMassiveUpdate);
-
+            if (trans.ComprobarAccesoInternet())
+                ex.EventTimer(300, StartMassiveUpdate);
         }
         private void HideForm(object sender, EventArgs e)
         {
@@ -89,13 +89,15 @@ namespace RWeb
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            btnCerrarSesion.Enabled = true;
+            btnUpdateNow.Enabled = true;
+            trans.DeleteZip();
             if ((e.Cancelled == true))
                 this.lblProcessing.Text = "Cancelado!";
             else if (!(e.Error == null))
                 this.lblProcessing.Text = ("Error: " + e.Error.Message);
             else
                 this.lblProcessing.Text = "¡Actualización completada! Revise su navegador.";
-            trans.DeleteZip();
             DateTime localDate = DateTime.Now;
             String cultureName = "en-US";
             var culture = new CultureInfo(cultureName);
@@ -105,13 +107,21 @@ namespace RWeb
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
-            btnCerrarSesion.Enabled = true;
-            btnUpdateNow.Enabled = true;
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            File.Delete(paths.PathUser);
+            //Antiguo botón de cerrar sesión :'(
+            //if (File.Exists(paths.PathUser))
+            //    File.Delete(paths.PathUser);
+            //this.Close();
+            if (File.Exists(paths.PathRUC))
+                File.Delete(paths.PathRUC);
+            Application.Restart();
+        }
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
             this.Close();
+            Application.ExitThread();
         }
     }
 }

@@ -12,7 +12,10 @@ namespace BusinessLayer
     public class Paths
     {
         public string PathFile = @"C:\\rptsGnrl\\pathInstanciaIContasis.txt";
+        public string PathFileInit = @"C:\\rptsGnrl\\pathInstanciaIContasisInit.txt";
         public string PathUser = @"C:\\rptsGnrl\\user.txt";
+        public string PathRUC = @"C:\\rptsGnrl\\ruc.txt";
+        public string PathIdCompany = @"C:\\rptsGnrl\\idCompany.txt";
         public string PathPrincipalDirectory = @"C:/rptsGnrl/";
         public string PathRCP = "rptCntsPndts/";
         public string PathMU = "rptsMrgTld/";
@@ -24,6 +27,14 @@ namespace BusinessLayer
         {
             string pathInstance;
             StreamReader pathInstanceFile = new StreamReader(PathFile);
+            return pathInstance = pathInstanceFile.ReadLine().Replace('\\', '/').Trim();
+        }
+        //Jorge Luis|24/10/2017|RW-19
+        /*Método para leer un txt con el path de la instancia de Contasis inicial*/
+        public string readPathInstanceIContasisInit()
+        {
+            string pathInstance;
+            StreamReader pathInstanceFile = new StreamReader(PathFileInit);
             return pathInstance = pathInstanceFile.ReadLine().Replace('\\', '/').Trim();
         }
         //Jorge Luis|07/11/2017|RW-19
@@ -96,18 +107,22 @@ namespace BusinessLayer
                         if (comprobacionFile)
                         {
                             File.Delete(PathFile);
+                            File.Delete(PathFileInit);
+                            using (StreamWriter createFile = new StreamWriter(PathFile, false))
+                                createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                            using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                                createFileInit.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                        }
+                        else
+                        {
                             using (StreamWriter createFile = new StreamWriter(PathFile, false))
                             {
                                 createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
                                 MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
+                            using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                                createFileInit.WriteLine(CarpetaDatos.SelectedPath.ToString());
                         }
-                        else
-                            using (StreamWriter createFile = new StreamWriter(PathFile, false))
-                            { 
-                                createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
-                                MessageBox.Show("Ruta correcta", "Comprobación de ruta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
                         comprobacionExito = true;
                     }
                     else
@@ -124,12 +139,19 @@ namespace BusinessLayer
                     if (ComprobarExistenciaPathFile())
                     {
                         File.Delete(PathFile);
+                        File.Delete(PathFileInit);
                         using (StreamWriter createFile = new StreamWriter(PathFile, false))
                             createFile.WriteLine(listInstancesContasis[0].ToString());
+                        using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                            createFileInit.WriteLine(listInstancesContasis[0].ToString());
                     }
                     else
+                    {
                         using (StreamWriter createFile = new StreamWriter(PathFile, false))
                             createFile.WriteLine(listInstancesContasis[0].ToString());
+                        using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                            createFileInit.WriteLine(listInstancesContasis[0].ToString());
+                    }
                     comprobacionExito = true;
                 }
                 else
@@ -152,12 +174,19 @@ namespace BusinessLayer
                             if (comprobacionFile)
                             {
                                 File.Delete(PathFile);
+                                File.Delete(PathFileInit);
                                 using (StreamWriter createFile = new StreamWriter(PathFile, false))
                                     createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                                using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                                    createFileInit.WriteLine(CarpetaDatos.SelectedPath.ToString());
                             }
                             else
+                            {
                                 using (StreamWriter createFile = new StreamWriter(PathFile, false))
                                     createFile.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                                using (StreamWriter createFileInit = new StreamWriter(PathFileInit, false))
+                                    createFileInit.WriteLine(CarpetaDatos.SelectedPath.ToString());
+                            }
                             comprobacionExito = true;
                         }
                         else

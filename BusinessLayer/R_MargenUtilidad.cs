@@ -89,8 +89,10 @@ namespace BusinessLayer
                 }
             }
         }
+
         public void GenerateFulltables(string pathSaveFile, string pathConnection)
         {
+            Int16 valError = 0;
             for (Int16 i = 0; i <= 12; i++)
             {
                 DataSet dsListProducts = new DataSet();
@@ -106,7 +108,15 @@ namespace BusinessLayer
                 //con esto se tiene todos los datos de la base de datos con sus respectivos códigos de COSTO1
 
                 dsListProducts.Tables.Add(datos1);
-                dsListProducts.Tables[0].TableName = "data";
+                try
+                {
+                    dsListProducts.Tables[0].TableName = "data";
+                }
+                catch (Exception)
+                {
+                    valError++;
+                    dsListProducts.Tables[0].TableName = "data" + valError.ToString();
+                }
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "FullTable" + i + ".json", false))
                 {
                     jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace("  ", ""));
@@ -117,17 +127,26 @@ namespace BusinessLayer
         /*Método para **/
         public void GenerateListProductsByMonth(string pathSaveFile, string pathConnection)
         {
+            Int16 valError = 0;
             for (Int16 i = 0; i <= 12; i++)
             {
                 DataSet dsListProducts = new DataSet();
                 DataTable datos = new DataTable();
                 datos = cons.ListProducts(i, pathConnection);
                 dsListProducts.Tables.Add(datos);
-                dsListProducts.Tables[0].TableName = "data";
+                try
+                {
+                    dsListProducts.Tables[0].TableName = "data";
+                }
+                catch (Exception)
+                {
+                    valError++;
+                    dsListProducts.Tables[0].TableName = "data" + valError.ToString();
+                }
                 /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Products" + i + ".json", false))
                 {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace(" ", ""));
+                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace("  ", ""));
                 }
             }
         }
@@ -152,7 +171,7 @@ namespace BusinessLayer
                     val++;
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + "StoreProducts" + j + ".json", false))
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace(" ", ""));
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace("  ", ""));
                 }
             }
         }
@@ -160,6 +179,7 @@ namespace BusinessLayer
         /*Método para generar lista de productos de acuerdo a los almacenes en los 12 meses*/
         public void GenerateListProductsByEmployee(string pathSaveFile, string pathConnection)
         {
+            Int16 valError = 0;
             for (Int16 j = 1; j <= 12; j++)
             {
                 DataSet dsListProductsByStore = new DataSet();
@@ -171,7 +191,14 @@ namespace BusinessLayer
                 {
                     Products = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim());
                     dsListProductsByStore.Tables.Add(Products);
-                    dsListProductsByStore.Tables[0].TableName = "data";
+                    try
+                    {
+                        dsListProductsByStore.Tables[0].TableName = "data";
+                    }
+                    catch (Exception)
+                    {
+                        dsListProductsByStore.Tables[0].TableName = "data" + valError.ToString();
+                    }
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "EmployeeProducts" + j + ".json", false))
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim());
@@ -212,7 +239,7 @@ namespace BusinessLayer
                     val++;
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + "Costo1Products" + j + ".json", false))
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCOSTO1, Formatting.None).ToString().Trim().Replace(" ", ""));
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCOSTO1, Formatting.None).ToString().Trim().Replace("  ", ""));
                 }
             }
         }
@@ -235,7 +262,7 @@ namespace BusinessLayer
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "Costo2Products" + j + ".json", false))
                     {
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace(" ",""));
+                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace("  ",""));
                     }
                 }
             }
@@ -250,19 +277,33 @@ namespace BusinessLayer
                 DataSet dsListProductsByCustomer = new DataSet(); //Inicializa el Dataser principal que será convertido a json
                 DataTable customer = new DataTable(); //Crea una tabla que almacenará la lista de clientes
                 customer = cons.ListCustomer(pathConnection, j); // Obtiene la lista de clientes 
-                DataRow[] currentRows = customer.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
-                DataTable customerProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los clientes
-                Int32 val = 0;
-                foreach (DataRow item in currentRows) //Recorre la lista de clientes
+                int totalcustomer = customer.Rows.Count;
+                if (totalcustomer != 0)
                 {
-                    customerProducts = cons.GetProductsByCustomer(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del cliente), con esto obtiene la lista de productos de acuerdo al mes y id de cliente.
-                    dsListProductsByCustomer.Tables.Add(customerProducts); // Se agrega la tabla al datalist
-                    dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim(); //// Se le asigna un nombre a esta tabla
-                    val++;
-                    /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de cliente*/
-                    using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false))
-                        json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCustomer, Formatting.None).ToString().Trim().Replace(" ", ""));
+                    DataRow[] currentRows = customer.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
+                    DataTable customerProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los clientes
+                    Int32 val = 0;
+                    Int16 valError = 0;
+                    foreach (DataRow item in currentRows) //Recorre la lista de clientes
+                    {
+                        customerProducts = cons.GetProductsByCustomer(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del cliente), con esto obtiene la lista de productos de acuerdo al mes y id de cliente.
+                        dsListProductsByCustomer.Tables.Add(customerProducts); // Se agrega la tabla al datalist
+                        try
+                        {
+                            dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim(); // Se le asigna un nombre a esta tabla
+                        }
+                        catch (Exception)
+                        {
+                            dsListProductsByCustomer.Tables[val].TableName = item[0].ToString().Trim() + valError.ToString();
+                        }
+                        val++;
+                        /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de cliente*/
+                        using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false))
+                            json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCustomer, Formatting.None).ToString().Trim().Replace("  ", ""));
+                    }
                 }
+                else
+                    j++;
             }
         }
     }
