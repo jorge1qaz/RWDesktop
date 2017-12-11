@@ -62,10 +62,11 @@ namespace BusinessLayer
                 DataTable customer = new DataTable();
                 customer = cons.ListCustomer(pathConnection, j);
 
+                DataTable listVendedor = new DataTable();
+                listVendedor = cons.ListVendedor(pathConnection, j);
+
                 //DataTable listCOSTO2 = new DataTable();
                 //listCOSTO2 = cons.ListCOSTO2(pathConnection, j);
-                //DataTable listVendedor = new DataTable();
-                //listVendedor = cons.ListVendedor(pathConnection, j);
                 //DataTable listTipoStock = new DataTable();
                 //listTipoStock = cons.ListTipoStock(pathConnection);
                 //DataTable listAlcance = new DataTable();
@@ -74,14 +75,15 @@ namespace BusinessLayer
                 dsListQuerys.Tables.Add(almacenes);
                 dsListQuerys.Tables.Add(tableVENTASL); //costo1
                 dsListQuerys.Tables.Add(customer);
+                dsListQuerys.Tables.Add(listVendedor);
                 //dsListQuerys.Tables.Add(listCOSTO2);
-                //dsListQuerys.Tables.Add(listVendedor);
                 //dsListQuerys.Tables.Add(listTipoStock);
                 //dsListQuerys.Tables.Add(listAlcance);
 
                 dsListQuerys.Tables[0].TableName = "almacenes";
                 dsListQuerys.Tables[1].TableName = "costo1";
                 dsListQuerys.Tables[2].TableName = "data";
+                dsListQuerys.Tables[3].TableName = "vendedor";
                 /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Querys" + j + ".json", false))
                 {
@@ -93,7 +95,7 @@ namespace BusinessLayer
         public void GenerateFulltables(string pathSaveFile, string pathConnection)
         {
             Int16 valError = 0;
-            for (Int16 i = 0; i <= 12; i++)
+            for (Int16 i = 1; i <= 12; i++)
             {
                 DataSet dsListProducts = new DataSet();
                 DataTable datos1 = new DataTable();
@@ -163,12 +165,23 @@ namespace BusinessLayer
                 DataRow[] currentRows = store.Select(null, null, DataViewRowState.CurrentRows); //Consulta linq
                 DataTable almacenesProducts = new DataTable(); // Crea una tabla donde se almacenará lista de productos de acuerdo a los almacenes
                 Int32 val = 0;
-                foreach (DataRow item in currentRows) //Recorre la lista de alamacenes
+                foreach (DataRow item in currentRows) //Recorre la lista de almacenes
                 {
-                    almacenesProducts = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del almacén), con esto obtiene la lista de productos de acuerdo al mes y id de almacén.
-                    dsListProductsByStore.Tables.Add(almacenesProducts); // Se agrega la tabla al datalist
-                    dsListProductsByStore.Tables[val].TableName = item[0].ToString().Trim(); //// Se le asigna un nombre a esta tabla
-                    val++;
+                    try
+                    {
+                        almacenesProducts = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del almacén), con esto obtiene la lista de productos de acuerdo al mes y id de almacén.
+                        dsListProductsByStore.Tables.Add(almacenesProducts); // Se agrega la tabla al datalist
+                        dsListProductsByStore.Tables[val].TableName = item[0].ToString().Trim(); // Se le asigna un nombre a esta tabla
+                        val++;
+                    }
+                    catch (Exception)
+                    {
+                        almacenesProducts = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim()); //Invoca al método que que requiere de 3 parámetros (path de la base de datos, el mes, id del almacén), con esto obtiene la lista de productos de acuerdo al mes y id de almacén.
+                        dsListProductsByStore.Tables.Add(almacenesProducts); // Se agrega la tabla al datalist
+                        dsListProductsByStore.Tables[val].TableName = item[0].ToString().Trim() + val.ToString(); // Se le asigna un nombre a esta tabla
+                        val++;
+                    }
+
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + "StoreProducts" + j + ".json", false))
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim().Replace("  ", ""));
@@ -183,21 +196,21 @@ namespace BusinessLayer
             for (Int16 j = 1; j <= 12; j++)
             {
                 DataSet dsListProductsByStore = new DataSet();
-                DataTable almacenes = new DataTable();
-                almacenes = cons.ListVendedor(pathConnection, j);
-                DataRow[] currentRows = almacenes.Select(null, null, DataViewRowState.CurrentRows);
+                DataTable vendedores = new DataTable();
+                vendedores = cons.ListVendedor(pathConnection, j);
+                DataRow[] currentRows = vendedores.Select(null, null, DataViewRowState.CurrentRows);
                 DataTable Products = new DataTable();
                 foreach (DataRow item in currentRows)
                 {
-                    Products = cons.GetProductsByStore(pathConnection, j, item[0].ToString().Trim());
+                    Products = cons.GetProductsByEmployee(pathConnection, j, item[0].ToString().Trim());
                     dsListProductsByStore.Tables.Add(Products);
                     try
                     {
-                        dsListProductsByStore.Tables[0].TableName = "data";
+                        dsListProductsByStore.Tables[0].TableName = item[0].ToString().Trim();
                     }
                     catch (Exception)
                     {
-                        dsListProductsByStore.Tables[0].TableName = "data" + valError.ToString();
+                        dsListProductsByStore.Tables[0].TableName = item[0].ToString().Trim() + valError.ToString();
                     }
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
                     using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "EmployeeProducts" + j + ".json", false))

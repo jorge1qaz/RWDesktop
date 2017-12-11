@@ -428,7 +428,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select dist v.CCOD_VEND, ve.CDSC from VENTAS as v " +
+                " select dist v.CCOD_VEND as a, ve.CDSC as b from VENTAS as v " +
                 " inner join VENDEDOR as ve " +
                 " on v.CCOD_VEND = ve.CCOD_VEND " +
                 " where v.CMES = '" + mesParametro + "' " 
@@ -651,6 +651,26 @@ namespace BusinessLayer
                 " on vl.CID = v.CID " +
                 " where v.CMES = '" + mesParametro + "' " +
                 " and v.CCOD_CLI = '" + idCustomer + "' "
+                , pathConnection
+                );
+        }
+        //Jorge Luis|01/12/2017|RW-*
+        /*Consulta para obtener la lista de productos por vendedor*/
+        public DataTable GetProductsByEmployee(string pathConnection, Int16 mesProcesoCalculado, string idEmployee)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                " select dist TRIM(vl.CCOD_PRO) as a " + // A = CCOD_VEND
+                " from VENTASL as vl " +
+                " inner join VENTAS as v " +
+                " on vl.CID = v.CID " +
+                " where v.CMES = '" + mesParametro + "' " +
+                " and v.CCOD_VEND = '" + idEmployee + "' "
                 , pathConnection
                 );
         }
