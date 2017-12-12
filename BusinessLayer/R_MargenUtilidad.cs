@@ -42,7 +42,8 @@ namespace BusinessLayer
             GenerateListProductsByStore(save, path);
             GenerateListProductsByCOSTO1(save, path);
             GenerateListProductsByCustomer(save, path);
-            GenerateQuerys(save, path); GenerateFulltables(save, path);
+            GenerateListProductsByEmployee(save, path);
+            GenerateQuerys(save, path);
         }
         public void GenerateQuerys(string pathSaveFile, string pathConnection)
         {
@@ -213,7 +214,7 @@ namespace BusinessLayer
                         dsListProductsByStore.Tables[0].TableName = item[0].ToString().Trim() + valError.ToString();
                     }
                     /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de almacén*/
-                    using (StreamWriter json = new StreamWriter(pathSaveFile + item[0].ToString().Trim() + "EmployeeProducts" + j + ".json", false))
+                    using (StreamWriter json = new StreamWriter(pathSaveFile + "EmployeeProducts" + j + ".json", false))
                         json.WriteLine(JsonConvert.SerializeObject(dsListProductsByStore, Formatting.None).ToString().Trim());
                 }
             }

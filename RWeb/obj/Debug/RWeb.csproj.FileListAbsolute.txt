@@ -70,3 +70,8 @@ D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.application
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe.manifest
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.application
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmEleccionEmpresa.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.exe.manifest
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.application
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.frmEleccionEmpresa.resources
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.exe.manifest
+D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.application
