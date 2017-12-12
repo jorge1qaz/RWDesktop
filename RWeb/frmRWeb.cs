@@ -53,6 +53,7 @@ namespace RWeb
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             btnCerrarSesion.Enabled = false;
             btnUpdateNow.Enabled = false;
+            btnEmpresas.Enabled = false;
             Task task = new Task(() =>
             {
                 margenUtilidad.StartModule();
@@ -72,6 +73,7 @@ namespace RWeb
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             btnCerrarSesion.Enabled = false;
             btnUpdateNow.Enabled = false;
+            btnEmpresas.Enabled = false;
             Task task = new Task(StartMassiveUpdate);
             task.Start();
             lblProcessing.Text = "Procesando datos...";
@@ -89,9 +91,10 @@ namespace RWeb
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            trans.DeleteZip();
             btnCerrarSesion.Enabled = true;
             btnUpdateNow.Enabled = true;
-            trans.DeleteZip();
+            btnEmpresas.Enabled = true;
             if ((e.Cancelled == true))
                 this.lblProcessing.Text = "Cancelado!";
             else if (!(e.Error == null))
@@ -99,29 +102,31 @@ namespace RWeb
             else
                 this.lblProcessing.Text = "¡Actualización completada! Revise su navegador.";
             DateTime localDate = DateTime.Now;
-            String cultureName = "en-US";
+            String cultureName = "en-GB";
             var culture = new CultureInfo(cultureName);
             localDate.ToString(culture);
             lblLastUpdate.Text = localDate.ToString(culture);
             this.Size = new Size(331, 174);
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
+            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 60);
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            //Antiguo botón de cerrar sesión :'(
-            //if (File.Exists(paths.PathUser))
-            //    File.Delete(paths.PathUser);
-            //this.Close();
-            if (File.Exists(paths.PathRUC))
-                File.Delete(paths.PathRUC);
+            if (File.Exists(paths.PathUser))
+                File.Delete(paths.PathUser);
             Application.Restart();
         }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
             Application.ExitThread();
+        }
+        private void btnEmpresas_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(paths.PathRUC))
+                File.Delete(paths.PathRUC);
+            Application.Restart();
         }
     }
 }

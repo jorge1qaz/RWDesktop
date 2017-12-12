@@ -15,6 +15,7 @@ namespace BusinessLayer
         //Jorge Luis|30/10/2017|RW-19
         /*Método general para la realización de la tranferencia de los datos compresos*/
         public void StartTransfer(BackgroundWorker backgroundWorker) {
+            paths.WriteLastUpdate();
             if (ComprimirDirectorioCliente())
             {
                 try
@@ -23,7 +24,6 @@ namespace BusinessLayer
                         Directory.Delete(paths.PathPrincipalDirectory + paths.PathRCP, true);
                     if(Directory.Exists(paths.PathPrincipalDirectory + paths.PathMU))
                         Directory.Delete(paths.PathPrincipalDirectory + paths.PathMU, true);
-                    paths.WriteLastUpdate();
                     SendZip(backgroundWorker);
                 }
                 catch (Exception)

@@ -26,7 +26,7 @@ namespace RWeb
                 if (paths.ComprobarExistenciaPathFile(paths.PathUser))
                 {
                     if (paths.ComprobarExistenciaPathFile(paths.PathRUC))
-                    Application.Run(new frmRWeb());
+                        Application.Run(new frmRWeb());
                     // Sí existen estos dos archivos, se procede a enviar al formulario principal
                     else
                         Application.Run(new frmEleccionEmpresa());
