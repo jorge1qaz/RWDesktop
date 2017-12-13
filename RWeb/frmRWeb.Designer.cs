@@ -44,6 +44,8 @@
             this.btnCerrar = new MetroFramework.Controls.MetroButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnEmpresas = new MetroFramework.Controls.MetroButton();
+            this.btnMaximizar = new MetroFramework.Controls.MetroButton();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             ((System.ComponentModel.ISupportInitialize)(this.grdDatos)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -159,11 +161,12 @@
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(267, 17);
+            this.btnCerrar.Location = new System.Drawing.Point(302, 5);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(47, 37);
+            this.btnCerrar.Size = new System.Drawing.Size(30, 16);
             this.btnCerrar.TabIndex = 12;
-            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.Text = "X";
+            this.metroToolTip1.SetToolTip(this.btnCerrar, "Cerrar");
             this.btnCerrar.UseSelectable = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
@@ -196,12 +199,30 @@
             this.btnEmpresas.UseSelectable = true;
             this.btnEmpresas.Click += new System.EventHandler(this.btnEmpresas_Click);
             // 
+            // btnMaximizar
+            // 
+            this.btnMaximizar.Location = new System.Drawing.Point(0, 5);
+            this.btnMaximizar.Name = "btnMaximizar";
+            this.btnMaximizar.Size = new System.Drawing.Size(30, 16);
+            this.btnMaximizar.TabIndex = 14;
+            this.btnMaximizar.Text = "^";
+            this.metroToolTip1.SetToolTip(this.btnMaximizar, "Mostrar");
+            this.btnMaximizar.UseSelectable = true;
+            this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // frmRWeb
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(331, 158);
             this.ControlBox = false;
+            this.Controls.Add(this.btnMaximizar);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.lblLastUpdate);
@@ -237,5 +258,7 @@
         private MetroFramework.Controls.MetroButton btnCerrar;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private MetroFramework.Controls.MetroButton btnEmpresas;
+        private MetroFramework.Controls.MetroButton btnMaximizar;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }

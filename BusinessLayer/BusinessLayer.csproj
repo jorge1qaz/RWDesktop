@@ -56,6 +56,7 @@
     <Compile Include="ComprobarTablas.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Consultas.cs" />
+    <Compile Include="Consultasb.cs" />
     <Compile Include="Directorios.cs" />
     <Compile Include="Ejecucion.cs" />
     <Compile Include="FtpSetting.cs" />

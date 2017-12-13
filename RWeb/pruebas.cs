@@ -52,13 +52,15 @@ namespace RWeb
             //grdPruebas2.DataSource = cons.consultasDBF();
             //dirs.CheckDataBaseStockJson();
             //dirs.CheckDataBaseContaJson();
-            grdPruebas.DataSource = cons.ListVendedor(@"C:\Contasis14\2017\02\STOCK", 12);
+            //grdPruebas.DataSource = cons.GetProductsByAlcance(@"C:\Contasis14\2017\02\STOCK", 4, ".F.");
             //grdPruebas3.DataSource = cons.CheckDataBaseStock();
             //grdPruebas2.DataSource = cons.FullTableRequired(@"C:\CONTASIS 13\2015\19\STOCK\");
             //grdPruebas2.DataSource = pruebas;
+            grdPruebas2.DataSource = cons.CheckDataBaseConta();
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
+        Consultas consb = new Consultas();
         Transferencia trans = new Transferencia();
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         Paths paths = new Paths();
@@ -439,21 +441,12 @@ namespace RWeb
 
                 DataTable listCOSTO1 = new DataTable();
                 listCOSTO1 = cons.ListCOSTO1(pathConnection, j);
-                DataTable listCOSTO2 = new DataTable();
-                listCOSTO2 = cons.ListCOSTO2(pathConnection, j);
                 DataTable listVendedor = new DataTable();
                 listVendedor = cons.ListVendedor(pathConnection, j);
-                DataTable listTipoStock = new DataTable();
-                listTipoStock = cons.ListTipoStock(pathConnection);
-                DataTable listAlcance = new DataTable();
-                listAlcance = cons.ListAlcance(pathConnection);
 
                 dsListQuerys.Tables.Add(almacenes);
                 dsListQuerys.Tables.Add(listCOSTO1);
-                dsListQuerys.Tables.Add(listCOSTO2);
                 dsListQuerys.Tables.Add(listVendedor);
-                dsListQuerys.Tables.Add(listTipoStock);
-                dsListQuerys.Tables.Add(listAlcance);
 
                 for (int i = 0; i < dsListQuerys.Tables.Count; i++)
                 {

@@ -255,8 +255,15 @@ namespace BusinessLayer
         public void WriteLastUpdate()
         {
             DateTime localDate = DateTime.Now;
-            using (StreamWriter LastUpdate = new StreamWriter(PathPrincipalDirectory + "LastUpdate.txt", false))
-                LastUpdate.WriteLine(localDate.ToString());
+            if (File.Exists(PathPrincipalDirectory + "LastUpdate.txt"))
+            {
+                File.Delete(PathPrincipalDirectory + "LastUpdate.txt");
+                using (StreamWriter LastUpdate = new StreamWriter(PathPrincipalDirectory + "LastUpdate.txt", false))
+                    LastUpdate.WriteLine(localDate.ToString());
+            }
+            else
+                using (StreamWriter LastUpdate = new StreamWriter(PathPrincipalDirectory + "LastUpdate.txt", false))
+                    LastUpdate.WriteLine(localDate.ToString());
         }
     }
 }

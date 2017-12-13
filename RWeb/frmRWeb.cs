@@ -42,6 +42,10 @@ namespace RWeb
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         public void StartMassiveUpdate()
         {
+            this.Size = new Size(331, 154);
+            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
+            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
+            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             margenUtilidad.StartModule();
             rcp.StartModule();
         }
@@ -127,6 +131,14 @@ namespace RWeb
             if (File.Exists(paths.PathRUC))
                 File.Delete(paths.PathRUC);
             Application.Restart();
+        }
+
+        private void btnMaximizar_Click(object sender, EventArgs e)
+        {
+            this.Size = new Size(331, 174);
+            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
+            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
+            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 60);
         }
     }
 }
