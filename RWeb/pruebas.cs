@@ -55,13 +55,17 @@ namespace RWeb
             //grdPruebas.DataSource = cons.GetProductsByAlcance(@"C:\Contasis14\2017\02\STOCK", 4, ".F.");
             //grdPruebas3.DataSource = cons.CheckDataBaseStock();
             //grdPruebas2.DataSource = cons.FullTableRequired(@"C:\CONTASIS 13\2015\19\STOCK\");
-            //grdPruebas2.DataSource = pruebas;
-            grdPruebas2.DataSource = cons.CheckDataBaseConta();
+            ////grdPruebas2.DataSource = pruebas;
+            grdPruebas2.DataSource = miNegocioAlDia.FilterN005("d:", @"C:\Contasis14\2016\01\conta");
+            grdPruebas.DataSource = consb.FilterRubro(@"C:\Contasis14\2016\01\conta", "N005");
+            grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
+            //grdPruebas2.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 1, "701102");
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
-        Consultas consb = new Consultas();
+        Consultasb consb = new Consultasb();
         Transferencia trans = new Transferencia();
+        R_MiNegocioAlDia miNegocioAlDia = new R_MiNegocioAlDia();
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         Paths paths = new Paths();
         Directorios dirs = new Directorios();

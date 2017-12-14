@@ -113,7 +113,7 @@ namespace RWeb
             this.Size = new Size(331, 174);
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 60);
+            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -138,7 +138,7 @@ namespace RWeb
             this.Size = new Size(331, 174);
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 60);
+            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
         }
     }
 }
