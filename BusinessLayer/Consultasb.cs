@@ -48,5 +48,22 @@ namespace BusinessLayer
                 , pathConection
                 );
         }
+        //Jorge Luis|15/12/2017|RW-91
+        /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
+        public DataTable SumNdebeDiario(string pathConection, Int16 mesProcesoCalculado, string idCuenta)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                 " select sum(NDEBE) as debe from Diario "
+                 + " where CCOD_CUE = '" + idCuenta + "' "
+                 + " and CMES = '" + mesParametro + "' "
+                , pathConection
+                );
+        }
     }
 }

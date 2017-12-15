@@ -11,6 +11,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Threading;
+using Newtonsoft.Json.Linq;
 
 namespace RWeb
 {
@@ -20,46 +21,100 @@ namespace RWeb
         {
             InitializeComponent();
         }
-        decimal totalUnidades;
-        decimal totalPuVentas;
-        decimal totalPuCosto;
-        decimal PuVentas;
-        decimal PuCosto;
-        decimal muUnitario;
-        decimal mu;
-        decimal montoVentas;
-        decimal montoCosto;
-        decimal margenUtil;
+        //double totalVentas;
+        //double totalCajaBancosHaber;
+        //double totalCajaBancosDebe;
+        //decimal totalCajaBancos;
+        //double totalCobrarHaber;
+        //double totalCobrarDebe;
+        //decimal totalCobrar;
+        public class Post
+        {
+            public string Title { get; set; }
+            public string Description { get; set; }
+            public string Link { get; set; }
+            public IList<string> Categories { get; set; }
+        }
+        
         private void pruebas_Load(object sender, EventArgs e)
         {
-            //margenUtilidad.StartModule();
-            //grdPruebas.DataSource = cons.GetFullTableC1a("C:/Contasis14/2017/01/STOCK", 3);
-            //grdPruebas2.DataSource = cons.GetFullTableC1b("C:/Contasis14/2017/01/STOCK", 3);
-            //grdPruebas3.DataSource = cons.GetFullTableC1c("C:/Contasis14/2017/01/STOCK", 3);
-            //grdPruebas2.DataSource = cons.FullTableRequired("C:/Contasis14/2017/01/STOCK");
+            List<Post> posts = GetPosts();
 
-            //List<string> databases = new List<string>();
-            //databases = dirs.CheckDataBaseStock();
-            //MessageBox.Show(databases[0].ToString());
-            //DataTable dataCompany = dirs.CheckDataBaseStock();
-            //DataRow[] currentRows = dataCompany.Select(null, null, DataViewRowState.CurrentRows);
-            //MessageBox.Show(currentRows.Count().ToString());
-            //foreach (DataRow item in currentRows)
+            JObject rss =
+                new JObject(
+                    new JProperty("channel",
+                        new JObject(
+                            new JProperty("title", "James Newton-King"),
+                            new JProperty("link", "http://james.newtonking.com"),
+                            new JProperty("description", "James Newton-King's blog."),
+                            new JProperty("item",
+                                new JArray(
+                                    from p in posts
+                                    orderby p.Title
+                                    select new JObject(
+                                        new JProperty("title", p.Title),
+                                        new JProperty("description", p.Description),
+                                        new JProperty("link", p.Link),
+                                        new JProperty("category",
+                                            new JArray(
+                                                from c in p.Categories
+                                                select new JValue(c)))))))));
+            MessageBox.Show(json.ToString());
+            #region temp
+            //grdPruebas2.DataSource = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "N005", true);
+            //grdPruebas.DataSource = consb.FilterRubro(@"C:\Contasis14\2016\01\conta", "N005");
+            //grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
+
+            //DataTable tableDataN005 = new DataTable();
+            //tableDataN005 = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "N005", true);
+            //try
+            //{ totalVentas = tableDataN005.AsEnumerable().Where(x => x.Field<Int16>("a") == 12).Select(x => x.Field<double>("c")).Sum(); }
+            //catch (Exception)
+            //    { totalVentas = 0; }
+            //MessageBox.Show(totalVentas.ToString());
+
+            ////Cajas y bancos
+            //DataTable tableDataA105Haber = new DataTable();
+            //tableDataA105Haber = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "A105", true);
+            //try
+            //{ totalCajaBancosHaber = tableDataA105Haber.AsEnumerable().Where(x => x.Field<Int16>("a") == 12).Select(x => x.Field<double>("c")).Sum(); }
+            //catch (Exception)
+            //    { totalCajaBancosHaber = 0; }
+            //MessageBox.Show(totalCajaBancosHaber.ToString());
+
+            //DataTable tableDataA105Debe = new DataTable();
+            //tableDataA105Debe = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "A105", false);
+            //try
+            //{ totalCajaBancosDebe = tableDataA105Debe.AsEnumerable().Where(x => x.Field<Int16>("a") == 12).Select(x => x.Field<double>("c")).Sum(); }
+            //catch (Exception)
+            //{ totalCajaBancosDebe = 0; }
+            //MessageBox.Show(totalCajaBancosDebe.ToString());
+            //totalCajaBancos = Convert.ToDecimal(totalCajaBancosDebe) - Convert.ToDecimal(totalCajaBancosHaber);
+            //MessageBox.Show("Total! Papu!!: " + totalCajaBancos.ToString());
+
+            ////Cuentas por cobrar
+            //DataTable tableDataA115Haber = new DataTable();
+            //tableDataA115Haber = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "A115", true);
+            //try
+            //{ totalCobrarHaber = tableDataA115Haber.AsEnumerable().Where(x => x.Field<Int16>("a") == 12).Select(x => x.Field<double>("c")).Sum(); }
+            //catch (Exception)
+            //{ totalCobrarHaber = 0; }
+            //MessageBox.Show(totalCobrarHaber.ToString());
+
+            //DataTable tableDataA115Debe = new DataTable();
+            //tableDataA115Debe = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2016\01\conta", "A115", false);
+            //try
             //{
-            //    MessageBox.Show(item[0].ToString() + " - " + item[1].ToString() + " - " + item[2].ToString() + " - " + item[3].ToString());
+            //    totalCobrarDebe = tableDataA115Debe.AsEnumerable().Where(x => x.Field<Int16>("a") == 12).Select(x => x.Field<double>("c")).Sum(); 
+            //    if (totalCobrarDebe < 0)
+            //        MessageBox.Show("negrativo mi hedmano: " + totalCobrarDebe.ToString());
             //}
-
-            //grdPruebas2.DataSource = cons.consultasDBF();
-            //dirs.CheckDataBaseStockJson();
-            //dirs.CheckDataBaseContaJson();
-            //grdPruebas.DataSource = cons.GetProductsByAlcance(@"C:\Contasis14\2017\02\STOCK", 4, ".F.");
-            //grdPruebas3.DataSource = cons.CheckDataBaseStock();
-            //grdPruebas2.DataSource = cons.FullTableRequired(@"C:\CONTASIS 13\2015\19\STOCK\");
-            ////grdPruebas2.DataSource = pruebas;
-            grdPruebas2.DataSource = miNegocioAlDia.FilterN005("d:", @"C:\Contasis14\2016\01\conta");
-            grdPruebas.DataSource = consb.FilterRubro(@"C:\Contasis14\2016\01\conta", "N005");
-            grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
-            //grdPruebas2.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 1, "701102");
+            //catch (Exception)
+            //{ totalCobrarDebe = 0; }
+            //MessageBox.Show(totalCobrarDebe.ToString());
+            //totalCobrar = Convert.ToDecimal(totalCobrarDebe) - Convert.ToDecimal(totalCobrarHaber);
+            //MessageBox.Show("Total! Papu!!: " + totalCobrar.ToString());
+            #endregion
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
@@ -69,399 +124,6 @@ namespace RWeb
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         Paths paths = new Paths();
         Directorios dirs = new Directorios();
-        VerificarInstancia vi = new VerificarInstancia();
-        //Jorge Luis|14/11/2017|RW-*
-        /*Método para **/
-        public void GenerarReportesSoles(string pathSaveFile, string pathConnection)
-        {
-            DataTable tablaReporte = new DataTable();
-            DataColumn column;
-            #region DeclaracionColumnas
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "C";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "D";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "M";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "U";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PV";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PC";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MUU";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PM";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MV";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MC";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MU";
-            tablaReporte.Columns.Add(column);
-            #endregion
-                DataTable datos = new DataTable();
-                DataSet dsReporte = new DataSet();
-                dsReporte.Tables.Add(tablaReporte);
-                dsReporte.Tables[0].TableName = "data";
-            for (Int16 i = 0; i <= 12; i++)
-            {
-                datos = cons.ListProducts(i, pathConnection);
-                DataRow[] currentRows = datos.Select(null, null, DataViewRowState.CurrentRows);
-                foreach (DataRow row in currentRows)
-                {
-                    GenerarConsulta(tablaReporte, row[0].ToString(), i, pathConnection);
-                    using (StreamWriter jsonReporte = new StreamWriter(pathSaveFile + "ReporteSoles" + i + ".json", false))
-                    {
-                        jsonReporte.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString());
-                    }
-                }
-                tablaReporte.Clear();
-            }
-        }
-        //Jorge Luis|14/11/2017|RW-*
-        /*Método para **/
-        public void GenerarReportesDolares(string pathSaveFile, string pathConnection)
-        {
-            DataTable tablaReporte = new DataTable();
-            DataColumn column;
-            #region DeclaracionColumnas
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "C";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "D";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "M";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "U";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PV";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PC";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MUU";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "PM";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MV";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MC";
-            tablaReporte.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = System.Type.GetType("System.Decimal");
-            column.ColumnName = "MU";
-            tablaReporte.Columns.Add(column);
-            #endregion
-            DataTable datos = new DataTable();
-            DataSet dsReporte = new DataSet();
-            dsReporte.Tables.Add(tablaReporte);
-            dsReporte.Tables[0].TableName = "data";
-            for (Int16 i = 0; i <= 12; i++)
-            {
-                datos = cons.ListProducts(i, pathConnection);
-                DataRow[] currentRows = datos.Select(null, null, DataViewRowState.CurrentRows);
-                foreach (DataRow row in currentRows)
-                {
-                    GenerarConsultaDolares(tablaReporte, row[0].ToString(), i, pathConnection);
-                    using (StreamWriter jsonReporte = new StreamWriter(pathSaveFile + "ReporteDolares" + i + ".json", false))
-                    {
-                        jsonReporte.WriteLine(JsonConvert.SerializeObject(dsReporte, Formatting.Indented).ToString());
-                    }
-                }
-            }
-        }
-        //Jorge Luis|15/11/2017|RW-*
-        /*Método para **/
-        public void GenerarConsulta(DataTable tablaReporte, string idProduct, Int16 mesProcesoCalculado, string pathConection)
-        {
-            DataTable datos = new DataTable();
-            DataRow row;
-            datos = cons.GetFullProduct(mesProcesoCalculado, idProduct, pathConection);
-            try
-            {
-                totalUnidades = decimal.Parse(datos.Rows[0][3].ToString());
-            }
-            catch (Exception)
-            {
-                totalUnidades = 0;
-            }
-            try
-            {
-                totalPuVentas = decimal.Parse(datos.Rows[0][4].ToString());
-            }
-            catch (Exception)
-            {
-                totalPuVentas = 0;
-            }
-            try
-            {
-                totalPuCosto = decimal.Parse(datos.Rows[0][5].ToString());
-            }
-            catch (Exception)
-            {
-                totalPuCosto = 0;
-            }
-
-            if (totalUnidades != 0) {
-                PuVentas = totalPuVentas / totalUnidades;
-                PuCosto = totalPuCosto / totalUnidades;
-            }
-            else {
-                PuVentas = 0;
-                PuCosto = 0;
-            }
-            muUnitario = PuVentas - PuCosto;
-            if (PuCosto != 0)
-                mu = (muUnitario / PuCosto) * 100;
-            else
-                mu = 0;
-            montoVentas = PuVentas * totalUnidades;
-            montoCosto = PuCosto * totalUnidades;
-            margenUtil = montoVentas - montoCosto;
-            row = tablaReporte.NewRow();
-            //Mes = "Me"; CID = "CI"; Codigo = "C"; Descripcion = "D"; Medida = "M"; Unidades = "U"; PrecioVenta = "PV"; PrecioCosto = "PC"; MargenUtilidadUnitario = "MUU"; PorcentajeMargenUtilidad = "PM"; MontoVentas = "MV"; MontoCosto = "MC"; MargenUtil = "MU 
-            try
-            {
-                row["C"] = datos.Rows[0][0].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["C"] = "";
-            }
-            try
-            {
-                row["D"] = datos.Rows[0][1].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["D"] = "";
-            }
-            try
-            {
-                row["M"] = datos.Rows[0][2].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["M"] = "";
-            }
-            row["U"] = Math.Round(totalUnidades, 1);
-            row["PV"] = Math.Round(PuVentas, 4);
-            row["PC"] = Math.Round(PuCosto, 4);
-            row["MUU"] = Math.Round(muUnitario, 4);
-            row["PM"] = Math.Round(mu, 4);
-            row["MV"] = Math.Round(montoVentas, 4);
-            row["MC"] = Math.Round(montoCosto, 4);
-            row["MU"] = Math.Round(margenUtil, 4);
-            tablaReporte.Rows.Add(row);
-        }
-        //Jorge Luis|16/11/2017|RW-*
-        /*Método para **/
-        public void GenerarConsultaDolares(DataTable tablaReporte, string idProduct, Int16 mesProcesoCalculado, string pathConection)
-        {
-            DataTable datos = new DataTable();
-            DataRow row;
-            datos = cons.GetFullProductDolars(mesProcesoCalculado, idProduct, pathConection);
-            try
-            {
-                totalUnidades = decimal.Parse(datos.Rows[0][3].ToString());
-            }
-            catch (Exception)
-            {
-                totalUnidades = 0;
-            }
-            try
-            {
-                totalPuVentas = decimal.Parse(datos.Rows[0][4].ToString());
-            }
-            catch (Exception)
-            {
-                totalPuVentas = 0;
-            }
-            try
-            {
-                totalPuCosto = decimal.Parse(datos.Rows[0][5].ToString());
-            }
-            catch (Exception)
-            {
-                totalPuCosto = 0;
-            }
-
-            if (totalUnidades != 0)
-            {
-                PuVentas = totalPuVentas / totalUnidades;
-                PuCosto = totalPuCosto / totalUnidades;
-            }
-            else
-            {
-                PuVentas = 0;
-                PuCosto = 0;
-            }
-            muUnitario = PuVentas - PuCosto;
-            if (PuCosto != 0)
-                mu = (muUnitario / PuCosto) * 100;
-            else
-                mu = 0;
-            montoVentas = PuVentas * totalUnidades;
-            montoCosto = PuCosto * totalUnidades;
-            margenUtil = montoVentas - montoCosto;
-            row = tablaReporte.NewRow();
-            //Mes = "Me"; CID = "CI"; Codigo = "C"; Descripcion = "D"; Medida = "M"; Unidades = "U"; PrecioVenta = "PV"; PrecioCosto = "PC"; MargenUtilidadUnitario = "MUU"; PorcentajeMargenUtilidad = "PM"; MontoVentas = "MV"; MontoCosto = "MC"; MargenUtil = "MU 
-            try
-            {
-                row["C"] = datos.Rows[0][0].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["C"] = "";
-            }
-            try
-            {
-                row["D"] = datos.Rows[0][1].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["D"] = "";
-            }
-            try
-            {
-                row["M"] = datos.Rows[0][2].ToString().Trim();
-            }
-            catch (Exception)
-            {
-                row["M"] = "";
-            }
-            row["U"] = Math.Round(totalUnidades, 1);
-            row["PV"] = Math.Round(PuVentas, 4);
-            row["PC"] = Math.Round(PuCosto, 4);
-            row["MUU"] = Math.Round(muUnitario, 4);
-            row["PM"] = Math.Round(mu, 4);
-            row["MV"] = Math.Round(montoVentas, 4);
-            row["MC"] = Math.Round(montoCosto, 4);
-            row["MU"] = Math.Round(margenUtil, 4);
-            tablaReporte.Rows.Add(row);
-        }
-        //Jorge Luis|15/11/2017|RW-*
-        /*Método para **/
-        public void CreateListProductsByMonth(string pathSaveFile, string pathConnection) {
-            for (Int16 i = 0; i <= 12; i++)
-            {
-                DataSet dsListProducts = new DataSet();
-                DataTable datos = new DataTable();
-                datos = cons.ListProducts(i, pathConnection);
-                dsListProducts.Tables.Add(datos);
-                dsListProducts.Tables[0].TableName = "data";
-                /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
-                using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "products" + i +".json", false))
-                {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString());
-                }
-            }
-        }
-        //Jorge Luis|15/11/2017|RW-*
-        /*Método para **/
-        public void GenerateQueryByMonth(string pathSaveFile, string pathConnection)
-        {
-            for (Int16 i = 0; i <= 12; i++)
-            {
-                //GenerarConsultaPrimary(i, pathSaveFile, pathConnection);
-                //DataTable datos = new DataTable();
-                //datos = cons.ListProducts(i, pathConnection);
-                //DataRow[] currentRows = datos.Select(null, null, DataViewRowState.CurrentRows);
-                //foreach (DataRow row in currentRows)
-                //    GenerarConsultaPrimary(i, row[0].ToString(), pathSaveFile, pathConnection);
-
-            }
-        }
-        //Jorge Luis|15/11/2017|RW-*
-        /*Método para generar  listas de las diversas consultas*/
-        public void GenerateQuerys(string pathSaveFile, string pathConnection)
-        {
-            for (Int16 j = 1; j <= 12; j++)
-            {
-                DataSet dsListQuerys = new DataSet();
-                DataTable almacenes = new DataTable();
-                almacenes = cons.ListAlmacen(pathConnection, j); //Correcto
-
-                DataTable listCOSTO1 = new DataTable();
-                listCOSTO1 = cons.ListCOSTO1(pathConnection, j);
-                DataTable listVendedor = new DataTable();
-                listVendedor = cons.ListVendedor(pathConnection, j);
-
-                dsListQuerys.Tables.Add(almacenes);
-                dsListQuerys.Tables.Add(listCOSTO1);
-                dsListQuerys.Tables.Add(listVendedor);
-
-                for (int i = 0; i < dsListQuerys.Tables.Count; i++)
-                {
-                    dsListQuerys.Tables[i].TableName = "data" + i;
-                }
-                /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
-                using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Querys" + j + ".json", false))
-                {
-                    jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListQuerys, Formatting.None).ToString().Trim());
-                }
-            }
-        }
+        VerificarInstancia vi = new VerificarInstancia();        
     }
 }
