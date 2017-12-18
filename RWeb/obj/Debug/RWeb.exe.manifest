@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="57344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="61440">
       <assemblyIdentity name="BusinessLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>+wskubAz9ZkiS90NzFkCjPHMXl6mEAC2nsdKxR0iX/Y=</dsig:DigestValue>
+        <dsig:DigestValue>1DVAgON6pqAZ0vLypkpXoG1f1mBqoNOOHv9UEwkSIQI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="97264">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="98288">
       <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ap5oZ8BZTx2utTaLtYcAdz3uRU32KKIoR9GY8DAKzXY=</dsig:DigestValue>
+        <dsig:DigestValue>nr9XIaNhCnvsUla/zUgwo0Nv0/O12NRqmss/y6qI63E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

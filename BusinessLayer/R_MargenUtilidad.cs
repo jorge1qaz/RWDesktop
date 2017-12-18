@@ -28,6 +28,7 @@ namespace BusinessLayer
             {
                 if (File.Exists(item[4].ToString() + "/VENTASL.DBF"))
                 {
+                    //Alterado
                     dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim());
                     dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
                     CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
@@ -158,9 +159,7 @@ namespace BusinessLayer
                 }
                 /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos*/
                 using (StreamWriter jsonListaCuentas = new StreamWriter(pathSaveFile + "Products" + i + ".json", false))
-                {
                     jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListProducts, Formatting.None).ToString().Replace("  ", ""));
-                }
             }
         }
         //Jorge Luis|15/11/2017|RW-*

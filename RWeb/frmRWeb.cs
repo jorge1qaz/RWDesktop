@@ -11,6 +11,13 @@ namespace RWeb
 {
     public partial class frmRWeb : MetroForm
     {
+        Paths paths = new Paths();
+        Transferencia trans = new Transferencia();
+        R_CuentasPendientes rcp = new R_CuentasPendientes();
+        Ejecucion ex = new Ejecucion();
+        VerificarInstancia vf = new VerificarInstancia();
+        R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
+        R_MiNegocioAlDia miNegocioAlDia = new R_MiNegocioAlDia();
         public frmRWeb()
         {
             InitializeComponent();
@@ -34,20 +41,15 @@ namespace RWeb
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        Paths paths = new Paths();
-        Transferencia trans = new Transferencia();
-        R_CuentasPendientes rcp = new R_CuentasPendientes();
-        Ejecucion ex = new Ejecucion();
-        VerificarInstancia vf = new VerificarInstancia();
-        R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         public void StartMassiveUpdate()
         {
             this.Size = new Size(331, 154);
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
-            margenUtilidad.StartModule();
-            rcp.StartModule();
+            //margenUtilidad.StartModule();
+            //rcp.StartModule();
+            miNegocioAlDia.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
@@ -60,8 +62,9 @@ namespace RWeb
             btnEmpresas.Enabled = false;
             Task task = new Task(() =>
             {
-                margenUtilidad.StartModule();
-                rcp.StartModule();
+                //margenUtilidad.StartModule();
+                //rcp.StartModule();
+                miNegocioAlDia.StartModule();
             });
             task.Start();
             lblProcessing.Text = "Procesando datos...";

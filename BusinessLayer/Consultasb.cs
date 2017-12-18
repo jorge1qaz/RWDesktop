@@ -65,5 +65,49 @@ namespace BusinessLayer
                 , pathConection
                 );
         }
+        //Jorge Luis|15/12/2017|RW-91
+        /*Consulta para ...*/
+        public DataTable TablaDiario(string pathConection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
+        {
+            string mesParametro = "";
+            string query = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            if (tipoOperacion)     //True SumNhaberDiario (HABER)
+            {
+                query = " select d.NHABER as a from Diario as d "
+                     + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
+                     + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
+                     + " and CMES = '" + mesParametro + "' ";
+            }
+            else                    //False SumNdebeDiario  (DEBE)
+            {
+                query = " select d.NDEBE as a from Diario as d "
+                     + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
+                     + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
+                     + " and CMES = '" + mesParametro + "' ";
+            }
+            return dat.extrae(query, pathConection);
+        }
+        //Jorge Luis|15/12/2017|RW-91
+        /*Consulta para ...*/
+        public DataTable TablaDiario(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                " select d.NHABER as a, d.NDEBE as b from Diario as d "              //a = haber, b = debe
+                     + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
+                     + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
+                     + " and CMES = '" + mesParametro + "' "
+                , pathConection );
+        }
     }
 }

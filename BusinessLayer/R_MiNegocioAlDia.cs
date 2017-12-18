@@ -3,6 +3,8 @@ using System.Data;
 using System.IO;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace BusinessLayer
 {
@@ -14,14 +16,49 @@ namespace BusinessLayer
         Consultasb consb = new Consultasb();
         Transferencia trans = new Transferencia();
         Directorios dirs = new Directorios();
+
+        double totalVentas;
+        double totalCajaBancosHaber;
+        double totalCajaBancosDebe;
+        decimal totalCajaBancos;
+        double totalCobrarHaber;
+        double totalCobrarDebe;
+        decimal totalCobrar;
+
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método para generar  listas de las diversas consultas*/
+        public void StartModule()
+        {
+            DataTable listDB = new DataTable();
+            listDB = cons.CheckDataBaseConta();
+            foreach (DataRow item in listDB.Rows)
+            {
+                if (File.Exists(item[4].ToString() + "/DIARIO.DBF"))
+                {
+                    dirs.CreateDirectory(paths.PathMND + "/" + item[0].ToString().Trim());
+                    dirs.CreateDirectory(paths.PathMND + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
+                    CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMND + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                }
+            }
+            //dirs.CheckDataBaseStockJson();
+        }
+
+        public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
+        {
+            //GenerateListCajaBancos(pathSaveFile, pathConnection);
+            //GenerateListVentas(pathSaveFile, pathConnection);
+            ExportTable(pathSaveFile, pathConnection, "N005", true);
+            ExportTable(pathSaveFile, pathConnection, "A105");
+
+        }
         //Jorge Luis|14/12/2017|RW-*
         /*Método ...*/
-        public DataTable GetTotalByRubro(string pathSaveFile, string pathConnection, string idRubro, bool tipoOperacion)
+        public DataTable GetTotalByRubro(string pathConnection, string idRubro, bool tipoOperacion)
         {
             DataSet datasetCuentas = new DataSet();
             DataTable tableCuentas = new DataTable();
             tableCuentas = consb.FilterRubro(pathConnection, idRubro);
-            DataRow[] currentRows = tableCuentas.Select(null, null, DataViewRowState.CurrentRows);
+
             DataTable tableTotals = new DataTable();
             DataColumn column;
             #region DeclaracionColumnas
@@ -40,13 +77,13 @@ namespace BusinessLayer
             column.ColumnName = "c";
             tableTotals.Columns.Add(column);
             #endregion
-            foreach (DataRow item in currentRows)
-                GetTotalNhaber(pathSaveFile, pathConnection, item[0].ToString(), tableTotals, tipoOperacion);
+            foreach (DataRow item in tableCuentas.Rows)
+                GetTotal(pathConnection, item[0].ToString(), tableTotals, tipoOperacion);
             return tableTotals;
         }
         //Jorge Luis|14/12/2017|RW-*
         /*Método ...*/
-        public DataTable GetTotalNhaber(string pathSaveFile, string pathConnection, string idCuenta, DataTable tableTotals, bool tipoOperacion)
+        public DataTable GetTotal(string pathConnection, string idCuenta, DataTable tableTotals, bool tipoOperacion)
         {
             DataRow row;
             DataSet datasetData = new DataSet();
@@ -54,14 +91,14 @@ namespace BusinessLayer
             DataRow foundRow;
             for (Int16 j = 1; j <= 12; j++)
             {
-                if (tipoOperacion) //True SumNhaberDiario
+                if (tipoOperacion) //True SumNhaberDiario (HABER)
                     tableData = consb.SumNhaberDiario(pathConnection, j, idCuenta);
-                else               //False SumNdebeDiario
+                else               //False SumNdebeDiario  (DEBE)
                     tableData =  consb.SumNdebeDiario(pathConnection, j, idCuenta);
+                row = tableTotals.NewRow();
                 try
                 {
                     foundRow = tableData.Rows[0];
-                    row = tableTotals.NewRow();
                     row["a"] = j;
                     row["b"] = idCuenta;
                     row["c"] = foundRow[0].ToString();
@@ -69,14 +106,94 @@ namespace BusinessLayer
                 }
                 catch (Exception)
                 {
-                    row = tableTotals.NewRow();
                     row["a"] = j;
                     row["b"] = idCuenta;
                     row["c"] = 0;
                     tableTotals.Rows.Add(row);
                 }
             }
-                return tableTotals;
+            return tableTotals;
+        }
+        
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método ...*/
+        public void GenerateListCajaBancos(string pathSaveFile, string pathConnection)
+        {
+            List<decimal> listCajaBancos = new List<decimal>();
+            DataTable tableDataA105Haber = new DataTable();
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "CajaBancos.json", false))
+            {
+                for (int i = 1; i <= 12; i++)
+                {
+                    tableDataA105Haber = GetTotalByRubro(@pathConnection, "A105", true);
+                    try
+                    { totalCajaBancosHaber = tableDataA105Haber.AsEnumerable().Where(x => x.Field<Int16>("a") == i).Select(x => x.Field<double>("c")).Sum(); }
+                    catch (Exception)
+                    { totalCajaBancosHaber = 0; }
+                    listCajaBancos.Add(Convert.ToDecimal(totalVentas));
+                }
+                jsonFile.WriteLine(JsonConvert.SerializeObject(listCajaBancos, Formatting.None).ToString());
+                listCajaBancos.Clear();
+            }
+        }
+        
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método ...*/
+        public void GenerateListVentas(string pathSaveFile, string pathConnection)
+        {
+            List<decimal> listVentas = new List<decimal>();
+            DataTable tableDataN005 = new DataTable();
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "Ventas.json", false))
+            {
+                for (int i = 1; i <= 12; i++)
+                {
+                    tableDataN005 = GetTotalByRubro(@pathConnection, "N005", true);
+                    try
+                    { totalVentas = tableDataN005.AsEnumerable().Where(x => x.Field<Int16>("a") == i).Select(x => x.Field<double>("c")).Sum(); }
+                    catch (Exception)
+                    { totalVentas = 0; }
+                    listVentas.Add(Convert.ToDecimal(totalVentas));
+                }
+                jsonFile.WriteLine(JsonConvert.SerializeObject(listVentas, Formatting.Indented).ToString().Replace("  ", ""));
+                listVentas.Clear();
+            }
+        }
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método ...*/
+        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, bool tipoOperacion)
+        {
+            DataSet dataSet = new DataSet();
+            DataTable table = new DataTable();
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+            {
+                for (Int16 i = 0; i <= 12; i++)
+                {
+                    table = consb.TablaDiario(@pathConnection, idRubro, i, tipoOperacion);
+                    dataSet.Tables.Add(table);
+                    dataSet.Tables[i].TableName = i.ToString();
+                }
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            }
+        }
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método ...*/
+        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro)
+        {
+            DataSet dataSet = new DataSet();
+            DataTable table = new DataTable();
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+            {
+                for (Int16 i = 0; i <= 12; i++)
+                {
+                    table = consb.TablaDiario( @pathConnection, idRubro, i );
+                    dataSet.Tables.Add(table);
+                    dataSet.Tables[i].TableName = i.ToString();
+                }
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            }
         }
     }
 }
+                //table = consb.TablaDiario(@pathConnection, "A105");
+                //ds.Tables.Add(table);
+                //ds.Tables[1].TableName = "A105";
