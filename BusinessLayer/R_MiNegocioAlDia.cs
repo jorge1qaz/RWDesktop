@@ -40,7 +40,6 @@ namespace BusinessLayer
                     CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMND + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
                 }
             }
-            //dirs.CheckDataBaseStockJson();
         }
 
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)

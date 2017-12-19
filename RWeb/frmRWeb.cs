@@ -47,8 +47,8 @@ namespace RWeb
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
-            //margenUtilidad.StartModule();
-            //rcp.StartModule();
+            margenUtilidad.StartModule();
+            rcp.StartModule();
             miNegocioAlDia.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
@@ -62,8 +62,8 @@ namespace RWeb
             btnEmpresas.Enabled = false;
             Task task = new Task(() =>
             {
-                //margenUtilidad.StartModule();
-                //rcp.StartModule();
+                margenUtilidad.StartModule();
+                rcp.StartModule();
                 miNegocioAlDia.StartModule();
             });
             task.Start();
