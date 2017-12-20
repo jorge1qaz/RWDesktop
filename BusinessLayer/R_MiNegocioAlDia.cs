@@ -46,9 +46,35 @@ namespace BusinessLayer
         {
             //GenerateListCajaBancos(pathSaveFile, pathConnection);
             //GenerateListVentas(pathSaveFile, pathConnection);
-            ExportTable(pathSaveFile, pathConnection, "N005", true);
             ExportTable(pathSaveFile, pathConnection, "A105");
+            ExportTable(pathSaveFile, pathConnection, "N015");
+            ExportTable(pathSaveFile, pathConnection, "N210");
+            ExportTable(pathSaveFile, pathConnection, "N220");
+            ExportTable(pathSaveFile, pathConnection, "N230");
 
+            ExportTable(pathSaveFile, pathConnection, "N005", true);  // Haber 7
+            ExportTable(pathSaveFile, pathConnection, "N010", false); // Debe  6 
+            ExportTable(pathSaveFile, pathConnection, "N103", true);
+
+            ExportTable(pathSaveFile, pathConnection, "N110", true);
+            ExportTable(pathSaveFile, pathConnection, "N205", false);
+            ExportTable(pathSaveFile, pathConnection, "N215", false);
+            ExportTable(pathSaveFile, pathConnection, "N225", false);
+            ExportTable(pathSaveFile, pathConnection, "N235", false);
+            ExportTable(pathSaveFile, pathConnection, "N305", true);
+            ExportTable(pathSaveFile, pathConnection, "N310", false);
+            ExportTable(pathSaveFile, pathConnection, "N315", false);
+            ExportTable(pathSaveFile, pathConnection, "N405", true);
+            ExportTable(pathSaveFile, pathConnection, "N410", true);
+            ExportTable(pathSaveFile, pathConnection, "N415", true);
+            ExportTable(pathSaveFile, pathConnection, "N420", false);
+            ExportTable(pathSaveFile, pathConnection, "N425", false);
+            ExportTable(pathSaveFile, pathConnection, "N430", false);
+            ExportTable(pathSaveFile, pathConnection, "N505", true);
+            ExportTable(pathSaveFile, pathConnection, "N510", false);
+            ExportTable(pathSaveFile, pathConnection, "N515", true);
+            //ExportTable(pathSaveFile, pathConnection, "N520");
+            ExportTable(pathSaveFile, pathConnection, "N525", false);
         }
         //Jorge Luis|14/12/2017|RW-*
         /*Método ...*/

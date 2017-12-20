@@ -103,7 +103,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " select d.NHABER as a, d.NDEBE as b from Diario as d "              //a = haber, b = debe
+                " select d.CCOD_CUE as a, d.NHABER as b, d.NDEBE as c from Diario as d "              //a = haber, b = debe
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
                      + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
                      + " and CMES = '" + mesParametro + "' "
