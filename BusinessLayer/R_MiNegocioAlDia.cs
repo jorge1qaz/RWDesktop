@@ -189,16 +189,15 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+            for (Int16 i = 0; i <= 12; i++)
             {
-                for (Int16 i = 0; i <= 12; i++)
-                {
-                    table = consb.TablaDiario(@pathConnection, idRubro, i, tipoOperacion);
-                    dataSet.Tables.Add(table);
-                    dataSet.Tables[i].TableName = i.ToString();
-                }
-                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+                table = consb.TablaDiario(@pathConnection, idRubro, i, tipoOperacion);
+                dataSet.Tables.Add(table);
+                dataSet.Tables[i].TableName = i.ToString();
             }
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
         }
         //Jorge Luis|18/12/2017|RW-*
         /*Método ...*/
@@ -206,19 +205,15 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+            for (Int16 i = 0; i <= 12; i++)
             {
-                for (Int16 i = 0; i <= 12; i++)
-                {
-                    table = consb.TablaDiario( @pathConnection, idRubro, i );
-                    dataSet.Tables.Add(table);
-                    dataSet.Tables[i].TableName = i.ToString();
-                }
-                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+                table = consb.TablaDiario(@pathConnection, idRubro, i);
+                dataSet.Tables.Add(table);
+                dataSet.Tables[i].TableName = i.ToString();
             }
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
         }
     }
 }
-                //table = consb.TablaDiario(@pathConnection, "A105");
-                //ds.Tables.Add(table);
-                //ds.Tables[1].TableName = "A105";

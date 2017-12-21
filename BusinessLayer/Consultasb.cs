@@ -109,5 +109,22 @@ namespace BusinessLayer
                      + " and CMES = '" + mesParametro + "' "
                 , pathConection );
         }
+        //Jorge Luis|21/12/2017|RW-91
+        /*Consulta para ...*/
+        public DataTable ListCuentasByRubro(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        {
+            string mesParametro = "";
+            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
+            if (mesProcesoCalculado <= 9)
+                mesParametro = "0" + mesProcesoCalculado.ToString();
+            else
+                mesParametro = mesProcesoCalculado.ToString();
+            return dat.extrae(
+                " select dist d.CCOD_CUE as a from Diario as d "
+                + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
+                + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
+                + " and CMES = '" + mesParametro + "' "
+                , pathConection);
+        }
     }
 }
