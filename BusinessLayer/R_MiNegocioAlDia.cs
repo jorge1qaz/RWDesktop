@@ -51,10 +51,12 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "N210");
             ExportTable(pathSaveFile, pathConnection, "N220");
             ExportTable(pathSaveFile, pathConnection, "N230");
+            ExportTable(pathSaveFile, pathConnection, "N520"); // p
 
             ExportTable(pathSaveFile, pathConnection, "N005", true);  // Haber 7
             ExportTable(pathSaveFile, pathConnection, "N010", false); // Debe  6 
             ExportTable(pathSaveFile, pathConnection, "N103", true);
+            ExportTable(pathSaveFile, pathConnection, "N105", true);
 
             ExportTable(pathSaveFile, pathConnection, "N110", true);
             ExportTable(pathSaveFile, pathConnection, "N205", false);
@@ -73,8 +75,18 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "N505", true);
             ExportTable(pathSaveFile, pathConnection, "N510", false);
             ExportTable(pathSaveFile, pathConnection, "N515", true);
-            //ExportTable(pathSaveFile, pathConnection, "N520");
             ExportTable(pathSaveFile, pathConnection, "N525", false);
+
+            ExportTable(pathSaveFile, pathConnection, "N805", false);
+            ExportTable(pathSaveFile, pathConnection, "N810", false);
+            //Cuentas por cobrar y pagar
+            ExportTableN(pathSaveFile, pathConnection, "A120"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTableN(pathSaveFile, pathConnection, "P120"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTable(pathSaveFile, pathConnection, "A115");
+            ExportTable(pathSaveFile, pathConnection, "A125");
+            ExportTable(pathSaveFile, pathConnection, "P110");
+            ExportTable(pathSaveFile, pathConnection, "P120");
+            ExportTable(pathSaveFile, pathConnection, "P121");
         }
         //Jorge Luis|14/12/2017|RW-*
         /*Método ...*/
@@ -212,6 +224,22 @@ namespace BusinessLayer
                 dataSet.Tables[i].TableName = i.ToString();
             }
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
+        }
+        //Jorge Luis|18/12/2017|RW-*
+        /*Método ...*/
+        public void ExportTableN(string pathSaveFile, string pathConnection, string idRubro)
+        {
+            DataSet dataSet = new DataSet();
+            DataTable table = new DataTable();
+            for (Int16 i = 0; i <= 12; i++)
+            {
+                table = consb.TablaDiarioN(@pathConnection, idRubro, i);
+                dataSet.Tables.Add(table);
+                dataSet.Tables[i].TableName = i.ToString();
+            }
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "NRubro" + idRubro + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
