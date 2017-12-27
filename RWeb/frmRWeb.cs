@@ -36,6 +36,10 @@ namespace RWeb
             ex.EventTimer(60, HideForm);
             if (trans.ComprobarAccesoInternet())
                 ex.EventTimer(300, StartMassiveUpdate);
+
+            //test
+            MessageBox.Show(paths.readFile(paths.PathUser));
+            MessageBox.Show(DateTime.Now.ToString());
         }
         private void HideForm(object sender, EventArgs e)
         {
@@ -81,6 +85,7 @@ namespace RWeb
             btnCerrarSesion.Enabled = false;
             btnUpdateNow.Enabled = false;
             btnEmpresas.Enabled = false;
+            btnCerrar.Enabled = false;
             Task task = new Task(StartMassiveUpdate);
             task.Start();
             lblProcessing.Text = "Procesando datos...";
@@ -102,6 +107,7 @@ namespace RWeb
             btnCerrarSesion.Enabled = true;
             btnUpdateNow.Enabled = true;
             btnEmpresas.Enabled = true;
+            btnCerrar.Enabled = true;
             if ((e.Cancelled == true))
                 this.lblProcessing.Text = "Cancelado!";
             else if (!(e.Error == null))

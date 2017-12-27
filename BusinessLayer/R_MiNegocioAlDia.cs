@@ -82,6 +82,8 @@ namespace BusinessLayer
             //Cuentas por cobrar y pagar
             ExportTableN(pathSaveFile, pathConnection, "A120"); //CCOD_BALN2 (NRubro + nombre + .json)
             ExportTableN(pathSaveFile, pathConnection, "P120"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTableN(pathSaveFile, pathConnection, "P105"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTable(pathSaveFile, pathConnection, "P105");
             ExportTable(pathSaveFile, pathConnection, "A115");
             ExportTable(pathSaveFile, pathConnection, "A125");
             ExportTable(pathSaveFile, pathConnection, "P110");

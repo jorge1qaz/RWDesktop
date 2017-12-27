@@ -15,7 +15,13 @@ namespace BusinessLayer
         //Jorge Luis|30/10/2017|RW-19
         /*Método general para la realización de la tranferencia de los datos compresos*/
         public void StartTransfer(BackgroundWorker backgroundWorker) {
-            paths.WriteLastUpdate();
+            //paths.WriteLastUpdate();
+            Cliente cliente = new Cliente() {
+                IdCliente = paths.readFile(paths.PathUser),
+                DateUpdate = DateTime.Now
+            };
+            if (!cliente.WriteParametersUserLastUpdate("RW_Profiles_Register_DateUpdate"))
+                MessageBox.Show("No se puso registrar la fecha de la última actualización.", "Falla de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
             if (ComprimirDirectorioCliente())
             {
                 try
