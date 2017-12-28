@@ -26,3 +26,4 @@ D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\BusinessLayer\obj\Debug\
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\BusinessLayer\obj\Debug\BusinessLayer.pdb
+D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.csproj.CoreCompileInputs.cache

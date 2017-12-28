@@ -34,12 +34,16 @@ namespace RWeb
                 this.Close();
             }
             ex.EventTimer(60, HideForm);
-            if (trans.ComprobarAccesoInternet())
-                ex.EventTimer(300, StartMassiveUpdate);
-
-            //test
-            MessageBox.Show(paths.readFile(paths.PathUser));
-            MessageBox.Show(DateTime.Now.ToString());
+            try
+            {
+                if (trans.ComprobarAccesoInternet())
+                    ex.EventTimer(300, StartMassiveUpdate);
+            }
+            catch (Exception)
+            {
+                Application.ExitThread();
+                this.Close();
+            }
         }
         private void HideForm(object sender, EventArgs e)
         {

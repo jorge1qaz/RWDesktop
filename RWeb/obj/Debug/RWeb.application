@@ -7,14 +7,14 @@
     <framework targetVersion="4.5" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="RWeb.exe.manifest" size="10145">
+    <dependentAssembly dependencyType="install" codebase="RWeb.exe.manifest" size="10074">
       <assemblyIdentity name="RWeb.exe" version="1.0.0.8" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>o54cEptVB5Ojgt7PYvhTSaU7S/aJHKy8QeHfoS+1Q3s=</dsig:DigestValue>
+        <dsig:DigestValue>MBe9iqSMyabdYedEFTTL7/Qc82te7epYJGi8WFdsYNc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
