@@ -152,7 +152,7 @@ namespace BusinessLayer
             datasetCompany.Tables[0].TableName = "data";
             /*Recorre y crea  archivos json de acuerdo a la información de la base de datos, empleando la tablas dbfs PATH y EMPRESAS*/
             using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoStock.json", false))
-                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.Indented).ToString().Trim().Replace(" ", ""));
+                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.None).ToString().Trim().Replace(" ", ""));
         }
         //Jorge Luis|01/12/2017|RW-19
         /*Método para crear una lista con todos los datos pertenecientes a las bases de datos que tengan información*/
@@ -203,7 +203,7 @@ namespace BusinessLayer
             datasetCompany.Tables[0].TableName = "data";
             /*Recorre y crea  archivos json de acuerdo a la información de la base de datos, empleando la tablas dbfs PATH y EMPRESAS*/
             using (StreamWriter json = new StreamWriter(paths.PathPrincipalDirectory + "GeneralInfoConta.json", false))
-                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.Indented).ToString().Trim().Replace(" ", ""));
+                json.WriteLine(JsonConvert.SerializeObject(datasetCompany, Formatting.None).ToString().Trim().Replace(" ", ""));
         }
     }
 }
