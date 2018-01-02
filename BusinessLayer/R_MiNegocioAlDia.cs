@@ -19,11 +19,6 @@ namespace BusinessLayer
 
         double totalVentas;
         double totalCajaBancosHaber;
-        double totalCajaBancosDebe;
-        decimal totalCajaBancos;
-        double totalCobrarHaber;
-        double totalCobrarDebe;
-        decimal totalCobrar;
 
         //Jorge Luis|18/12/2017|RW-*
         /*Método para generar  listas de las diversas consultas*/
@@ -44,8 +39,6 @@ namespace BusinessLayer
 
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
         {
-            //GenerateListCajaBancos(pathSaveFile, pathConnection);
-            //GenerateListVentas(pathSaveFile, pathConnection);
             ExportTable(pathSaveFile, pathConnection, "A105");
             ExportTable(pathSaveFile, pathConnection, "N015");
             ExportTable(pathSaveFile, pathConnection, "N210");
@@ -128,7 +121,7 @@ namespace BusinessLayer
             DataSet datasetData = new DataSet();
             DataTable tableData = new DataTable();
             DataRow foundRow;
-            for (Int16 j = 1; j <= 12; j++)
+            for (Int16 j = 0; j <= 15; j++)
             {
                 if (tipoOperacion) //True SumNhaberDiario (HABER)
                     tableData = consb.SumNhaberDiario(pathConnection, j, idCuenta);
@@ -162,7 +155,7 @@ namespace BusinessLayer
             DataTable tableDataA105Haber = new DataTable();
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "CajaBancos.json", false))
             {
-                for (int i = 1; i <= 12; i++)
+                for (int i = 0; i <= 15; i++)
                 {
                     tableDataA105Haber = GetTotalByRubro(@pathConnection, "A105", true);
                     try
@@ -184,7 +177,7 @@ namespace BusinessLayer
             DataTable tableDataN005 = new DataTable();
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "Ventas.json", false))
             {
-                for (int i = 1; i <= 12; i++)
+                for (int i = 0; i <= 15; i++)
                 {
                     tableDataN005 = GetTotalByRubro(@pathConnection, "N005", true);
                     try
@@ -203,7 +196,7 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 12; i++)
+            for (Int16 i = 0; i <= 15; i++)
             {
                 table = consb.TablaDiario(@pathConnection, idRubro, i, tipoOperacion);
                 dataSet.Tables.Add(table);
@@ -219,7 +212,7 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 12; i++)
+            for (Int16 i = 0; i <= 15; i++)
             {
                 table = consb.TablaDiario(@pathConnection, idRubro, i);
                 dataSet.Tables.Add(table);
@@ -235,7 +228,7 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 12; i++)
+            for (Int16 i = 0; i <= 15; i++)
             {
                 table = consb.TablaDiarioN(@pathConnection, idRubro, i);
                 dataSet.Tables.Add(table);

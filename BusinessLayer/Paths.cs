@@ -20,6 +20,7 @@ namespace BusinessLayer
         public string PathRCP = "rptCntsPndts/";
         public string PathMU = "rptsMrgTld/";
         public string PathMND = "rptMNgcLd/";
+        public string PathEDRPMS = "rptStdPmS/";
         public string PathImagenLogo = "./images/logo.png";
         VerificarInstancia verificarInstancia = new VerificarInstancia();
         //Jorge Luis|24/10/2017|RW-19

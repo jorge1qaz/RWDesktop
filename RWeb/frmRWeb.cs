@@ -13,11 +13,12 @@ namespace RWeb
     {
         Paths paths = new Paths();
         Transferencia trans = new Transferencia();
-        R_CuentasPendientes rcp = new R_CuentasPendientes();
+        R_CuentasPendientes cuentasPendientes = new R_CuentasPendientes();
         Ejecucion ex = new Ejecucion();
         VerificarInstancia vf = new VerificarInstancia();
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         R_MiNegocioAlDia miNegocioAlDia = new R_MiNegocioAlDia();
+        R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
         public frmRWeb()
         {
             InitializeComponent();
@@ -56,8 +57,9 @@ namespace RWeb
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             margenUtilidad.StartModule();
-            rcp.StartModule();
+            cuentasPendientes.StartModule();
             miNegocioAlDia.StartModule();
+            estadoDeResultadoPMS.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
@@ -71,8 +73,9 @@ namespace RWeb
             Task task = new Task(() =>
             {
                 margenUtilidad.StartModule();
-                rcp.StartModule();
+                cuentasPendientes.StartModule();
                 miNegocioAlDia.StartModule();
+                estadoDeResultadoPMS.StartModule();
             });
             task.Start();
             lblProcessing.Text = "Procesando datos...";
