@@ -177,7 +177,7 @@ namespace BusinessLayer
                 mesParametro = "0" + mesProcesoCalculado.ToString();
             else
                 mesParametro = mesProcesoCalculado.ToString();
-            query = " select d.NHABER as a, d.NDEBE as b, d.NHABERD as c, d.NDEBED as d from Diario as d "   // a = Haber en soles, b = Haber en dólares
+            query = " select d.CCOD_CUE as a, d.NHABER as b, d.NDEBE as c, d.NHABERD as d, d.NDEBED as e from Diario as d "   // a = Haber en soles, b = Haber en dólares
                     + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
                     + " where p.CCOD_BAL2 = '" + idRubro + "'"
                     + " and d.CMES = '" + mesParametro + "' "

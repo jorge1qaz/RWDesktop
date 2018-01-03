@@ -14,7 +14,7 @@ namespace BusinessLayer
         Transferencia trans = new Transferencia();
         Directorios dirs = new Directorios();
 
-        //Jorge Luis|02/01/2018|RW-*
+        //Jorge Luis|02/01/2018|RW-103
         /*Método para generar  listas de las diversas consultas*/
         public void StartModule()
         {
@@ -29,7 +29,7 @@ namespace BusinessLayer
                 }
             }
         }
-        //Jorge Luis|02/01/2018|RW-*
+        //Jorge Luis|02/01/2018|RW-103
         /*Método para generar  listas de las diversas consultas*/
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
         {
@@ -82,7 +82,7 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "F710", false);
             ExportTable(pathSaveFile, pathConnection, "F805", false);
         }
-        //Jorge Luis|02/01/2018|RW-*
+        //Jorge Luis|02/01/2018|RW-103
         /*Método ...*/
         public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, bool tipoOperacion)
         {
@@ -98,7 +98,7 @@ namespace BusinessLayer
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
-        //Jorge Luis|18/12/2017|RW-*
+        //Jorge Luis|18/12/2017|RW-103
         /*Método ...*/
         public void ExportTable(string pathSaveFile, string pathConnection, string idRubro)
         {
@@ -114,7 +114,7 @@ namespace BusinessLayer
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
-        //Jorge Luis|18/12/2017|RW-*
+        //Jorge Luis|18/12/2017|RW-103
         /*Método ...*/
         public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, string filter, bool tipoOperacion)
         {
