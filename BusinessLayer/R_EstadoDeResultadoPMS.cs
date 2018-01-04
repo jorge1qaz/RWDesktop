@@ -33,54 +33,54 @@ namespace BusinessLayer
         /*Método para generar  listas de las diversas consultas*/
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
         {
-            ExportTable(pathSaveFile, pathConnection, "N005", true);            // Haber = 7
-            ExportTable(pathSaveFile, pathConnection, "N010", false);           // Debe  = 6
-            ExportTable(pathSaveFile, pathConnection, "N015", false);
-            ExportTable(pathSaveFile, pathConnection, "N099", true);
-            ExportTable(pathSaveFile, pathConnection, "N103", true);
-            ExportTable(pathSaveFile, pathConnection, "N105", true);
-            ExportTable(pathSaveFile, pathConnection, "N110", true);
-            ExportTable(pathSaveFile, pathConnection, "N205", false);
-            ExportTable(pathSaveFile, pathConnection, "N210", false);
-            ExportTable(pathSaveFile, pathConnection, "N215", false);
-            ExportTable(pathSaveFile, pathConnection, "N220", false);
-            ExportTable(pathSaveFile, pathConnection, "N225", false);
-            ExportTable(pathSaveFile, pathConnection, "N230", false);
-            ExportTable(pathSaveFile, pathConnection, "N235", false);
-            ExportTable(pathSaveFile, pathConnection, "N305", true);
-            ExportTable(pathSaveFile, pathConnection, "N310", false);
-            ExportTable(pathSaveFile, pathConnection, "N315", false);
-            ExportTable(pathSaveFile, pathConnection, "N405", true);
-            ExportTable(pathSaveFile, pathConnection, "N410", true);
-            ExportTable(pathSaveFile, pathConnection, "N415", true);
-            ExportTable(pathSaveFile, pathConnection, "N420", false);
-            ExportTable(pathSaveFile, pathConnection, "N425", false);
-            ExportTable(pathSaveFile, pathConnection, "N430", false);
-            ExportTable(pathSaveFile, pathConnection, "N505", true);
-            ExportTable(pathSaveFile, pathConnection, "N510", false);
-            ExportTable(pathSaveFile, pathConnection, "N515", true);
-            ExportTable(pathSaveFile, pathConnection, "N520");                  // Tiene las clases: 6 y 7
-            ExportTable(pathSaveFile, pathConnection, "N525", false);
-            ExportTable(pathSaveFile, pathConnection, "N805", false);
-            ExportTable(pathSaveFile, pathConnection, "N810", false);
+            ExportTable(pathSaveFile, pathConnection, "N005", "CCOD_BAL2");   // Haber = 7
+            ExportTable(pathSaveFile, pathConnection, "N010", "CCOD_BAL2");  // Debe  = 6
+            ExportTable(pathSaveFile, pathConnection, "N015", "CCOD_BAL2");  //invierte
+            ExportTable(pathSaveFile, pathConnection, "N099", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N103", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N105", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N110", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N205", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N210", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N215", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N220", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N225", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N230", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N235", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N305", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N310", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N315", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N405", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N410", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N415", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N420", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N425", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N430", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N505", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N510", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N515", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N520", "CCOD_BAL2");   // Tiene las clases: 6 y 7
+            ExportTable(pathSaveFile, pathConnection, "N525", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N805", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "N810", "CCOD_BAL2");
 
-            ExportTable(pathSaveFile, pathConnection, "F005", "CCOD_BAL", true);// Filtro distinto
-            ExportTable(pathSaveFile, pathConnection, "F105", false);
-            ExportTable(pathSaveFile, pathConnection, "F206", false);
-            ExportTable(pathSaveFile, pathConnection, "F211", false);
-            ExportTable(pathSaveFile, pathConnection, "F212", true);
-            ExportTable(pathSaveFile, pathConnection, "F213", true);
-            ExportTable(pathSaveFile, pathConnection, "F214", false);
-            ExportTable(pathSaveFile, pathConnection, "F215", true);
-            
-            ExportTable(pathSaveFile, pathConnection, "F320", true);
-            ExportTable(pathSaveFile, pathConnection, "F350", false);
-            ExportTable(pathSaveFile, pathConnection, "F380", true);
-            ExportTable(pathSaveFile, pathConnection, "F403", true);
-            ExportTable(pathSaveFile, pathConnection, "F405", true);
-            ExportTable(pathSaveFile, pathConnection, "F415");
-            ExportTable(pathSaveFile, pathConnection, "F710", false);
-            ExportTable(pathSaveFile, pathConnection, "F805", false);
+            ExportTable(pathSaveFile, pathConnection, "F005", "CCOD_BAL");    // Filtro distinto
+            ExportTable(pathSaveFile, pathConnection, "F105", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F206", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F211", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F212", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F213", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F214", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F215", "CCOD_BAL2");
+
+            ExportTable(pathSaveFile, pathConnection, "F320", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F350", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F380", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F403", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F405", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F415", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F710", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F805", "CCOD_BAL2");
         }
         //Jorge Luis|02/01/2018|RW-103
         /*Método ...*/
@@ -116,16 +116,13 @@ namespace BusinessLayer
         }
         //Jorge Luis|18/12/2017|RW-103
         /*Método ...*/
-        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, string filter, bool tipoOperacion)
+        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, string filter)
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 12; i++)
-            {
-                table = consb.TableForEstadoResultado(@pathConnection, idRubro, i, filter, tipoOperacion);
-                dataSet.Tables.Add(table);
-                dataSet.Tables[i].TableName = i.ToString();
-            }
+            table = consb.TableForEstadoResultado(@pathConnection, idRubro, filter);
+            dataSet.Tables.Add(table);
+            dataSet.Tables[0].TableName = "data";
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();

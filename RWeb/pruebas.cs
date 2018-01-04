@@ -29,7 +29,7 @@ namespace RWeb
 
             //estadoDeResultadoPMS
             DataTable dataTable = new DataTable();
-            dataTable = consb.TableForEstadoResultado(@"C:\Contasis14\2017\01\conta", "N310", 15, false);
+            dataTable = consb.TableForEstadoResultado(@"C:\Contasis14\2017\02\conta", "N015", "CCOD_BAL2");
             grdPruebas2.DataSource = dataTable;
 
         }

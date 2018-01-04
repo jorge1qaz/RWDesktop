@@ -207,5 +207,28 @@ namespace BusinessLayer
                      + " and p.NNIVEL = 3 ";
             return dat.extrae(query, pathConection);
         }
+        public DataTable TableForEstadoResultado(string pathConection, string idRubro, string filter)
+        {
+            string query = "";                                                                    // False SumNdebeDiario  (DEBE)
+            query = " select sum((NDEBE0 - NHABER0))*(-1) as a, sum((NDEBED0 - NHABERD0))*(-1) as ad, " 
+                + " sum((NDEBE1 - NHABER1))*(-1) as b, sum((NDEBED1 - NHABERD1))*(-1) as bd, "  // a, b, c... = Haber en soles, ad, bd, cd... = Haber en dólares
+                + " sum((NDEBE2 - NHABER2))*(-1) as c, sum((NDEBED2 - NHABERD2))*(-1) as cd, "
+                + " sum((NDEBE3 - NHABER3))*(-1) as d, sum((NDEBED3 - NHABERD3))*(-1) as dd, "
+                + " sum((NDEBE4 - NHABER4))*(-1) as e, sum((NDEBED4 - NHABERD4))*(-1) as ed, "
+                + " sum((NDEBE5 - NHABER5))*(-1) as f, sum((NDEBED5 - NHABERD5))*(-1) as fd, "
+                + " sum((NDEBE6 - NHABER6))*(-1) as g, sum((NDEBED6 - NHABERD6))*(-1) as gd, "
+                + " sum((NDEBE7 - NHABER7))*(-1) as h, sum((NDEBED7 - NHABERD7))*(-1) as hd, "
+                + " sum((NDEBE8 - NHABER8))*(-1) as i, sum((NDEBED8 - NHABERD8))*(-1) as id, "
+                + " sum((NDEBE9 - NHABER9))*(-1) as j, sum((NDEBED9 - NHABERD9))*(-1) as jd, "
+                + " sum((NDEBE10 - NHABER10))*(-1) as k, sum((NDEBED10 - NHABERD10))*(-1) as kd, "
+                + " sum((NDEBE11 - NHABER11))*(-1) as l, sum((NDEBED11 - NHABERD11))*(-1) as ld, "
+                + " sum((NDEBE12 - NHABER12))*(-1) as m, sum((NDEBED12 - NHABERD12))*(-1) as md, "
+                + " sum((NDEBE13 - NHABER13))*(-1) as n, sum((NDEBED13 - NHABERD13))*(-1) as nd, "
+                + " sum((NDEBE14 - NHABER14))*(-1) as o, sum((NDEBED14 - NHABERD14))*(-1) as od, "
+                + " sum((NDEBE15 - NHABER15))*(-1) as p, sum((NDEBED15 - NHABERD15))*(-1) as pd from PLAN "
+                + " where " + filter + " = '" + idRubro + "'"
+                + " and NNIVEL = 3 ";
+            return dat.extrae(query, pathConection);
+        }
     }
 }
