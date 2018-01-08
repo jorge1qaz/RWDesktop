@@ -230,5 +230,47 @@ namespace BusinessLayer
                 + " and NNIVEL = 3 ";
             return dat.extrae(query, pathConection);
         }
+        public DataTable GetTotalMonthByRubro(string pathConection, string idRubro, string filter)
+        {
+            string query = "";                                                                    // False SumNdebeDiario  (DEBE)
+            query = " select (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1)) as a, (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1)) as ad, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2)) as b, (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2)) as bd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3)) as c, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3)) as cd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4)) as d, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4)) as dd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5)) as e, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5)) as ed, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
+            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6)) as f, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
+            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6)) as fd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
+            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7)) as g, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
+            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7)) as gd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
+            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8)) as h, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
+            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8)) as hd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
+            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9)) as i, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
+            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9)) as id, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
+            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10)) as j, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
+            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10)) as jd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
+            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10) + sum(NDEBE11 - NHABER11)) as k, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
+            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10) + sum(NDEBED11 - NHABERD11)) as kd, "
+            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
+            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10) + sum(NDEBE11 - NHABER11)+ sum(NDEBE12 - NHABER12) + sum(NDEBE13 - NHABER13) + sum(NDEBE14 - NHABER14)) as l, "
+            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
+            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10) + sum(NDEBED11 - NHABERD11) + sum(NDEBED12 - NHABERD12) + sum(NDEBED13 - NHABERD13) + sum(NDEBED14 - NHABERD14)) as ld from PLAN "
+            + " where " + filter + " = '" + idRubro + "'";
+            return dat.extrae(query, pathConection);
+        }
     }
 }
