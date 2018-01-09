@@ -14,11 +14,12 @@ namespace RWeb
         Paths paths = new Paths();
         Transferencia trans = new Transferencia();
         R_CuentasPendientes cuentasPendientes = new R_CuentasPendientes();
-        Ejecucion ex = new Ejecucion();
-        VerificarInstancia vf = new VerificarInstancia();
+        Ejecucion ejecucion = new Ejecucion();
+        VerificarInstancia verificarInstancia = new VerificarInstancia();
         R_MargenUtilidad margenUtilidad = new R_MargenUtilidad();
         R_MiNegocioAlDia miNegocioAlDia = new R_MiNegocioAlDia();
         R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
+        R_EstadosFinancieros estadosFinancieros = new R_EstadosFinancieros();
         public frmRWeb()
         {
             InitializeComponent();
@@ -29,16 +30,16 @@ namespace RWeb
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
-            if (vf.getPrevInstance())
+            if (verificarInstancia.getPrevInstance())
             {
                 this.WindowState = FormWindowState.Maximized;
                 this.Close();
             }
-            ex.EventTimer(60, HideForm);
+            ejecucion.EventTimer(60, HideForm);
             try
             {
                 if (trans.ComprobarAccesoInternet())
-                    ex.EventTimer(300, StartMassiveUpdate);
+                    ejecucion.EventTimer(300, StartMassiveUpdate);
             }
             catch (Exception)
             {
@@ -60,6 +61,7 @@ namespace RWeb
             cuentasPendientes.StartModule();
             miNegocioAlDia.StartModule();
             estadoDeResultadoPMS.StartModule();
+            estadosFinancieros.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
@@ -72,10 +74,11 @@ namespace RWeb
             btnEmpresas.Enabled = false;
             Task task = new Task(() =>
             {
-                margenUtilidad.StartModule();
-                cuentasPendientes.StartModule();
-                miNegocioAlDia.StartModule();
-                estadoDeResultadoPMS.StartModule();
+                //margenUtilidad.StartModule();
+                //cuentasPendientes.StartModule();
+                //miNegocioAlDia.StartModule();
+                //estadoDeResultadoPMS.StartModule();
+                estadosFinancieros.StartModule();
             });
             task.Start();
             lblProcessing.Text = "Procesando datos...";

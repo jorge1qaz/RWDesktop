@@ -28,9 +28,12 @@ namespace RWeb
             //grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
 
             //estadoDeResultadoPMS
+            DataSet dataSet = new DataSet();
             DataTable dataTable = new DataTable();
-            dataTable = consb.TableForEstadoResultado(@"C:\Contasis14\2017\02\conta", "N015", "CCOD_BAL2");
-            grdPruebas2.DataSource = dataTable;
+            dataTable = consb.GetTotalMonthByRubro(@"C:\Contasis14\2015\ff\conta", "A115", "CCOD_BAL2");
+            dataSet.Tables.Add(dataTable);
+            using (StreamWriter jsonFile = new StreamWriter("D:/" + "pruebaMiHedmano" + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.Indented).ToString().Replace("  ", ""));
 
         }
         AccesoDatos dat = new AccesoDatos();
