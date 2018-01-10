@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="87040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="87552">
       <assemblyIdentity name="BusinessLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>PUsWHZQJiBSs8zbRZXIu1ZdtxKYvpxETDYzsz8sJ0DY=</dsig:DigestValue>
+        <dsig:DigestValue>shLjIIjWc5Spik+Jvq3TYrLwByW58EySgTPGC2pZac4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -122,7 +122,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JRBPaUqrjagH7pD5SwhVnwloCgHcRNoI0W0N/P4Qvvg=</dsig:DigestValue>
+        <dsig:DigestValue>vFMJ8lm3/+2XUkFdC4c+hz/Ks0qdB1sOeiIM+L/MGhE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
