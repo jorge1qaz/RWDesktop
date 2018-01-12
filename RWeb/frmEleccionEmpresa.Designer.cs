@@ -72,6 +72,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.metroGrid1.DefaultCellStyle = dataGridViewCellStyle2;
+            this.metroGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.metroGrid1.EnableHeadersVisualStyles = false;
             this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -105,7 +106,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 73F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(630, 332);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(689, 332);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -120,8 +121,8 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(624, 35);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(683, 35);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnCancelar
@@ -158,7 +159,7 @@
             this.lblDescripcion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lblDescripcion.Location = new System.Drawing.Point(3, 0);
             this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(624, 49);
+            this.lblDescripcion.Size = new System.Drawing.Size(683, 49);
             this.lblDescripcion.TabIndex = 1;
             this.lblDescripcion.Text = "Hemos encontrado las siguientes empresa(s), por favor seleccione sólo una empresa" +
     " \r\npara ver sus reportes en la web.";
@@ -166,6 +167,7 @@
             // 
             // grdEmpresas
             // 
+            this.grdEmpresas.AllowUserToOrderColumns = true;
             this.grdEmpresas.AllowUserToResizeRows = false;
             this.grdEmpresas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.grdEmpresas.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -205,7 +207,7 @@
             this.grdEmpresas.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.grdEmpresas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.grdEmpresas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdEmpresas.Size = new System.Drawing.Size(624, 236);
+            this.grdEmpresas.Size = new System.Drawing.Size(683, 236);
             this.grdEmpresas.TabIndex = 2;
             this.grdEmpresas.Theme = MetroFramework.MetroThemeStyle.Light;
             this.grdEmpresas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdEmpresas_CellMouseClick);
@@ -221,7 +223,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(670, 412);
+            this.ClientSize = new System.Drawing.Size(729, 412);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "frmEleccionEmpresa";
             this.Opacity = 0.9D;

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace RWeb
 {
@@ -158,6 +159,18 @@ namespace RWeb
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
+        }
+
+        private void btnLinkWeb_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Process.Start("http://licenciacontasis.net/ReportWeb/Acceso");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("No pudimos acceder al sitio web, intente más tarde o contacte con su administrador.", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

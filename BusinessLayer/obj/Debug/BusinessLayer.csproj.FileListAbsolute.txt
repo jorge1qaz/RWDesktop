@@ -13,7 +13,6 @@ D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\DotNetZip.dll
 D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\Newtonsoft.Json.dll
 D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\DotNetZip.xml
 D:\git\ReportesWeb\Desktop\BusinessLayer\bin\Debug\Newtonsoft.Json.xml
-D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
 D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.dll
 D:\git\ReportesWeb\Desktop\BusinessLayer\obj\Debug\BusinessLayer.pdb
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\BusinessLayer\bin\Debug\BusinessLayer.dll

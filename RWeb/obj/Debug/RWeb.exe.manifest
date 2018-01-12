@@ -50,7 +50,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>pNPqfJbzKsHtFQ+GxY62y/b15LClEIzxIXimi4yBqOg=</dsig:DigestValue>
+        <dsig:DigestValue>F1cOC1PP5IHSCTWceqJw6qj6x5ttLe1I48OmK76QKvA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="97776">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="98288">
       <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>gcWQbCbsqv4rW9yoDA8LliRLHabJ5XyCgj+ryIyjLko=</dsig:DigestValue>
+        <dsig:DigestValue>CwKs3cfsUDfyyZ5R3KaI6+U2LZmlFC/8sax8Z5MijiI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

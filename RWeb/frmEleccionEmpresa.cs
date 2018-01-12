@@ -1,6 +1,7 @@
 ﻿using BusinessLayer;
 using System;
 using System.Data;
+using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -25,6 +26,7 @@ namespace RWeb
             column.ColumnName = "Seleccione";
             dataCompany.Columns.Add(column);
             grdEmpresas.DataSource = dataCompany;
+            grdEmpresas.Font = new Font("Calibri", 12);
         }
         private void grdEmpresas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
