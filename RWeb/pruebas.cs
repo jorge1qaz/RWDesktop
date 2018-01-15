@@ -46,5 +46,10 @@ namespace RWeb
         Directorios dirs = new Directorios();
         VerificarInstancia vi = new VerificarInstancia();
         R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
