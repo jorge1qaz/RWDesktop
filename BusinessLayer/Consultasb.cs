@@ -23,17 +23,17 @@ namespace BusinessLayer
         }
         //Jorge Luis|13/12/2017|RW-91
         /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
-        public DataTable FilterRubro(string pathConection, string idRubro)
+        public DataTable FilterRubro(string pathConnection, string idRubro)
         {
             return dat.extrae(
                 " select CCOD_CUE, CDSC from PLAN " +
                 " where CCOD_BAL2 = '" + idRubro + "'"
-                , pathConection
+                , pathConnection
                 );
         }
         //Jorge Luis|13/12/2017|RW-91
         /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
-        public DataTable SumNhaberDiario(string pathConection, Int16 mesProcesoCalculado, string idCuenta)
+        public DataTable SumNhaberDiario(string pathConnection, Int16 mesProcesoCalculado, string idCuenta)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -45,12 +45,12 @@ namespace BusinessLayer
                  " select sum(NHABER) as haber from Diario "
                  + " where CCOD_CUE = '" + idCuenta + "' " 
                  +" and CMES = '" + mesParametro + "' " 
-                , pathConection
+                , pathConnection
                 );
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
-        public DataTable SumNdebeDiario(string pathConection, Int16 mesProcesoCalculado, string idCuenta)
+        public DataTable SumNdebeDiario(string pathConnection, Int16 mesProcesoCalculado, string idCuenta)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -62,12 +62,12 @@ namespace BusinessLayer
                  " select sum(NDEBE) as debe from Diario "
                  + " where CCOD_CUE = '" + idCuenta + "' "
                  + " and CMES = '" + mesParametro + "' "
-                , pathConection
+                , pathConnection
                 );
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TablaDiario(string pathConection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
+        public DataTable TablaDiario(string pathConnection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
         {
             string mesParametro = "";
             string query = "";
@@ -90,11 +90,11 @@ namespace BusinessLayer
                      + " where p.CCOD_BAL2 = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' ";
             }
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TablaDiario(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        public DataTable TablaDiario(string pathConnection, string idRubro, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -107,11 +107,11 @@ namespace BusinessLayer
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
                      + " where p.CCOD_BAL2 = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' "
-                , pathConection );
+                , pathConnection);
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TablaDiarioN(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        public DataTable TablaDiarioN(string pathConnection, string idRubro, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -124,11 +124,11 @@ namespace BusinessLayer
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
                      + " where p.CCOD_BALN2 = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' "
-                , pathConection);
+                , pathConnection);
         }
         //Jorge Luis|21/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable ListCuentasByRubro(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        public DataTable ListCuentasByRubro(string pathConnection, string idRubro, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -141,11 +141,11 @@ namespace BusinessLayer
                 + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
                 + " where CCOD_BAL2 = TRIM('" + idRubro + "') "
                 + " and CMES = '" + mesParametro + "' "
-                , pathConection);
+                , pathConnection);
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TableForEstadoResultado(string pathConection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
+        public DataTable TableForEstadoResultado(string pathConnection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
         {
             string mesParametro = "";
             string query = "";
@@ -166,9 +166,9 @@ namespace BusinessLayer
                      + " where p.CCOD_BAL2 = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' "
                      + " and p.NNIVEL = 3 ";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable TableForEstadoResultado(string pathConection, string idRubro, Int16 mesProcesoCalculado)
+        public DataTable TableForEstadoResultado(string pathConnection, string idRubro, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             string query = "";
@@ -182,9 +182,9 @@ namespace BusinessLayer
                     + " where p.CCOD_BAL2 = '" + idRubro + "'"
                     + " and d.CMES = '" + mesParametro + "' "
                     + " and p.NNIVEL = 3 ";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable TableForEstadoResultado(string pathConection, string idRubro, Int16 mesProcesoCalculado, string filter, bool tipoOperacion)
+        public DataTable TableForEstadoResultado(string pathConnection, string idRubro, Int16 mesProcesoCalculado, string filter, bool tipoOperacion)
         {
             string mesParametro = "";
             string query = "";
@@ -205,9 +205,9 @@ namespace BusinessLayer
                      + " where p." + filter + " = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' "
                      + " and p.NNIVEL = 3 ";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable TableForEstadoResultado(string pathConection, string idRubro, string filter)
+        public DataTable TableForEstadoResultado(string pathConnection, string idRubro, string filter1, string filter2)
         {
             string query = "";                                                                    // False SumNdebeDiario  (DEBE)
             query = " select sum((NDEBE0 - NHABER0))*(-1) as a, sum((NDEBED0 - NHABERD0))*(-1) as ad, " 
@@ -225,14 +225,15 @@ namespace BusinessLayer
                 + " sum((NDEBE12 - NHABER12))*(-1) as m, sum((NDEBED12 - NHABERD12))*(-1) as md, "
                 + " sum((NDEBE13 - NHABER13))*(-1) as n, sum((NDEBED13 - NHABERD13))*(-1) as nd, "
                 + " sum((NDEBE14 - NHABER14))*(-1) as o, sum((NDEBED14 - NHABERD14))*(-1) as od from PLAN"
-                + " where " + filter + " = '" + idRubro + "'"
+                + " where " + filter1 + " = '" + idRubro + "'"
+                + " or " + filter2 + " = '" + idRubro + "'"
                 + " and NNIVEL = 3 ";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable GetTotalMonthByRubro(string pathConection, string idRubro, string filter, bool tipoOperacion)
+        public DataTable GetTotalMonthByRubro(string pathConnection, string idRubro, string filter, bool tipoOperacion)
         {
             string query = "";
-            if (tipoOperacion)
+            if (tipoOperacion == true)
                 query = " select sum((NDEBE0 - NHABER0)) as a, sum((NDEBED0 - NHABERD0)) as ad, "
                     + " sum((NDEBE1 - NHABER1)) as b,       sum((NDEBED1 - NHABERD1)) as bd, "
                     + " sum((NDEBE2 - NHABER2)) as c,       sum((NDEBED2 - NHABERD2)) as cd, "
@@ -268,9 +269,9 @@ namespace BusinessLayer
                     + " sum((NDEBE14 - NHABER14))*(-1) as o,    sum((NDEBED14 - NHABERD14))*(-1) as od from PLAN "
                     + " where " + filter + " = '" + idRubro + "'"
                     + " and NNIVEL = 3 ";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable GetTotalMonthByRubro(string pathConection, string idRubro1, string filter1, string idRubro2, string filter2, bool tipoOperacion)
+        public DataTable GetTotalMonthByRubro(string pathConnection, string filter1, string filter2, string idRubro, bool tipoOperacion)
         {
             string query = "";
             if (tipoOperacion)
@@ -289,8 +290,8 @@ namespace BusinessLayer
                     + " sum((NDEBE12 - NHABER12)) as m,     sum((NDEBED12 - NHABERD12)) as md, "
                     + " sum((NDEBE13 - NHABER13)) as n,     sum((NDEBED13 - NHABERD13)) as nd, "
                     + " sum((NDEBE14 - NHABER14)) as o,     sum((NDEBED14 - NHABERD14)) as od from PLAN "
-                    + " where " + filter1 + " = '" + idRubro1 + "'"
-                    + " or " + filter2 + " = '" + idRubro2 + "'";
+                    + " where " + filter1 + " = '" + idRubro + "'"
+                    + " or " + filter2 + " = '" + idRubro + "'";
             else
                 query = " select sum((NDEBE0 - NHABER0))*(-1) as a, sum((NDEBED0 - NHABERD0))*(-1) as ad, "
                     + " sum((NDEBE1 - NHABER1))*(-1) as b,      sum((NDEBED1 - NHABERD1))*(-1) as bd, "  // a, b, c... = Haber en soles, ad, bd, cd... = Haber en dólares
@@ -307,11 +308,11 @@ namespace BusinessLayer
                     + " sum((NDEBE12 - NHABER12))*(-1) as m,    sum((NDEBED12 - NHABERD12))*(-1) as md, "
                     + " sum((NDEBE13 - NHABER13))*(-1) as n,    sum((NDEBED13 - NHABERD13))*(-1) as nd, "
                     + " sum((NDEBE14 - NHABER14))*(-1) as o,    sum((NDEBED14 - NHABERD14))*(-1) as od from PLAN "
-                    + " where " + filter1 + " = '" + idRubro1 + "'"
-                    + " or " + filter2 + " = '" + idRubro2 + "'";
-            return dat.extrae(query, pathConection);
+                    + " where " + filter1 + " = '" + idRubro + "'"
+                    + " or " + filter2 + " = '" + idRubro + "'";
+            return dat.extrae(query, pathConnection);
         }
-        public DataTable GetTotalMonthByRubro(string pathConection, string idRubro, string filter)
+        public DataTable GetTotalMonthByRubro(string pathConnection, string idRubro, string filter)
         {
             string query = "";                                                                    // False SumNdebeDiario  (DEBE)
             query = " select (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1)) as a, (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1)) as ad, "
@@ -351,7 +352,38 @@ namespace BusinessLayer
             + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
             + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10) + sum(NDEBED11 - NHABERD11) + sum(NDEBED12 - NHABERD12) + sum(NDEBED13 - NHABERD13) + sum(NDEBED14 - NHABERD14)) as ld from PLAN "
             + " where " + filter + " = '" + idRubro + "'";
-            return dat.extrae(query, pathConection);
+            return dat.extrae(query, pathConnection);
+        }
+        //Flujo de caja detallado
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListSaldoInicial1(string pathConnection)
+        {
+            string query = "";
+            query = " select dist d.CCOD_CUE from DIARIO as d "
+                + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 3 and p.ntipo = 1 ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListSaldoInicial2(string pathConnection)
+        {
+            string query = "";
+            query = " select dist d.CCOD_CUE from DIARIO as d "
+                + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 2 and p.ntipo = 1 ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListSaldoInicial3(string pathConnection)
+        {
+            string query = "";
+            query = " select dist d.CCOD_CUE from DIARIO as d "
+                + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 2 and p.ntipo = 2 ";
+            return dat.extrae(query, pathConnection);
         }
     }
 }

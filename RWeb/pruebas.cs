@@ -26,15 +26,13 @@ namespace RWeb
             //grdPruebas2.DataSource = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2017\01\conta", "N005", true);
             //grdPruebas.DataSource = consb.FilterRubro(@"C:\Contasis14\2016\01\conta", "N005");
             //grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
-
-            //estadoDeResultadoPMS
-            DataSet dataSet = new DataSet();
+            
             DataTable dataTable = new DataTable();
-            dataTable = consb.GetTotalMonthByRubro(@"C:\Contasis14\2015\ff\conta", "A115", "CCOD_BAL2");
-            dataSet.Tables.Add(dataTable);
-            using (StreamWriter jsonFile = new StreamWriter("D:/" + "pruebaMiHedmano" + ".json", false))
-                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.Indented).ToString().Replace("  ", ""));
-
+            //dataTable = consb.GetTotalMonthByRubro(@"C:\Contasis14\2015\ff\conta", "A115", "CCOD_BAL2");
+            dataTable = consb.ListSaldoInicial1(@"C:\Contasis14\2015\ff\conta");
+            grdPruebas.DataSource = dataTable;
+            grdPruebas2.DataSource = consb.ListSaldoInicial2(@"C:\Contasis14\2015\ff\conta");
+            grd3.DataSource = consb.ListSaldoInicial3(@"C:\Contasis14\2015\ff\conta");
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();
@@ -48,6 +46,11 @@ namespace RWeb
         R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
 
         private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void grdPruebas2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

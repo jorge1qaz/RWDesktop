@@ -65,6 +65,7 @@
     <Compile Include="R_CuentasPendientes.cs" />
     <Compile Include="R_EstadoDeResultadoPMS.cs" />
     <Compile Include="R_EstadosFinancieros.cs" />
+    <Compile Include="R_FlujoCajaDetallado.cs" />
     <Compile Include="R_MargenUtilidad.cs" />
     <Compile Include="R_MiNegocioAlDia.cs" />
     <Compile Include="Transferencia.cs" />
