@@ -36,6 +36,10 @@ namespace BusinessLayer
                         Directory.Delete(paths.PathPrincipalDirectory + paths.PathEDRPMS, true);
                     if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathREF))
                         Directory.Delete(paths.PathPrincipalDirectory + paths.PathREF, true);
+                    if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathREF))
+                        Directory.Delete(paths.PathPrincipalDirectory + paths.PathREF, true);
+                    if (Directory.Exists(paths.PathPrincipalDirectory + paths.PathFCD))
+                        Directory.Delete(paths.PathPrincipalDirectory + paths.PathFCD, true);
                     SendZip(backgroundWorker);
                 }
                 catch (Exception)

@@ -21,6 +21,7 @@ namespace RWeb
         R_MiNegocioAlDia miNegocioAlDia = new R_MiNegocioAlDia();
         R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
         R_EstadosFinancieros estadosFinancieros = new R_EstadosFinancieros();
+        R_FlujoCajaDetallado flujoCajaDetallado = new R_FlujoCajaDetallado();
         public frmRWeb()
         {
             InitializeComponent();
@@ -47,6 +48,7 @@ namespace RWeb
                 Application.ExitThread();
                 this.Close();
             }
+            btnMaximizar.Enabled = false;
         }
         private void HideForm(object sender, EventArgs e)
         {
@@ -63,6 +65,7 @@ namespace RWeb
             miNegocioAlDia.StartModule();
             estadoDeResultadoPMS.StartModule();
             estadosFinancieros.StartModule();
+            flujoCajaDetallado.StartModule();
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
@@ -75,11 +78,12 @@ namespace RWeb
             btnEmpresas.Enabled = false;
             Task task = new Task(() =>
             {
-                //margenUtilidad.StartModule();
-                //cuentasPendientes.StartModule();
-                //miNegocioAlDia.StartModule();
-                //estadoDeResultadoPMS.StartModule();
+                margenUtilidad.StartModule();
+                cuentasPendientes.StartModule();
+                miNegocioAlDia.StartModule();
+                estadoDeResultadoPMS.StartModule();
                 estadosFinancieros.StartModule();
+                flujoCajaDetallado.StartModule();
             });
             task.Start();
             lblProcessing.Text = "Procesando datos...";
@@ -107,6 +111,7 @@ namespace RWeb
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             trans.DoWork(sender, e, backgroundWorker);
+            btnCerrar.Enabled = false;
         }
         private void backgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
@@ -134,12 +139,21 @@ namespace RWeb
             int deskHeight = Screen.PrimaryScreen.Bounds.Height;
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
+            btnCerrar.Enabled = true;
+            btnMaximizar.Enabled = true;
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            if (File.Exists(paths.PathUser))
-                File.Delete(paths.PathUser);
-            Application.Restart();
+            try
+            {
+                if (File.Exists(paths.PathUser))
+                    File.Delete(paths.PathUser);
+                Application.Restart();
+            }
+            catch (Exception)
+            {
+                Application.Restart();
+            }
         }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -148,11 +162,17 @@ namespace RWeb
         }
         private void btnEmpresas_Click(object sender, EventArgs e)
         {
-            if (File.Exists(paths.PathRUC))
-                File.Delete(paths.PathRUC);
-            Application.Restart();
+            try
+            {
+                if (File.Exists(paths.PathRUC))
+                    File.Delete(paths.PathRUC);
+                Application.Restart();
+            }
+            catch (Exception)
+            {
+                Application.Restart();
+            }
         }
-
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             this.Size = new Size(331, 174);
@@ -160,7 +180,6 @@ namespace RWeb
             int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
         }
-
         private void btnLinkWeb_Click(object sender, EventArgs e)
         {
             try

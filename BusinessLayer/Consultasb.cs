@@ -354,35 +354,75 @@ namespace BusinessLayer
             + " where " + filter + " = '" + idRubro + "'";
             return dat.extrae(query, pathConnection);
         }
+        //Flujo de caja
         //Flujo de caja detallado
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
-        public DataTable ListSaldoInicial1(string pathConnection)
+        public DataTable ListSaldoInicialDescripcion(string pathConnection)
         {
             string query = "";
-            query = " select dist d.CCOD_CUE from DIARIO as d "
+            query = " select dist d.CCOD_CUE as a, p.CDSC as b, p.CMONEDA as c from DIARIO as d "
                 + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
                 + " where p.nanalisis = 3 and p.ntipo = 1 ";
             return dat.extrae(query, pathConnection);
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
-        public DataTable ListSaldoInicial2(string pathConnection)
+        public DataTable ListSaldoInicialDatos(string pathConnection)
         {
             string query = "";
-            query = " select dist d.CCOD_CUE from DIARIO as d "
+            query = " select di.CCOD_CUE as a, di.FFECHA as b, di.NDEBE as c, di.NHABER as d, di.NDEBED as e, di.NHABERD as f from DIARIO as di"
+                + " inner join PLAN  as p on di.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 3 and p.ntipo = 1 "
+                + " and p.ccod_cue LIKE '10%' ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListIngresosDescripcion(string pathConnection)
+        {
+            string query = "";
+            query = " select dist d.CCOD_CUE as a, p.CDSC as b from DIARIO as d "
                 + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
                 + " where p.nanalisis = 2 and p.ntipo = 1 ";
             return dat.extrae(query, pathConnection);
         }
         //Jorge Luis|19/01/2018|RW-93
         /*Método para*/
-        public DataTable ListSaldoInicial3(string pathConnection)
+        public DataTable ListIngresosDatos(string pathConnection)
         {
             string query = "";
-            query = " select dist d.CCOD_CUE from DIARIO as d "
+            query = " select di.CCOD_CUE as a, di.CCOD_CLI as b, di.FFECHADOC as c, di.FFECHAVEN as d, di.NDEBE as e, di.NHABER as f, di.NDEBED as g, di.NHABERD as h  from DIARIO as di "
+                + " inner join PLAN  as p on di.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 2 and p.ntipo = 1 ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListEgresosDescripcion(string pathConnection)
+        {
+            string query = "";
+            query = " select dist d.CCOD_CUE as a, p.CDSC as b from DIARIO as d "
                 + " inner join PLAN  as p on d.CCOD_CUE = p.CCOD_CUE "
                 + " where p.nanalisis = 2 and p.ntipo = 2 ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListEgresosDatos(string pathConnection)
+        {
+            string query = "";
+            query = " select di.CCOD_CUE as a, di.CCOD_CLI as b, di.FFECHADOC as c, di.FFECHAVEN as d, di.NDEBE as e, di.NHABER as f, di.NDEBED as g, di.NHABERD as h from DIARIO as di "
+                + " inner join PLAN  as p on di.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = 2 and p.ntipo = 2 ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Jorge Luis|19/01/2018|RW-93
+        /*Método para*/
+        public DataTable ListCustumers(string pathConnection)
+        {
+            string query = "";
+            query = " select CCOD_CLI as a, CRAZON as b from CLI_PRO as c ";
             return dat.extrae(query, pathConnection);
         }
     }
