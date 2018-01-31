@@ -55,7 +55,7 @@ namespace BusinessLayer
             dataSet.Tables[1].TableName = "dataTableListIngresosDescripcion";
             dataSet.Tables[2].TableName = "dataTableListEgresosDescripcion";
             dataSet.Tables[3].TableName = "dataTableListCustumers";
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "ListsDescription.json", false))
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "ListDescripcion.json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
@@ -67,15 +67,15 @@ namespace BusinessLayer
             DataTable dataTableListSaldoInicialDatos = new DataTable();
             dataTableListSaldoInicialDatos = consb.ListSaldoInicialDatos(@pathConnection);
             DataTable dataTableListIngresosDatos = new DataTable();
-            dataTableListIngresosDatos = consb.ListIngresosDatos(@pathConnection);
+            dataTableListIngresosDatos = consb.ListIngresosEgresosDatos(@pathConnection, 2, 1);
             DataTable dataTableListListEgresosDatos = new DataTable();
-            dataTableListListEgresosDatos = consb.ListEgresosDatos(@pathConnection);
+            dataTableListListEgresosDatos = consb.ListIngresosEgresosDatos(@pathConnection, 2, 2);
             dataSet.Tables.Add(dataTableListSaldoInicialDatos);
             dataSet.Tables.Add(dataTableListIngresosDatos);
             dataSet.Tables.Add(dataTableListListEgresosDatos);
             dataSet.Tables[0].TableName = "dataTableListSaldoInicialDatos";
             dataSet.Tables[1].TableName = "dataTableListIngresosDatos";
-            dataSet.Tables[2].TableName = "dataTableListListEgresosDatos";
+            dataSet.Tables[2].TableName = "dataTableListEgresosDatos";
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "ListDatos.json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();

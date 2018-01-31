@@ -119,7 +119,7 @@ namespace BusinessLayer
         /*Método para actualizar es estado de progreso de la transferencia*/
         public void ProgressChanged(object sender, ProgressChangedEventArgs e, Label lblEstadoProcesamiento, ProgressBar progressBar)
         {
-            lblEstadoProcesamiento.Text = $"Procesando {e.ProgressPercentage} %";
+            lblEstadoProcesamiento.Text = $"Transfiriendo paquete de datos {e.ProgressPercentage} %";
             progressBar.Value = e.ProgressPercentage;
             progressBar.Update();
         }

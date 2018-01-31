@@ -7,6 +7,7 @@ using System.IO;
 using System.Globalization;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Threading;
 
 namespace RWeb
 {
@@ -22,6 +23,8 @@ namespace RWeb
         R_EstadoDeResultadoPMS estadoDeResultadoPMS = new R_EstadoDeResultadoPMS();
         R_EstadosFinancieros estadosFinancieros = new R_EstadosFinancieros();
         R_FlujoCajaDetallado flujoCajaDetallado = new R_FlujoCajaDetallado();
+        int deskHeight = 0;
+        int deskWidth = 0;
         public frmRWeb()
         {
             InitializeComponent();
@@ -29,8 +32,8 @@ namespace RWeb
         private void frmRWeb_Load(object sender, EventArgs e)
         {
             this.Size = new Size(331, 102);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
+            deskHeight = Screen.PrimaryScreen.Bounds.Height;
+            deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             if (verificarInstancia.getPrevInstance())
             {
@@ -50,16 +53,9 @@ namespace RWeb
             }
             btnMaximizar.Enabled = false;
         }
-        private void HideForm(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+        private void HideForm(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
         public void StartMassiveUpdate()
         {
-            this.Size = new Size(331, 154);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             margenUtilidad.StartModule();
             cuentasPendientes.StartModule();
             miNegocioAlDia.StartModule();
@@ -69,10 +65,6 @@ namespace RWeb
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
-            this.Size = new Size(331, 154);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             btnCerrarSesion.Enabled = false;
             btnUpdateNow.Enabled = false;
             btnEmpresas.Enabled = false;
@@ -93,9 +85,7 @@ namespace RWeb
         }
         private async void btnUpdateNow_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(331, 154);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
+            this.Size = new Size(331, 174);
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
             btnCerrarSesion.Enabled = false;
             btnUpdateNow.Enabled = false;
@@ -111,7 +101,13 @@ namespace RWeb
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
             trans.DoWork(sender, e, backgroundWorker);
-            btnCerrar.Enabled = false;
+            try
+            {
+                btnCerrar.Enabled = false;
+            }
+            catch (Exception)
+            {
+            }
         }
         private void backgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
@@ -134,13 +130,12 @@ namespace RWeb
             String cultureName = "en-GB";
             var culture = new CultureInfo(cultureName);
             localDate.ToString(culture);
+            Size = new Size(129, 174);
             lblLastUpdate.Text = localDate.ToString(culture);
-            this.Size = new Size(331, 174);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
+            lblNombreActualizacion.Text = "Última actualización: ";
             btnCerrar.Enabled = true;
             btnMaximizar.Enabled = true;
+            Size = new Size(331, 174);
         }
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
@@ -176,8 +171,6 @@ namespace RWeb
         private void btnMaximizar_Click(object sender, EventArgs e)
         {
             this.Size = new Size(331, 174);
-            int deskHeight = Screen.PrimaryScreen.Bounds.Height;
-            int deskWidth = Screen.PrimaryScreen.Bounds.Width;
             this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
         }
         private void btnLinkWeb_Click(object sender, EventArgs e)

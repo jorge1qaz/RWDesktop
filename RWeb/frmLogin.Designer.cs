@@ -84,24 +84,26 @@
             // 
             // btnRegistrarse
             // 
+            this.btnRegistrarse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegistrarse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnRegistrarse.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btnRegistrarse.Location = new System.Drawing.Point(3, 94);
             this.btnRegistrarse.Name = "btnRegistrarse";
             this.btnRegistrarse.Size = new System.Drawing.Size(179, 29);
-            this.btnRegistrarse.TabIndex = 3;
+            this.btnRegistrarse.TabIndex = 4;
             this.btnRegistrarse.Text = "Registrarse";
             this.btnRegistrarse.UseSelectable = true;
             this.btnRegistrarse.Click += new System.EventHandler(this.btnRegistrarse_Click);
             // 
             // btnIniciarSesion
             // 
+            this.btnIniciarSesion.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIniciarSesion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnIniciarSesion.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btnIniciarSesion.Location = new System.Drawing.Point(188, 94);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
             this.btnIniciarSesion.Size = new System.Drawing.Size(295, 29);
-            this.btnIniciarSesion.TabIndex = 0;
+            this.btnIniciarSesion.TabIndex = 3;
             this.btnIniciarSesion.Text = "Iniciar sesión";
             this.btnIniciarSesion.UseSelectable = true;
             this.btnIniciarSesion.Click += new System.EventHandler(this.btnIniciarSesion_Click);
@@ -132,11 +134,12 @@
             this.txtPassword.SelectionStart = 0;
             this.txtPassword.ShortcutsEnabled = true;
             this.txtPassword.Size = new System.Drawing.Size(295, 27);
-            this.txtPassword.TabIndex = 4;
+            this.txtPassword.TabIndex = 2;
             this.txtPassword.UseSelectable = true;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtPassword.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
             // txtEmail
             // 
@@ -164,13 +167,15 @@
             this.txtEmail.SelectionStart = 0;
             this.txtEmail.ShortcutsEnabled = true;
             this.txtEmail.Size = new System.Drawing.Size(295, 26);
-            this.txtEmail.TabIndex = 5;
+            this.txtEmail.TabIndex = 1;
             this.txtEmail.UseSelectable = true;
             this.txtEmail.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtEmail.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtEmail.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmail_KeyPress);
             // 
             // btnOlvidoPassword
             // 
+            this.btnOlvidoPassword.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnOlvidoPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnOlvidoPassword.Location = new System.Drawing.Point(188, 68);
             this.btnOlvidoPassword.Name = "btnOlvidoPassword";
@@ -209,7 +214,7 @@
             this.tlpCaptcha.ColumnCount = 3;
             this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.46988F));
             this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.53012F));
-            this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 95F));
+            this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.tlpCaptcha.Controls.Add(this.picCaptcha, 0, 1);
             this.tlpCaptcha.Controls.Add(this.lblAdvertencia, 0, 0);
             this.tlpCaptcha.Controls.Add(this.txtCaptcha, 1, 1);
@@ -255,7 +260,7 @@
             // 
             // 
             this.txtCaptcha.CustomButton.Image = null;
-            this.txtCaptcha.CustomButton.Location = new System.Drawing.Point(171, 1);
+            this.txtCaptcha.CustomButton.Location = new System.Drawing.Point(170, 1);
             this.txtCaptcha.CustomButton.Name = "";
             this.txtCaptcha.CustomButton.Size = new System.Drawing.Size(27, 27);
             this.txtCaptcha.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -274,19 +279,21 @@
             this.txtCaptcha.SelectionLength = 0;
             this.txtCaptcha.SelectionStart = 0;
             this.txtCaptcha.ShortcutsEnabled = true;
-            this.txtCaptcha.Size = new System.Drawing.Size(199, 29);
+            this.txtCaptcha.Size = new System.Drawing.Size(198, 29);
             this.txtCaptcha.TabIndex = 12;
             this.txtCaptcha.UseSelectable = true;
             this.txtCaptcha.UseSystemPasswordChar = true;
             this.txtCaptcha.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtCaptcha.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txtCaptcha.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCaptcha_KeyPress);
             // 
             // btnVerificarCaptcha
             // 
+            this.btnVerificarCaptcha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerificarCaptcha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVerificarCaptcha.Location = new System.Drawing.Point(393, 30);
+            this.btnVerificarCaptcha.Location = new System.Drawing.Point(392, 30);
             this.btnVerificarCaptcha.Name = "btnVerificarCaptcha";
-            this.btnVerificarCaptcha.Size = new System.Drawing.Size(90, 29);
+            this.btnVerificarCaptcha.Size = new System.Drawing.Size(91, 29);
             this.btnVerificarCaptcha.TabIndex = 15;
             this.btnVerificarCaptcha.Text = "Verificar";
             this.btnVerificarCaptcha.UseSelectable = true;
