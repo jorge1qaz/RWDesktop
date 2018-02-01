@@ -186,6 +186,7 @@
             this.Name = "pruebas";
             this.Text = "pruebas";
             this.Load += new System.EventHandler(this.pruebas_Load);
+            this.MouseEnter += new System.EventHandler(this.pruebas_MouseEnter);
             ((System.ComponentModel.ISupportInitialize)(this.grdPruebas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPruebas2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grd3)).EndInit();
