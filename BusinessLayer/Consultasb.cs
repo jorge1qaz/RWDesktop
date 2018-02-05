@@ -8,6 +8,7 @@ namespace BusinessLayer
     {
         AccesoDatos dat = new AccesoDatos();
         Paths paths = new Paths();
+        string query = "";
         //Jorge Luis|13/12/2017|RW-91
         /*Método para extraer datos*/
         public DataTable ListDatosGenerales()
@@ -414,6 +415,14 @@ namespace BusinessLayer
         {
             string query = "";
             query = " select CCOD_CLI as a, CRAZON as b from CLI_PRO as c ";
+            return dat.extrae(query, pathConnection);
+        }
+        //query de prueba
+        public DataTable reportFlujoCaja(string pathConnection, Int16 analisis, Int16 tipo) {
+            query = " select dist di.CCOD_CUE as a, di.CCOD_CLI as b, di.FFECHADOC as c, di.FFECHAVEN as d, di.CNUMERO as e, di.CMREG as f, "
+                + " di.CCOD_DOC as g, di.NDEBE as h, di.NHABER as i, di.NDEBED as hd, di.NHABERD as id from DIARIO as di "
+                + " inner join PLAN  as p on di.CCOD_CUE = p.CCOD_CUE "
+                + " where p.nanalisis = " + analisis + " and p.ntipo = " + tipo + " AND TRIM(di.CMESC ) == '' ";
             return dat.extrae(query, pathConnection);
         }
     }
