@@ -14,7 +14,7 @@ namespace RWeb
     public partial class frmRWeb : MetroForm
     {
         Paths paths = new Paths();
-        Transferencia trans = new Transferencia();
+        Transferencia transferencia = new Transferencia();
         R_CuentasPendientes cuentasPendientes = new R_CuentasPendientes();
         Ejecucion ejecucion = new Ejecucion();
         VerificarInstancia verificarInstancia = new VerificarInstancia();
@@ -43,7 +43,7 @@ namespace RWeb
             ejecucion.EventTimer(60, HideForm);
             try
             {
-                if (trans.ComprobarAccesoInternet())
+                if (transferencia.ComprobarAccesoInternet())
                     ejecucion.EventTimer(300, StartMassiveUpdate);
             }
             catch (Exception)
@@ -81,26 +81,39 @@ namespace RWeb
             lblProcessing.Text = "Procesando datos...";
             await task;
             lblProcessing.Text = "¡Procesamiento completado!";
-            trans.StartTransfer(backgroundWorker);
+            transferencia.StartTransfer(backgroundWorker);
         }
         private async void btnUpdateNow_Click(object sender, EventArgs e)
         {
-            this.Size = new Size(331, 174);
-            this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
-            btnCerrarSesion.Enabled = false;
-            btnUpdateNow.Enabled = false;
-            btnEmpresas.Enabled = false;
-            btnCerrar.Enabled = false;
-            Task task = new Task(StartMassiveUpdate);
-            task.Start();
-            lblProcessing.Text = "Procesando datos...";
-            await task;
-            lblProcessing.Text = "¡Procesamiento completado!";
-            trans.StartTransfer(backgroundWorker);
+            try
+            {
+                if (transferencia.ComprobarAccesoInternet())
+                {
+                    this.Size = new Size(331, 174);
+                    this.Location = new Point(deskWidth - this.Width, deskHeight - this.Height - 40);
+                    btnCerrarSesion.Enabled = false;
+                    btnUpdateNow.Enabled = false;
+                    btnEmpresas.Enabled = false;
+                    btnCerrar.Enabled = false;
+                    Task task = new Task(StartMassiveUpdate);
+                    task.Start();
+                    lblProcessing.Text = "Procesando datos...";
+                    await task;
+                    lblProcessing.Text = "¡Procesamiento completado!";
+                    transferencia.StartTransfer(backgroundWorker);
+                }
+                else
+                    MessageBox.Show("No cuentas con acceso a internet, intente más tarde o contacte con su administrador.", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         private void backgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            trans.DoWork(sender, e, backgroundWorker);
+            transferencia.DoWork(sender, e, backgroundWorker);
             try
             {
                 btnCerrar.Enabled = false;
@@ -111,11 +124,11 @@ namespace RWeb
         }
         private void backgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            trans.ProgressChanged(sender, e, lblProcessing, progressbar);
+            transferencia.ProgressChanged(sender, e, lblProcessing, progressbar);
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
-            trans.DeleteZip();
+            transferencia.DeleteZip();
             btnCerrarSesion.Enabled = true;
             btnUpdateNow.Enabled = true;
             btnEmpresas.Enabled = true;
@@ -177,7 +190,10 @@ namespace RWeb
         {
             try
             {
-                Process.Start("http://licenciacontasis.net/ReportWeb/Acceso");
+                if (transferencia.ComprobarAccesoInternet())
+                    Process.Start("http://licenciacontasis.net/ReportWeb/Acceso");
+                else
+                    MessageBox.Show("No pudimos acceder al sitio web, intente más tarde o contacte con su administrador.", "Error de red", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception)
             {
