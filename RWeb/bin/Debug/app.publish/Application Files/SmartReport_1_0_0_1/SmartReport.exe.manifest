@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="RWeb.exe" version="1.0.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
-  <description asmv2:iconFile="icon_rw.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <asmv1:assemblyIdentity name="SmartReport.exe" version="1.0.0.1" publicKeyToken="3ac737f4cd990132" language="es-PE" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="icono.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-    <commandLine file="RWeb.exe" parameters="" />
+    <assemblyIdentity name="SmartReport" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="SmartReport.exe" parameters="" />
   </entryPoint>
   <trustInfo>
     <security>
@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="100848">
-      <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartReport.exe" size="85488">
+      <assemblyIdentity name="SmartReport" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W4sO+tqmGmnwamTHCpMtEFTJ/rS7Om23Z9kmxe5+SUE=</dsig:DigestValue>
+        <dsig:DigestValue>Jw3PpEq6QsNapuSfa9Ptlmtj4ecrZjnYLTAV+0ewJko=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -159,13 +159,31 @@
       <dsig:DigestValue>CbFBv5tEZRHCFo2Z17yg4hU9adRVYzemMKEtlO3uI0I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="images\logo.png" size="61607">
+  <file name="icono.ico" size="4682">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VAL8F9udPqmxHJu4+LD+lAtUUA5osLOImomKNNqfH8U=</dsig:DigestValue>
+      <dsig:DigestValue>Wpz8p+Ug6+OzBvWJ5YcIo/yO5/tM0pxMjOFV6mGlx6I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="images\icono.ico" size="4682">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Wpz8p+Ug6+OzBvWJ5YcIo/yO5/tM0pxMjOFV6mGlx6I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="images\logo.png" size="5773">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>a8Yv9iykPy33PO04jgFFl1ybxWSs8VMvrMmdWVsyOoU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icon_rw.ico" size="23462">
@@ -177,7 +195,7 @@
       <dsig:DigestValue>CbFBv5tEZRHCFo2Z17yg4hU9adRVYzemMKEtlO3uI0I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="RWeb.exe.config" size="187">
+  <file name="SmartReport.exe.config" size="187">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
@@ -186,4 +204,4 @@
       <dsig:DigestValue>xm4bo26HQ0LNVwz1vdPYtzhkpMnp2AI5i+f0b+OahTI=</dsig:DigestValue>
     </hash>
   </file>
-</asmv1:assembly>
+<publisherIdentity name="CN=DESKTOP-R5K38U6\usuario" issuerKeyHash="95bc97966d5f56ed4d6fefa0935e7555ea4df129" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>c+8yqHbyZcmguNA8yzjnV1km9hsElQlKGveKwwcd/bE=</DigestValue></Reference></SignedInfo><SignatureValue>Xz6Y85kqfrN7qL7h62H0gDf4DPPeHP1fbAcHYlZeHMr0P5abzE66fnTBdNv4hk1S/B8rIuLDyLW/4gFTlV6fGfQx2igpE9Q/8tf4RmTyL90ESLqvcufthUC19yTTuUibJ9u2qYnE4pd75PUHhVs9GSJrTOEYkjdNd5Rm6JliIPI=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>qMdNXzawjm0etmCObcGNJyNy2PSyfWB0w6zzHq7hNEtRxyW27a5l02fkA2nNSJiGLLr20F2oWOEfchbDFRmJgyXmfIeREBnpjBJE/7LgPIgLTovUd+OQHq23yT6Q4+tsFWlaXwJ/mAANgBJE5O81zfL3yaWfLJoiA2nX17bL99k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="b1fd1d07c38af71a4a0995041bf6265957e738cb3cd0b8a0c965f276a832ef73" Description="" Url=""><as:assemblyIdentity name="SmartReport.exe" version="1.0.0.1" publicKeyToken="3ac737f4cd990132" language="es-PE" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DESKTOP-R5K38U6\usuario</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>j3ITlK8q5+1pegMsE3McV+k3fJg8OjoEPAkYq+oT7T0=</DigestValue></Reference></SignedInfo><SignatureValue>eFENg74EWRPfZBzaymz25/LwbCms99TAcJYf03NW++qFevBEE/ed64JpqjGm7IpImmA6g2UMw+0QqHSnBHD5hlaYH2kx0BhVqOm7Y+69Qfy84MeirBDqGUhDqFBiS7qvi/kgbKbBc/TqZPe5AGikGVneFVxX32E3LaNLuCNyiYg=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>qMdNXzawjm0etmCObcGNJyNy2PSyfWB0w6zzHq7hNEtRxyW27a5l02fkA2nNSJiGLLr20F2oWOEfchbDFRmJgyXmfIeREBnpjBJE/7LgPIgLTovUd+OQHq23yT6Q4+tsFWlaXwJ/mAANgBJE5O81zfL3yaWfLJoiA2nX17bL99k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB9TCCAV6gAwIBAgIQRmCRbUs097BMERHEVJKWzjANBgkqhkiG9w0BAQsFADA5MTcwNQYDVQQDHi4ARABFAFMASwBUAE8AUAAtAFIANQBLADMAOABVADYAXAB1AHMAdQBhAHIAaQBvMB4XDTE4MDIxNDIwNDkyM1oXDTE5MDIxNTAyNDkyM1owOTE3MDUGA1UEAx4uAEQARQBTAEsAVABPAFAALQBSADUASwAzADgAVQA2AFwAdQBzAHUAYQByAGkAbzCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEAqMdNXzawjm0etmCObcGNJyNy2PSyfWB0w6zzHq7hNEtRxyW27a5l02fkA2nNSJiGLLr20F2oWOEfchbDFRmJgyXmfIeREBnpjBJE/7LgPIgLTovUd+OQHq23yT6Q4+tsFWlaXwJ/mAANgBJE5O81zfL3yaWfLJoiA2nX17bL99kCAwEAATANBgkqhkiG9w0BAQsFAAOBgQBwB7jzXLIpejpiKwKp99K0Le8zYjDruHkCMtghTzTR7ssU+XlGnUogZS5FIo3hpzuZuQ1foXXK+HIYbPjXpuk9zlvE3+3x0iJ4cGPpKFATuQtag04sea40gLoCcOjj88YDyJLIt/pGE1NYCjaEDGt08UMnxx5Zx7IwNU/TIFolEw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

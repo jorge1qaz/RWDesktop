@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>D:\Jorge Luis\Compilados\</PublishUrlHistory>
-    <InstallUrlHistory />
+    <PublishUrlHistory>ftp://70.38.70.172/Updates/|D:\Jorge Luis\Compilados\</PublishUrlHistory>
+    <InstallUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/|http://licenciacontasis.net/ReportWeb/Updates/publish.htm/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory />
+    <UpdateUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/publish.htm/|http://licenciacontasis.net/ReportWeb/Updates/SmartReport.zip/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>es-ES</FallbackCulture>

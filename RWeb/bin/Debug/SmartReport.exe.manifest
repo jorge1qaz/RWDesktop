@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="RWeb.exe" version="1.0.0.15" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
-  <description asmv2:iconFile="icon_rw.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <asmv1:assemblyIdentity name="SmartReport.exe" version="1.0.0.1" publicKeyToken="0000000000000000" language="es-PE" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="icono.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
-    <commandLine file="RWeb.exe" parameters="" />
+    <assemblyIdentity name="SmartReport" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="SmartReport.exe" parameters="" />
   </entryPoint>
   <trustInfo>
     <security>
@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="RWeb.exe" size="100848">
-      <assemblyIdentity name="RWeb" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartReport.exe" size="85488">
+      <assemblyIdentity name="SmartReport" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>W4sO+tqmGmnwamTHCpMtEFTJ/rS7Om23Z9kmxe5+SUE=</dsig:DigestValue>
+        <dsig:DigestValue>Jw3PpEq6QsNapuSfa9Ptlmtj4ecrZjnYLTAV+0ewJko=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -159,13 +159,31 @@
       <dsig:DigestValue>CbFBv5tEZRHCFo2Z17yg4hU9adRVYzemMKEtlO3uI0I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="images\logo.png" size="61607">
+  <file name="icono.ico" size="4682">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>VAL8F9udPqmxHJu4+LD+lAtUUA5osLOImomKNNqfH8U=</dsig:DigestValue>
+      <dsig:DigestValue>Wpz8p+Ug6+OzBvWJ5YcIo/yO5/tM0pxMjOFV6mGlx6I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="images\icono.ico" size="4682">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Wpz8p+Ug6+OzBvWJ5YcIo/yO5/tM0pxMjOFV6mGlx6I=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="images\logo.png" size="5773">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>a8Yv9iykPy33PO04jgFFl1ybxWSs8VMvrMmdWVsyOoU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\icon_rw.ico" size="23462">
@@ -177,7 +195,7 @@
       <dsig:DigestValue>CbFBv5tEZRHCFo2Z17yg4hU9adRVYzemMKEtlO3uI0I=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="RWeb.exe.config" size="187">
+  <file name="SmartReport.exe.config" size="187">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />

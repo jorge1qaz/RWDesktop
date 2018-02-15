@@ -52,7 +52,7 @@
             // imgLogo
             // 
             this.imgLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.imgLogo.Image = global::RWeb.Properties.Resources.logo;
+            this.imgLogo.Image = ((System.Drawing.Image)(resources.GetObject("imgLogo.Image")));
             this.imgLogo.Location = new System.Drawing.Point(20, 60);
             this.imgLogo.Name = "imgLogo";
             this.imgLogo.Size = new System.Drawing.Size(486, 67);
@@ -214,7 +214,7 @@
             this.tlpCaptcha.ColumnCount = 3;
             this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.46988F));
             this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.53012F));
-            this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
+            this.tlpCaptcha.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 97F));
             this.tlpCaptcha.Controls.Add(this.picCaptcha, 0, 1);
             this.tlpCaptcha.Controls.Add(this.lblAdvertencia, 0, 0);
             this.tlpCaptcha.Controls.Add(this.txtCaptcha, 1, 1);
@@ -234,7 +234,7 @@
             this.picCaptcha.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picCaptcha.Location = new System.Drawing.Point(3, 30);
             this.picCaptcha.Name = "picCaptcha";
-            this.picCaptcha.Size = new System.Drawing.Size(179, 29);
+            this.picCaptcha.Size = new System.Drawing.Size(178, 29);
             this.picCaptcha.TabIndex = 11;
             this.picCaptcha.TabStop = false;
             // 
@@ -270,7 +270,7 @@
             this.txtCaptcha.CustomButton.Visible = false;
             this.txtCaptcha.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtCaptcha.Lines = new string[0];
-            this.txtCaptcha.Location = new System.Drawing.Point(188, 30);
+            this.txtCaptcha.Location = new System.Drawing.Point(187, 30);
             this.txtCaptcha.MaxLength = 32767;
             this.txtCaptcha.Name = "txtCaptcha";
             this.txtCaptcha.PasswordChar = '●';
@@ -291,9 +291,9 @@
             // 
             this.btnVerificarCaptcha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnVerificarCaptcha.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnVerificarCaptcha.Location = new System.Drawing.Point(392, 30);
+            this.btnVerificarCaptcha.Location = new System.Drawing.Point(391, 30);
             this.btnVerificarCaptcha.Name = "btnVerificarCaptcha";
-            this.btnVerificarCaptcha.Size = new System.Drawing.Size(91, 29);
+            this.btnVerificarCaptcha.Size = new System.Drawing.Size(92, 29);
             this.btnVerificarCaptcha.TabIndex = 15;
             this.btnVerificarCaptcha.Text = "Verificar";
             this.btnVerificarCaptcha.UseSelectable = true;

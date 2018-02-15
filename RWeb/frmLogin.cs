@@ -37,7 +37,7 @@ namespace RWeb
         VerificarInstancia vf = new VerificarInstancia();
         private void btnOlvidoPassword_Click(object sender, EventArgs e)
         {
-            Process.Start("https://www.google.com");
+            Process.Start("http://licenciacontasis.net/ReportWeb/Perfiles/CambioPassword");
         }
 
         private void btnRegistrarse_Click(object sender, EventArgs e)

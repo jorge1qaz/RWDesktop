@@ -20,11 +20,6 @@ D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\System.IO.Compression.dll
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\System.Shim.dll
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\bin\Debug\DotNetZip.xml
 D:\Jorge Luis\Back End\RWeb\RWeb\RWeb\obj\Debug\RWeb.frmLogin.resources
-D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe.config
-D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe
-D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.pdb
-D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe
-D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.pdb
 D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\BusinessLayer.dll
 D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\DotNetZip.dll
 D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\MetroFramework.Design.dll
@@ -39,7 +34,6 @@ D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\Newtonsoft.Json.xml
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csprojResolveAssemblyReference.cache
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmLogin.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmRWeb.resources
-D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.Properties.Resources.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.pruebas.resources
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csproj.GenerateResource.Cache
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.exe.config
@@ -65,10 +59,6 @@ D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.cspr
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.csproj.CoreCompileInputs.cache
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.exe
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.pdb
-D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.exe.manifest
-D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\RWeb.application
-D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.exe.manifest
-D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.application
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.frmEleccionEmpresa.resources
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.exe.manifest
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\bin\Debug\RWeb.application
@@ -76,3 +66,13 @@ D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.frmE
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.exe.manifest
 D:\Proyectos\Contasis\Reporteador web\Desktop\RWDesktop\RWeb\obj\Debug\RWeb.application
 D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\RWeb.csproj.CoreCompileInputs.cache
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\SmartReport.exe.config
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\SmartReport.exe.manifest
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\SmartReport.application
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\SmartReport.exe
+D:\git\ReportesWeb\Desktop\RWeb\bin\Debug\SmartReport.pdb
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\SmartReport.Properties.Resources.resources
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\SmartReport.exe.manifest
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\SmartReport.application
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\SmartReport.exe
+D:\git\ReportesWeb\Desktop\RWeb\obj\Debug\SmartReport.pdb
