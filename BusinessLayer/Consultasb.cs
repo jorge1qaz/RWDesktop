@@ -68,7 +68,7 @@ namespace BusinessLayer
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TablaDiario(string pathConnection, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
+        public DataTable TablaDiario(string pathConnection, string rubro, string idRubro, Int16 mesProcesoCalculado, bool tipoOperacion)
         {
             string mesParametro = "";
             string query = "";
@@ -81,21 +81,21 @@ namespace BusinessLayer
             {
                 query = " select d.NHABER as a, d.NHABERD as b from Diario as d "
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
-                     + " where p.CCOD_BAL2 = '" + idRubro + "'"
+                     + " where p." + rubro + " = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' ";
             }
             else                    //False SumNdebeDiario  (DEBE)
             {
                 query = " select d.NDEBE as a, d.NDEBED as b from Diario as d "
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
-                     + " where p.CCOD_BAL2 = '" + idRubro + "'"
+                     + " where p." + rubro + " = '" + idRubro + "'"
                      + " and d.CMES = '" + mesParametro + "' ";
             }
             return dat.extrae(query, pathConnection);
         }
         //Jorge Luis|15/12/2017|RW-91
         /*Consulta para ...*/
-        public DataTable TablaDiario(string pathConnection, string idRubro, Int16 mesProcesoCalculado)
+        public DataTable TablaDiario(string pathConnection, string rubro, string idRubro, Int16 mesProcesoCalculado)
         {
             string mesParametro = "";
             /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
@@ -106,7 +106,7 @@ namespace BusinessLayer
             return dat.extrae(
                 " select d.CCOD_CUE as a, d.NHABER as b, d.NDEBE as c, d.NHABERD as d, d.NDEBED as e from Diario as d "              //a = haber, b = debe
                      + " inner join PLAN as p on p.CCOD_CUE = d.CCOD_CUE "
-                     + " where p.CCOD_BAL2 = '" + idRubro + "'"
+                     + " where p." + rubro + " = '" + idRubro + "'" //CCOD_BAL2
                      + " and d.CMES = '" + mesParametro + "' "
                 , pathConnection);
         }

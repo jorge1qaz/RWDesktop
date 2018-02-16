@@ -56,46 +56,6 @@ namespace BusinessLayer
         }
         //Jorge Luis|26/10/2017|RW-19
         /*Método para extraer datos*/
-        public DataTable ListDatosGenerales()
-        {
-            return dat.extraeInit(
-                "SELECT p.Nyear, e.Ccod_emp, e.Cdsc, e.Cdir, e.Cgiro, e.Cnit, p.Mpath1 " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " Where p.Nyear <= " + DateTime.Now.Year  +
-                " order by p.Nyear desc"
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos con un parámetro*/
-        public DataTable ListDatosGenerales(string year)
-        {
-            return dat.extraeInit(
-                "SELECT p.Nyear, e.Ccod_emp, e.Cdsc, e.Cdir, e.Cgiro, e.Cnit, p.Mpath1 " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " Where p.Nyear = " + year +
-                " order by p.Nyear desc"
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos*/
-        public DataTable ListDataForCompany()
-        {
-            return dat.extraeInit(
-                "SELECT p.Nyear, e.Ccod_emp, e.Cdsc, e.Cdir, e.Cgiro, e.Cnit, p.Mpath1 " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " Where p.Nyear <= " + DateTime.Now.Year +
-                " and e.Ccod_emp = '01'" +
-                " having  p.Nyear "
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos*/
         public DataTable ListCompanies()
         {
             return dat.extraeInit(
@@ -103,19 +63,6 @@ namespace BusinessLayer
                 " from PATH.DBF as p " +
                 " inner join EMPRESAS.DBF as e " +
                 " on p.Ccod_emp = e.Ccod_emp " +
-                " order by p.Nyear desc"
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos con un parámetro*/
-        public DataTable ListCompanies(string anio)
-        {
-            return dat.extraeInit(
-                "SELECT dist e.Ccod_emp " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " where p.Nyear = " + anio +
                 " order by p.Nyear desc"
                 );
         }
@@ -157,15 +104,16 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Ndebe) - SUM(d.Nhaber)) as d, c.Crazon as e" +
-                " FROM DIARIO.DBF as d" +
-                " inner join CLI_PRO.DBF as c " +
-                " on c.Ccod_cli = d.Ccod_cli " +
-                " group by d.Ccod_cli " +
-                " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  " +
-                " where d.ccod_cue = '" + idCuenta + "' " +
-                " and d.Cmes <= '" + mesParametro + "' " +
-                " order by e desc", pathConection
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Ndebe) - SUM(d.Nhaber)) as d, c.Crazon as e "
+                + " FROM DIARIO.DBF as d "
+                + " inner join CLI_PRO.DBF as c "
+                + " on c.Ccod_cli = d.Ccod_cli "
+                + " group by d.Ccod_cli "
+                + " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  "
+                + " where d.ccod_cue = '" + idCuenta + "' "
+                + " and d.Cmes <= '" + mesParametro + "' "
+                + " and TRIM(d.CMESC) == '' "
+                + " order by e desc", pathConection
                 );
         }
         //Jorge Luis|26/10/2017|RW-19
@@ -179,15 +127,16 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Nhaber) - SUM(d.Ndebe)) as d, c.Crazon as e" +
-                " FROM DIARIO.DBF as d" +
-                " inner join CLI_PRO.DBF as c " +
-                " on c.Ccod_cli = d.Ccod_cli " +
-                " group by d.Ccod_cli " +
-                " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  " +
-                " where d.ccod_cue = '" + idCuenta + "' " +
-                " and d.Cmes <= '" + mesParametro + "' " +
-                " order by e desc", pathConection
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Nhaber) - SUM(d.Ndebe)) as d, c.Crazon as e"
+                + " FROM DIARIO.DBF as d"
+                + " inner join CLI_PRO.DBF as c "
+                + " on c.Ccod_cli = d.Ccod_cli "
+                + " group by d.Ccod_cli "
+                + " having (SUM(d.Ndebe) - SUM(d.Nhaber)) != 0  "
+                + " where d.ccod_cue = '" + idCuenta + "' "
+                + " and d.Cmes <= '" + mesParametro + "' "
+                + " and TRIM(d.CMESC ) == '' "
+                + " order by e desc", pathConection
                 );
         }
         //Jorge Luis|02/11/2017|RW-19

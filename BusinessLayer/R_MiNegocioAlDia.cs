@@ -39,166 +39,61 @@ namespace BusinessLayer
 
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
         {
-            ExportTable(pathSaveFile, pathConnection, "A105");
-            ExportTable(pathSaveFile, pathConnection, "N015");
-            ExportTable(pathSaveFile, pathConnection, "N210");
-            ExportTable(pathSaveFile, pathConnection, "N220");
-            ExportTable(pathSaveFile, pathConnection, "N230");
-            ExportTable(pathSaveFile, pathConnection, "N520"); // p
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "A105");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N015");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N210");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N220");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N230");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N520");
 
-            ExportTable(pathSaveFile, pathConnection, "N005", true);  // Haber 7
-            ExportTable(pathSaveFile, pathConnection, "N010", false); // Debe  6 
-            ExportTable(pathSaveFile, pathConnection, "N103", true);
-            ExportTable(pathSaveFile, pathConnection, "N105", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N005", true);  // Haber 7
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N010", false); // Debe  6 
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N103", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N105", true);
 
-            ExportTable(pathSaveFile, pathConnection, "N110", true);
-            ExportTable(pathSaveFile, pathConnection, "N205", false);
-            ExportTable(pathSaveFile, pathConnection, "N215", false);
-            ExportTable(pathSaveFile, pathConnection, "N225", false);
-            ExportTable(pathSaveFile, pathConnection, "N235", false);
-            ExportTable(pathSaveFile, pathConnection, "N305", true);
-            ExportTable(pathSaveFile, pathConnection, "N310", false);
-            ExportTable(pathSaveFile, pathConnection, "N315", false);
-            ExportTable(pathSaveFile, pathConnection, "N405", true);
-            ExportTable(pathSaveFile, pathConnection, "N410", true);
-            ExportTable(pathSaveFile, pathConnection, "N415", true);
-            ExportTable(pathSaveFile, pathConnection, "N420", false);
-            ExportTable(pathSaveFile, pathConnection, "N425", false);
-            ExportTable(pathSaveFile, pathConnection, "N430", false);
-            ExportTable(pathSaveFile, pathConnection, "N505", true);
-            ExportTable(pathSaveFile, pathConnection, "N510", false);
-            ExportTable(pathSaveFile, pathConnection, "N515", true);
-            ExportTable(pathSaveFile, pathConnection, "N525", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N110", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N205", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N215", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N225", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N235", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N305", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N310", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N315", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N405", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N410", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N415", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N420", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N425", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N430", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N505", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N510", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N515", true);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N525", false);
 
-            ExportTable(pathSaveFile, pathConnection, "N805", false);
-            ExportTable(pathSaveFile, pathConnection, "N810", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N805", false);
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "N810", false);
             //Cuentas por cobrar y pagar
-            ExportTableN(pathSaveFile, pathConnection, "A120"); //CCOD_BALN2 (NRubro + nombre + .json)
-            ExportTableN(pathSaveFile, pathConnection, "P120"); //CCOD_BALN2 (NRubro + nombre + .json)
-            ExportTableN(pathSaveFile, pathConnection, "P105"); //CCOD_BALN2 (NRubro + nombre + .json)
-            ExportTable(pathSaveFile, pathConnection, "P105");
-            ExportTable(pathSaveFile, pathConnection, "A115");
-            ExportTable(pathSaveFile, pathConnection, "A125");
-            ExportTable(pathSaveFile, pathConnection, "P110");
-            ExportTable(pathSaveFile, pathConnection, "P120");
-            ExportTable(pathSaveFile, pathConnection, "P121");
-        }
-        //Jorge Luis|14/12/2017|RW-*
-        /*Método ...*/
-        public DataTable GetTotalByRubro(string pathConnection, string idRubro, bool tipoOperacion)
-        {
-            DataSet datasetCuentas = new DataSet();
-            DataTable tableCuentas = new DataTable();
-            tableCuentas = consb.FilterRubro(pathConnection, idRubro);
-
-            DataTable tableTotals = new DataTable();
-            DataColumn column;
-            #region DeclaracionColumnas
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.Int16");
-            column.ColumnName = "a";
-            tableTotals.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
-            column.ColumnName = "b";
-            tableTotals.Columns.Add(column);
-
-            column = new DataColumn();
-            column.DataType = Type.GetType("System.Double");
-            column.ColumnName = "c";
-            tableTotals.Columns.Add(column);
-            #endregion
-            foreach (DataRow item in tableCuentas.Rows)
-                GetTotal(pathConnection, item[0].ToString(), tableTotals, tipoOperacion);
-            return tableTotals;
-        }
-        //Jorge Luis|14/12/2017|RW-*
-        /*Método ...*/
-        public DataTable GetTotal(string pathConnection, string idCuenta, DataTable tableTotals, bool tipoOperacion)
-        {
-            DataRow row;
-            DataSet datasetData = new DataSet();
-            DataTable tableData = new DataTable();
-            DataRow foundRow;
-            for (Int16 j = 0; j <= 15; j++)
-            {
-                if (tipoOperacion) //True SumNhaberDiario (HABER)
-                    tableData = consb.SumNhaberDiario(pathConnection, j, idCuenta);
-                else               //False SumNdebeDiario  (DEBE)
-                    tableData =  consb.SumNdebeDiario(pathConnection, j, idCuenta);
-                row = tableTotals.NewRow();
-                try
-                {
-                    foundRow = tableData.Rows[0];
-                    row["a"] = j;
-                    row["b"] = idCuenta;
-                    row["c"] = foundRow[0].ToString();
-                    tableTotals.Rows.Add(row);
-                }
-                catch (Exception)
-                {
-                    row["a"] = j;
-                    row["b"] = idCuenta;
-                    row["c"] = 0;
-                    tableTotals.Rows.Add(row);
-                }
-            }
-            return tableTotals;
-        }
-        
-        //Jorge Luis|18/12/2017|RW-*
-        /*Método ...*/
-        public void GenerateListCajaBancos(string pathSaveFile, string pathConnection)
-        {
-            List<decimal> listCajaBancos = new List<decimal>();
-            DataTable tableDataA105Haber = new DataTable();
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "CajaBancos.json", false))
-            {
-                for (int i = 0; i <= 15; i++)
-                {
-                    tableDataA105Haber = GetTotalByRubro(@pathConnection, "A105", true);
-                    try
-                    { totalCajaBancosHaber = tableDataA105Haber.AsEnumerable().Where(x => x.Field<Int16>("a") == i).Select(x => x.Field<double>("c")).Sum(); }
-                    catch (Exception)
-                    { totalCajaBancosHaber = 0; }
-                    listCajaBancos.Add(Convert.ToDecimal(totalVentas));
-                }
-                jsonFile.WriteLine(JsonConvert.SerializeObject(listCajaBancos, Formatting.None).ToString());
-                listCajaBancos.Clear();
-            }
-        }
-        
-        //Jorge Luis|18/12/2017|RW-*
-        /*Método ...*/
-        public void GenerateListVentas(string pathSaveFile, string pathConnection)
-        {
-            List<decimal> listVentas = new List<decimal>();
-            DataTable tableDataN005 = new DataTable();
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "Ventas.json", false))
-            {
-                for (int i = 0; i <= 15; i++)
-                {
-                    tableDataN005 = GetTotalByRubro(@pathConnection, "N005", true);
-                    try
-                    { totalVentas = tableDataN005.AsEnumerable().Where(x => x.Field<Int16>("a") == i).Select(x => x.Field<double>("c")).Sum(); }
-                    catch (Exception)
-                    { totalVentas = 0; }
-                    listVentas.Add(Convert.ToDecimal(totalVentas));
-                }
-                jsonFile.WriteLine(JsonConvert.SerializeObject(listVentas, Formatting.Indented).ToString().Replace("  ", ""));
-                listVentas.Clear();
-            }
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BALN2", "NA120"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BALN2", "NP120"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BALN2", "NP105"); //CCOD_BALN2 (NRubro + nombre + .json)
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "A120");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "P105");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BALN2", "NP105");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "A115");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "A125");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "P110");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "P120");
+            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "P121");
         }
         //Jorge Luis|18/12/2017|RW-*
         /*Método ...*/
-        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, bool tipoOperacion)
+        public void ExportTable(string pathSaveFile, string pathConnection, string rubro, string idRubro, bool tipoOperacion)
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
             for (Int16 i = 0; i <= 15; i++)
             {
-                table = consb.TablaDiario(@pathConnection, idRubro, i, tipoOperacion);
+                table = consb.TablaDiario(@pathConnection, rubro, idRubro, i, tipoOperacion);
                 dataSet.Tables.Add(table);
                 dataSet.Tables[i].TableName = i.ToString();
             }
@@ -208,33 +103,17 @@ namespace BusinessLayer
         }
         //Jorge Luis|18/12/2017|RW-*
         /*Método ...*/
-        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro)
+        public void ExportTable(string pathSaveFile, string pathConnection, string rubro, string idRubro)
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 15; i++)
+            for (Int16 i = 0; i <= 13; i++)
             {
-                table = consb.TablaDiario(@pathConnection, idRubro, i);
+                table = consb.TablaDiario(@pathConnection,rubro, idRubro, i);
                 dataSet.Tables.Add(table);
                 dataSet.Tables[i].TableName = i.ToString();
             }
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
-                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
-            dataSet.Clear();
-        }
-        //Jorge Luis|18/12/2017|RW-*
-        /*Método ...*/
-        public void ExportTableN(string pathSaveFile, string pathConnection, string idRubro)
-        {
-            DataSet dataSet = new DataSet();
-            DataTable table = new DataTable();
-            for (Int16 i = 0; i <= 15; i++)
-            {
-                table = consb.TablaDiarioN(@pathConnection, idRubro, i);
-                dataSet.Tables.Add(table);
-                dataSet.Tables[i].TableName = i.ToString();
-            }
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + "NRubro" + idRubro + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
