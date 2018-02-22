@@ -13,14 +13,15 @@ namespace RWeb
         {
             InitializeComponent();
         }
-        AccesoDatos dat = new AccesoDatos();
-        Paths paths = new Paths();
-        frmRWeb frm = new frmRWeb();
-        ComprobarTablas ct = new ComprobarTablas();
-        Captcha captcha = new Captcha();
-        Transferencia trans = new Transferencia();
+        AccesoDatos dat                 = new AccesoDatos();
+        Paths paths                     = new Paths();
+        frmRWeb frm                     = new frmRWeb();
+        ComprobarTablas ct              = new ComprobarTablas();
+        Captcha captcha                 = new Captcha();
+        Transferencia trans             = new Transferencia();
         string numeroTemporal;
-        bool captchaStateLocked = false;
+        bool captchaStateLocked         = false;
+        static bool[] states            = new bool[2];
         private void frmLogin_Load(object sender, EventArgs e)
         {
             this.MaximizeBox = false;
@@ -55,21 +56,27 @@ namespace RWeb
                     IdCliente = txtEmail.Text.ToString(),
                     Contrasenia = txtPassword.Text.ToString()
                 };
-                if (cliente.AuthenticateUser("RW_Security_authenticate_User"))
+                states = cliente.AuthenticateUser("RW_Security_authenticate_User");
+                if (states[0])
                 {
-                    if (ct.ComprobarExistenciaTablas(paths.PathUser))
+                    if (states[1])
                     {
-                        File.Delete(paths.PathUser);
-                        using (StreamWriter user = new StreamWriter(paths.PathUser, false))
-                            user.WriteLine(txtEmail.Text.ToString().ToLower());
-                        Application.Restart();
+                        if (ct.ComprobarExistenciaTablas(paths.PathUser))
+                        {
+                            File.Delete(paths.PathUser);
+                            using (StreamWriter user = new StreamWriter(paths.PathUser, false))
+                                user.WriteLine(txtEmail.Text.ToString().ToLower());
+                            Application.Restart();
+                        }
+                        else
+                        {
+                            using (StreamWriter user = new StreamWriter(paths.PathUser, false))
+                                user.WriteLine(txtEmail.Text.ToString().ToLower());
+                            Application.Restart();
+                        }
                     }
                     else
-                    {
-                        using (StreamWriter user = new StreamWriter(paths.PathUser, false))
-                            user.WriteLine(txtEmail.Text.ToString().ToLower());
-                        Application.Restart();
-                    }
+                        MessageBox.Show("Tu cuenta no esta activada, por favor revisa tu correo. ", "Falla de activación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {

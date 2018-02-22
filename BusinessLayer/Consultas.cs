@@ -80,20 +80,6 @@ namespace BusinessLayer
                 );
         }
         //Jorge Luis|26/10/2017|RW-19
-        /*Método para extraer datos con dos parámetros*/
-        public DataTable ListDetailsForCompany(string idCompany, string anio)
-        {
-            return dat.extraeInit(
-                "SELECT dist p.Nyear, e.Ccod_emp, p.Mpath1 " +
-                " from PATH.DBF as p " +
-                " inner join EMPRESAS.DBF as e " +
-                " on p.Ccod_emp = e.Ccod_emp " +
-                " Where e.Ccod_emp = '" + idCompany  + "' " +
-                " and p.Nyear = " + anio +
-                " order by p.Nyear desc"
-                );
-        }
-        //Jorge Luis|26/10/2017|RW-19
         /*Método para extraer datos con tres parámetros*/
         public DataTable GetReporteCuentasPendientesByMesTipo1(string idCuenta, Int16 mesProcesoCalculado, string pathConection)
         {
@@ -104,7 +90,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Ndebe) - SUM(d.Nhaber)) as d, c.Crazon as e "
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Ndebe) - SUM(d.Nhaber)) as d, c.Crazon as e, SUM(d.NDEBED) as f, SUM(d.NHABERD) as g, (SUM(d.NDEBED) - SUM(d.NHABERD)) as h "
                 + " FROM DIARIO.DBF as d "
                 + " inner join CLI_PRO.DBF as c "
                 + " on c.Ccod_cli = d.Ccod_cli "
@@ -127,7 +113,7 @@ namespace BusinessLayer
             else
                 mesParametro = mesProcesoCalculado.ToString();
             return dat.extrae(
-                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Nhaber) - SUM(d.Ndebe)) as d, c.Crazon as e"
+                " SELECT d.Ccod_cli as a, SUM(d.Ndebe) as b, SUM(d.Nhaber) as c, (SUM(d.Nhaber) - SUM(d.Ndebe)) as d, c.Crazon as e, SUM(d.NDEBED) as f, SUM(d.NHABERD) as g, (SUM(d.NDEBED) - SUM(d.NHABERD)) as h"
                 + " FROM DIARIO.DBF as d"
                 + " inner join CLI_PRO.DBF as c "
                 + " on c.Ccod_cli = d.Ccod_cli "
@@ -137,14 +123,6 @@ namespace BusinessLayer
                 + " and d.Cmes <= '" + mesParametro + "' "
                 + " and TRIM(d.CMESC ) == '' "
                 + " order by e desc", pathConection
-                );
-        }
-        //Jorge Luis|02/11/2017|RW-19
-        /*Método para obtener toda la tabla clientes, sin filtros*/
-        public DataTable datosCliente()
-        {
-            return dat.extraeDbWeb(
-                "SELECT * from Clientes"
                 );
         }
         //Jorge Luis|27/11/2017|RW-19
@@ -179,15 +157,6 @@ namespace BusinessLayer
         }
         //Jorge Luis|27/11/2017|RW-19
         /*Método para obtener la lista de base de datos del módulo STOCK*/
-        public DataTable consultasDBF()
-        {
-            return dat.extraeInit(
-                "select * from EMPRESAS "
-                //" where MPATH3 != ' ' "
-                );
-        }
-        //Jorge Luis|27/11/2017|RW-19
-        /*Método para obtener la lista de base de datos del módulo STOCK*/
         public DataTable CheckDataBaseStock()
         {
             return dat.extraeInit(
@@ -199,73 +168,6 @@ namespace BusinessLayer
                 );
         }
         /*Margen de utilidad*/
-        //Jorge Luis|14/11/2017|RW-*
-        /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
-        public DataTable FilterSalesByMonth(Int16 mesProcesoCalculado, string pathConection)
-        {
-            string mesParametro = "";
-            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
-            if (mesProcesoCalculado <= 9)
-                mesParametro = "0" + mesProcesoCalculado.ToString();
-            else
-                mesParametro = mesProcesoCalculado.ToString();
-
-            return dat.extrae(
-                " SELECT cid from VENTAS " +
-                " where Cmes = '" + mesParametro + "' ",
-                pathConection
-                );
-        }
-        //Jorge Luis|14/11/2017|RW-*
-        /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro (soles)*/
-        public DataTable GetFullProduct(Int16 idMonth, string idProduct, string pathConection)
-        {
-            string mesParametro = "";
-            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
-            if (idMonth <= 9)
-                mesParametro = "0" + idMonth.ToString();
-            else
-                mesParametro = idMonth.ToString();
-            return dat.extrae(
-                " select dist vl.CCOD_PRO, p.CDSC, p.CMEDIDA, " +
-                " (sum(vl.NUNI)) as totalUnidades, " + //3
-                " (sum((vl.NUNI*(vl.NPU/(1 + (vl.NPIGV/100)))))) as PUVentas, " + //4
-                " (sum(vl.NCOSTO*vl.NUNI)) as PUCosto " + //5
-                " from VENTASL as vl " + //6
-                " inner join VENTAS as v " +
-                " on vl.CID = v.CID " +
-                " inner join PROD as p " +
-                " on p.CCOD_PRO = vl.CCOD_PRO " +
-                " where vl.CCOD_PRO = '" + idProduct + "' " +
-                " and v.CMES = '" + mesParametro + "' "
-                , pathConection
-                );
-        }
-        //Jorge Luis|14/11/2017|RW-*
-        /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro (dolares)*/
-        public DataTable GetFullProductDolars(Int16 idMonth, string idProduct, string pathConection)
-        {
-            string mesParametro = "";
-            /*Mientras el mes sea menor a 9, antepone un cero. En caso contrario no lo hace.*/
-            if (idMonth <= 9)
-                mesParametro = "0" + idMonth.ToString();
-            else
-                mesParametro = idMonth.ToString();
-            return dat.extrae(
-                " select dist vl.CCOD_PRO, p.CDSC, p.CMEDIDA, " +
-                " (sum(vl.NUNI)) as totalUnidades, " +
-                " (sum((vl.NUNI*(vl.NPUD/(1 + (vl.NPIGV/100)))))) as PUVentas, " +
-                " (sum(vl.NCOSTOD*vl.NUNI)) as PUCosto " +
-                " from VENTASL as vl " +
-                " inner join VENTAS as v " +
-                " on vl.CID = v.CID " +
-                " inner join PROD as p " +
-                " on p.CCOD_PRO = vl.CCOD_PRO " +
-                " where vl.CCOD_PRO = '" + idProduct + "' " +
-                " and v.CMES = '" + mesParametro + "' "
-                , pathConection
-                );
-        }
         /*Jorge Luis|14/11/2017|RW-*
         /*Consulta para extraes datos de la tabla VENTAS, con el filtro de CMES como parámetro*/
         public DataTable ListProducts(Int16 mesProcesoCalculado, string pathConection)
@@ -410,15 +312,6 @@ namespace BusinessLayer
                 , pathConnection
                 );
         }
-        //Jorge Luis|15/11/2017|RW-*
-        /*Consulta para listar LSTOCK */
-        public DataTable ListTipoStock(string pathConnection)
-        {
-            return dat.extrae(
-                " select dist LSTOCK from VENTAS "
-                , pathConnection
-                );
-        }
         //Jorge Luis|01/12/2017|RW-*
         /*Consulta para listar LSTOCK */
         public DataTable ListCustomer(string pathConection, Int16 mesProcesoCalculado)
@@ -435,23 +328,6 @@ namespace BusinessLayer
                 " on v.CCOD_CLI = c.CCOD_CLI " +
                 " where v.CMES = '" + mesParametro + "' "
                 , pathConection
-                );
-        }
-        //Jorge Luis|14/11/2017|RW-*
-        /*Consulta para  obtener los productos, pero solo los cuales tengan el campo de COSTO1 lleno
-         Primero se toma el COSTO1 de la tabla ventasl*/
-        public DataTable FullTableRequired(string pathConnection)
-        {
-            return dat.extrae(
-                " select v.CMES as mes, (vl.CCOD_PRO) as codigo, (trim(p.CDSC)) as descripcion, vl.NUNI as unidades, (p.CMEDIDA) as medida, " +
-                "  (vl.NPU) as npu, (vl.NPIGV) as npigv, (vl.NCOSTO) as ncosto, (vl.NPUD) as npud, (vl.NCOSTOD) as ncostod, " +
-                "  v.CCOD_CLI as cliente, v.CCOD_ALMA as almacen, vl.CCOD_COSTO as costo1, (vl.CCOD_COS2) as costo2, (v.CCOD_VEND) as vendedor, (v.LSTOCK) as stock, (v.LREG) as lreg " +
-                " from VENTASL as vl " +
-                " inner join VENTAS as v " +
-                " on vl.CID = v.CID " +
-                " inner join PROD as p " +
-                " on p.CCOD_PRO = vl.CCOD_PRO " 
-                , pathConnection
                 );
         }
         //Jorge Luis|14/11/2017|RW-*

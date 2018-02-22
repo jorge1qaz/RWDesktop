@@ -19,9 +19,7 @@ namespace BusinessLayer
              el método principal que realiza todos los bucles. */
             if (paths.ComprobarExistenciaPathFile())
             {
-                //paths.ListYearsJson();
-                //directorios.CreateDirectoryStructureForRCP();
-                CreateBigQueryEachOneAlter();
+                CreateBigQueryEachOne();
             }
             else
             {
@@ -41,8 +39,7 @@ namespace BusinessLayer
         Directorios directorios = new Directorios();
         ComprobarTablas comptablas = new ComprobarTablas();
         Transferencia trans = new Transferencia();
-
-        public void CreateBigQueryEachOneAlter() {
+        public void CreateBigQueryEachOne() {
 
             DataTable listDB = new DataTable();
             listDB = cons.CheckDataBaseConta();
@@ -60,7 +57,6 @@ namespace BusinessLayer
             }
 
         }
-
         //Jorge Luis|13/10/2017|RW-19
         /*Método para generar json recorriendo meses y para las cuentas que sean activos*/
         public void StartUpdateTipo1(string idCuenta, string pathDirectory, string pathConectionSU)
@@ -133,43 +129,6 @@ namespace BusinessLayer
             /*Recorre y crea  archivos json de acuerdo a las cuentas que existen en la base de datos*/
             using (StreamWriter jsonListaCuentas = new StreamWriter(path + "ListaCuentas.json", false))
                 jsonListaCuentas.WriteLine(JsonConvert.SerializeObject(dsListaCuentas, Formatting.None).ToString().Replace("  ", ""));
-        }
-        //Jorge Luis|12/10/2017|RW-19
-        /*Método general para realizar los procesamientos de cálculos matemáticos y generación de json, de todas las bases de datos en todas 
-         las empresas y para todos los años*/
-        public void CreateBigQueryEachOne()
-        {
-            DataTable datos = new DataTable();
-            datos = cons.ListCompanies();
-            int totalCuentas = datos.Rows.Count;
-            DataRow[] currentRows = datos.Select(null, null, DataViewRowState.CurrentRows);
-            /*Recorre y genera todas las consultas en base a la lista de empresas*/
-            foreach (DataRow row in currentRows)
-                RecorrerEmpresas(row[0].ToString());
-        }
-        //Jorge Luis|12/10/2017|RW-19
-        /*Método recorrer empresas con un parámetro, esto hace que se ejecuten los métodos mas importantes que cumplen con la función de todos los 
-         procesamientos: generar json y cálculos matemáticos*/
-        public void RecorrerEmpresas(string idCompany)
-        {
-            List<string> aniosValidos = new List<string>();
-            aniosValidos = paths.listAnios();
-            /*Recorre todas las consultas en base a los años válidos y les pasa dos parámetros, la ruta de su base de datos, y hacía donde 
-             tienen que generar los archivos json*/
-            foreach (var item in aniosValidos)
-            {
-                DataTable datos = new DataTable();
-                datos = cons.ListDetailsForCompany(idCompany, item[0].ToString() + item[1].ToString() + item[2].ToString() + item[3].ToString());
-                int totalCuen = datos.Rows.Count;
-                DataRow[] currentRows = datos.Select(null, null, DataViewRowState.CurrentRows);
-                /*pasa los dos parámetros a las 3 principales consultas*/
-                foreach (DataRow row in currentRows)
-                {
-                    ListaCuentasFiltrada(paths.PathPrincipalDirectory + paths.PathRCP + idCompany + "/" + row[0].ToString() + "/", row[2].ToString());
-                    RecorrerListaCuentasTipo1(paths.PathPrincipalDirectory + paths.PathRCP + idCompany + "/" + row[0].ToString() + "/", row[2].ToString());
-                    RecorrerListaCuentasTipo2(paths.PathPrincipalDirectory + paths.PathRCP + idCompany + "/" + row[0].ToString() + "/", row[2].ToString());
-                }
-            }
         }
     }
 }

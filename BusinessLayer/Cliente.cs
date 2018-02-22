@@ -10,9 +10,10 @@ namespace BusinessLayer
         public string Contrasenia { get; set; }
         public DateTime DateUpdate { get; set; }
         //Jorge Luis|03/11/2017|RW-19
-        /*Método para ejecutar un procedimiento almacenado, con los atributos de Cliente. Incluye dos parametros de entrada y uno de salida*/
-        public bool AuthenticateUser(string storeProcedure)
+        /*Método para ejecutar un procedimiento almacenado, con los atributos de Cliente. Incluye dos parametros de entrada y dos de salida*/
+        public bool[] AuthenticateUser(string storeProcedure)
         {
+            bool[] states = new bool[2];
             Conexion con = new Conexion();
             SqlCommand cmd = new SqlCommand();
             cmd.CommandText = storeProcedure;
@@ -37,10 +38,18 @@ namespace BusinessLayer
             paramComprobacion.ParameterName = "@Comprobacion";
             cmd.Parameters.Add(paramComprobacion);
 
+            SqlParameter paramActivateAccount = new SqlParameter();
+            paramActivateAccount.Direction = ParameterDirection.Output;
+            paramActivateAccount.SqlDbType = SqlDbType.Bit;
+            paramActivateAccount.ParameterName = "@ActivateAccount";
+            cmd.Parameters.Add(paramActivateAccount);
+
             con.ConnectDbWeb();
             cmd.ExecuteNonQuery();
             con.DisconnectDbWeb();
-            return bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+            states[0] = bool.Parse(cmd.Parameters["@Comprobacion"].Value.ToString());
+            states[1] = bool.Parse(cmd.Parameters["@ActivateAccount"].Value.ToString());
+            return states;
         }
         public bool WriteParametersUserLastUpdate(string storeProcedure)
         {
