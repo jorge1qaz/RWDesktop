@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace RWeb
@@ -38,9 +39,11 @@ namespace RWeb
         VerificarInstancia vf = new VerificarInstancia();
         private void btnOlvidoPassword_Click(object sender, EventArgs e)
         {
-            Process.Start("http://licenciacontasis.net/ReportWeb/Perfiles/CambioPassword");
+            if (IsValidEmail(txtEmail.Text.ToString()))
+                Process.Start("http://licenciacontasis.net/ReportWeb/Perfiles/CambioPassword?IdUser=" + txtEmail.Text.ToString().Trim().ToLower());
+            else
+                Process.Start("http://licenciacontasis.net/ReportWeb/Perfiles/CambioPassword");
         }
-
         private void btnRegistrarse_Click(object sender, EventArgs e)
         {
             Process.Start("http://licenciacontasis.net/reportweb/Perfiles/frmRegistroUsuario");
@@ -129,6 +132,17 @@ namespace RWeb
         {
             if (e.KeyChar == (char)Keys.Enter)
                 VerificarCaptcha();
+        }
+        private static bool IsValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex regex = new Regex(strRegex);
+            if (regex.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
         }
     }
 }

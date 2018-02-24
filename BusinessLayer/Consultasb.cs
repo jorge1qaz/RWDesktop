@@ -231,47 +231,7 @@ namespace BusinessLayer
                 + " and NNIVEL = 3 ";
             return dat.extrae(query, pathConnection);
         }
-        public DataTable GetTotalMonthByRubro(string pathConnection, string idRubro, string filter, bool tipoOperacion)
-        {
-            string query = "";
-            if (tipoOperacion == true)
-                query = " select sum((NDEBE0 - NHABER0)) as a, sum((NDEBED0 - NHABERD0)) as ad, "
-                    + " sum((NDEBE1 - NHABER1)) as b,       sum((NDEBED1 - NHABERD1)) as bd, "
-                    + " sum((NDEBE2 - NHABER2)) as c,       sum((NDEBED2 - NHABERD2)) as cd, "
-                    + " sum((NDEBE3 - NHABER3)) as d,       sum((NDEBED3 - NHABERD3)) as dd, "
-                    + " sum((NDEBE4 - NHABER4)) as e,       sum((NDEBED4 - NHABERD4)) as ed, "
-                    + " sum((NDEBE5 - NHABER5)) as f,       sum((NDEBED5 - NHABERD5)) as fd, "
-                    + " sum((NDEBE6 - NHABER6)) as g,       sum((NDEBED6 - NHABERD6)) as gd, "
-                    + " sum((NDEBE7 - NHABER7)) as h,       sum((NDEBED7 - NHABERD7)) as hd, "
-                    + " sum((NDEBE8 - NHABER8)) as i,       sum((NDEBED8 - NHABERD8)) as id, "
-                    + " sum((NDEBE9 - NHABER9)) as j,       sum((NDEBED9 - NHABERD9)) as jd, "
-                    + " sum((NDEBE10 - NHABER10)) as k,     sum((NDEBED10 - NHABERD10)) as kd, "
-                    + " sum((NDEBE11 - NHABER11)) as l,     sum((NDEBED11 - NHABERD11)) as ld, "
-                    + " sum((NDEBE12 - NHABER12)) as m,     sum((NDEBED12 - NHABERD12)) as md, "
-                    + " sum((NDEBE13 - NHABER13)) as n,     sum((NDEBED13 - NHABERD13)) as nd, "
-                    + " sum((NDEBE14 - NHABER14)) as o,     sum((NDEBED14 - NHABERD14)) as od from PLAN "
-                    + " where " + filter + " = '" + idRubro + "'"
-                    + " and NNIVEL = 3 ";
-            else
-                query = " select sum((NDEBE0 - NHABER0))*(-1) as a, sum((NDEBED0 - NHABERD0))*(-1) as ad, "
-                    + " sum((NDEBE1 - NHABER1))*(-1) as b,      sum((NDEBED1 - NHABERD1))*(-1) as bd, "  // a, b, c... = Haber en soles, ad, bd, cd... = Haber en dólares
-                    + " sum((NDEBE2 - NHABER2))*(-1) as c,      sum((NDEBED2 - NHABERD2))*(-1) as cd, "
-                    + " sum((NDEBE3 - NHABER3))*(-1) as d,      sum((NDEBED3 - NHABERD3))*(-1) as dd, "
-                    + " sum((NDEBE4 - NHABER4))*(-1) as e,      sum((NDEBED4 - NHABERD4))*(-1) as ed, "
-                    + " sum((NDEBE5 - NHABER5))*(-1) as f,      sum((NDEBED5 - NHABERD5))*(-1) as fd, "
-                    + " sum((NDEBE6 - NHABER6))*(-1) as g,      sum((NDEBED6 - NHABERD6))*(-1) as gd, "
-                    + " sum((NDEBE7 - NHABER7))*(-1) as h,      sum((NDEBED7 - NHABERD7))*(-1) as hd, "
-                    + " sum((NDEBE8 - NHABER8))*(-1) as i,      sum((NDEBED8 - NHABERD8))*(-1) as id, "
-                    + " sum((NDEBE9 - NHABER9))*(-1) as j,      sum((NDEBED9 - NHABERD9))*(-1) as jd, "
-                    + " sum((NDEBE10 - NHABER10))*(-1) as k,    sum((NDEBED10 - NHABERD10))*(-1) as kd, "
-                    + " sum((NDEBE11 - NHABER11))*(-1) as l,    sum((NDEBED11 - NHABERD11))*(-1) as ld, "
-                    + " sum((NDEBE12 - NHABER12))*(-1) as m,    sum((NDEBED12 - NHABERD12))*(-1) as md, "
-                    + " sum((NDEBE13 - NHABER13))*(-1) as n,    sum((NDEBED13 - NHABERD13))*(-1) as nd, "
-                    + " sum((NDEBE14 - NHABER14))*(-1) as o,    sum((NDEBED14 - NHABERD14))*(-1) as od from PLAN "
-                    + " where " + filter + " = '" + idRubro + "'"
-                    + " and NNIVEL = 3 ";
-            return dat.extrae(query, pathConnection);
-        }
+        // Estados financieros - Balance general
         public DataTable GetTotalMonthByRubro(string pathConnection, string filter1, string filter2, string idRubro, bool tipoOperacion)
         {
             string query = "";
@@ -423,6 +383,15 @@ namespace BusinessLayer
                 + " di.CCOD_DOC as g, di.NDEBE as h, di.NHABER as i, di.NDEBED as hd, di.NHABERD as id from DIARIO as di "
                 + " inner join PLAN  as p on di.CCOD_CUE = p.CCOD_CUE "
                 + " where p.nanalisis = " + analisis + " and p.ntipo = " + tipo + " AND TRIM(di.CMESC ) == '' ";
+            return dat.extrae(query, pathConnection);
+        }
+        //Correcciones: Entrega final de la primera versión
+        //query de prueba
+        public DataTable GetTableByRubro(string pathConnection, string nameColumnRubro1, string nameColumnRubro2, string rubro)
+        {
+            query = " (NDEBE0 - NHABER0) as s0, (NDEBE1 - NHABER1) as s1, (NDEBE2 - NHABER2) as s2, (NDEBE3 - NHABER3) as s3, (NDEBE4 - NHABER4) as s4, (NDEBE5 - NHABER5) as s5, (NDEBE6 - NHABER6) as s6, (NDEBE7 - NHABER7) as s7, (NDEBE8 - NHABER8) as s8, (NDEBE9 - NHABER9) as s9, (NDEBE1 - NHABER10) as s10, (NDEBE1 - NHABER11) as s11, (NDEBE1 - NHABER12) as s12, (NDEBE1 - NHABER13) as s13, "
+                + " (NDEBED0 - NHABERD0) as d0, (NDEBED1 - NHABERD1) as d1, (NDEBED2 - NHABERD2) as d2, (NDEBED3 - NHABERD3) as d3, (NDEBED4 - NHABERD4) as d4, (NDEBED5 - NHABERD5) as d5, (NDEBED6 - NHABERD6) as d6, (NDEBED7 - NHABERD7) as d7, (NDEBED8 - NHABERD8) as d8, (NDEBED9 - NHABERD9) as d9, (NDEBED1 - NHABERD10) as d10, (NDEBED1 - NHABERD11) as d11, (NDEBED1 - NHABERD12) as d12, (NDEBED1 - NHABERD13) as d13 "
+                + " from DIARIO where " + nameColumnRubro1 + " = '" + rubro + "' or " + nameColumnRubro2 + " = '" + rubro;
             return dat.extrae(query, pathConnection);
         }
     }

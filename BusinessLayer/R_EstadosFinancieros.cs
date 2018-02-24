@@ -97,19 +97,6 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F560", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F605", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F705", false, "4");
         }
-        //Jorge Luis|09/01/2018|RW-109
-        /*Método ...*/
-        public void ExportTable(string pathSaveFile, string pathConnection, string idRubro, string filter, bool tipoOperacion)
-        {
-            DataSet dataSet = new DataSet();
-            DataTable table = new DataTable();
-            table = consb.GetTotalMonthByRubro(@pathConnection, idRubro, filter, tipoOperacion);
-            dataSet.Tables.Add(table);
-            dataSet.Tables[0].TableName = "data";
-            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + idRubro + ".json", false))
-                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
-            dataSet.Clear();
-        }
         //Jorge Luis|10/01/2018|RW-109
         /*Método ...*/
         public void ExportTable(string pathSaveFile, string pathConnection, string filter1, string filter2, string idRubro, bool tipoOperacion, string nameDistinction)

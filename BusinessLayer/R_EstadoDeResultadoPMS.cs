@@ -68,12 +68,12 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "F105", "CCOD_BAL2", "CCOD_BAL2");
             ExportTable(pathSaveFile, pathConnection, "F206", "CCOD_BAL2", "CCOD_BAL2");
             ExportTable(pathSaveFile, pathConnection, "F211", "CCOD_BAL2", "CCOD_BAL2");
-            ExportTable(pathSaveFile, pathConnection, "F212", "CCOD_BAL2", "CCOD_BAL2");
-            ExportTable(pathSaveFile, pathConnection, "F213", "CCOD_BAL2", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F212", "CCOD_BAL2", "CCOD_BALR"); // NM
+            ExportTable(pathSaveFile, pathConnection, "F213", "CCOD_BALR", "CCOD_BALR");
             ExportTable(pathSaveFile, pathConnection, "F214", "CCOD_BAL2", "CCOD_BAL2");
             ExportTable(pathSaveFile, pathConnection, "F215", "CCOD_BAL2", "CCOD_BAL2");
 
-            ExportTable(pathSaveFile, pathConnection, "F320", "CCOD_BAL2", "CCOD_BAL2");
+            ExportTable(pathSaveFile, pathConnection, "F320", "CCOD_BALR", "CCOD_BALR"); // NM
             ExportTable(pathSaveFile, pathConnection, "F350", "CCOD_BAL2", "CCOD_BAL2");
             ExportTable(pathSaveFile, pathConnection, "F380", "CCOD_BAL2", "CCOD_BAL2");
             ExportTable(pathSaveFile, pathConnection, "F403", "CCOD_BAL2", "CCOD_BAL2");
