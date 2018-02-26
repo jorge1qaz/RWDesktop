@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Data;
 using System.IO;
 
@@ -60,33 +59,34 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P830", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P835", false, "1");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P840", false, "1");
 
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A105", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A106", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A110", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A111", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A115", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A120", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A121", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A122", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A123", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A124", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A125", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A130", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A135", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A140", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A142", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A145", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A151", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A152", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A153", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BALN", "CCOD_BALN", "A155", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A157", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A158", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A159", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A160", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A164", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A176", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A177", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A178", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A179", true, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A180", true, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A185", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A105", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A106", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A110", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A111", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A115", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A120", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A121", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A122", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A123", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A124", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A125", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A130", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A135", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A140", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A142", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A145", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BALN", "A151", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A152", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A153", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BALN", "CCOD_BALN", "A155", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A157", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A158", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A159", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A160", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A164", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A176", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A177", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A178", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A179", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A180", true, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A185", true, "3");
 
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BALN2", "CCOD_BALN2", "P105", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P110", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P115", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P541", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P120", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P121", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P122", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P128", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P129", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P133", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P135", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P141", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P505", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P507", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P510", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P511", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P515", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P520", false, "3");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P530", false, "3"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P531", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BALN2", "CCOD_BALN2", "P105", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P110", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P115", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P541", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P120", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P121", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P122", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P128", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P129", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P133", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P135", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P141", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P505", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P507", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P510", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P511", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P515", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P520", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P530", false, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P531", false, "3");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "P540", false, "3");
 
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F005", true, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F010", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F115", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F205", false, "4");
@@ -96,6 +96,8 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F525", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F530", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F560", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F605", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F705", false, "4");
+
+            ExportListCuentas(pathSaveFile, pathConnection, true);  ExportListCuentas(pathSaveFile, pathConnection, false);
         }
         //Jorge Luis|10/01/2018|RW-109
         /*Método ...*/
@@ -103,10 +105,39 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
+            //table = consb.GetTotalMonthByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
             table = consb.GetTotalMonthByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
             dataSet.Tables.Add(table);
             dataSet.Tables[0].TableName = "data";
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameDistinction + idRubro + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
+        }
+        public void ExportTable2(string pathSaveFile, string pathConnection, string filter1, string filter2, string idRubro, bool tipoOperacion, string nameDistinction)
+        {
+            DataSet dataSet = new DataSet();
+            DataTable table = new DataTable();
+            //table = consb.GetTotalMonthByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
+            table = consb.GetTableByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
+            dataSet.Tables.Add(table);
+            dataSet.Tables[0].TableName = "data";
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameDistinction + idRubro + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
+        }
+        public void ExportListCuentas(string pathSaveFile, string pathConnection, bool tipoLista)
+        {
+            string nameList = "";
+            if (tipoLista)
+                nameList = "Activo";
+            else
+                nameList = "Pasivo";
+            DataSet dataSet = new DataSet();
+            DataTable table = new DataTable();
+            table = consb.listCuentasByRubros(@pathConnection, tipoLista);
+            dataSet.Tables.Add(table);
+            dataSet.Tables[0].TableName = "data";
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameList + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }

@@ -34,10 +34,12 @@ namespace RWeb
             //grdPruebas2.DataSource = consb.ListSaldoInicial2(@"C:\Contasis14\2015\ff\conta");
             //grd3.DataSource = consb.ListSaldoInicial3(@"C:\Contasis14\2015\ff\conta");
 
-            DataSet dataSet = new DataSet();
-            dataSet.Tables.Add(dataTable);
-            using (StreamWriter json = new StreamWriter("d:/list1.json", false))
-                json.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            //DataSet dataSet = new DataSet();
+            //dataSet.Tables.Add(dataTable);
+            //using (StreamWriter json = new StreamWriter("d:/list1.json", false))
+            //    json.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+
+            grdPruebas.DataSource = consb.GetTableByRubro(@"D:\contasis\empresas\2015\01\conta", "CCOD_BAL2", "CCOD_BALN2", "A105", false);
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();

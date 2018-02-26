@@ -273,48 +273,6 @@ namespace BusinessLayer
                     + " or " + filter2 + " = '" + idRubro + "'";
             return dat.extrae(query, pathConnection);
         }
-        public DataTable GetTotalMonthByRubro(string pathConnection, string idRubro, string filter)
-        {
-            string query = "";                                                                    // False SumNdebeDiario  (DEBE)
-            query = " select (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1)) as a, (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1)) as ad, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2)) as b, (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2)) as bd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3)) as c, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3)) as cd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4)) as d, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4)) as dd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5)) as e, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5)) as ed, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
-            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6)) as f, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
-            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6)) as fd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
-            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7)) as g, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
-            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7)) as gd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
-            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8)) as h, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
-            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8)) as hd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + "
-            + " sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) + sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9)) as i, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + "
-            + " sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) + sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9)) as id, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
-            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10)) as j, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
-            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10)) as jd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
-            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10) + sum(NDEBE11 - NHABER11)) as k, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
-            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10) + sum(NDEBED11 - NHABERD11)) as kd, "
-            + " (sum(NDEBE0 - NHABER0) + sum(NDEBE1 - NHABER1) + sum(NDEBE2 - NHABER2) + sum(NDEBE3 - NHABER3) + sum(NDEBE4 - NHABER4) + sum(NDEBE5 - NHABER5) + sum(NDEBE6 - NHABER6) +"
-            + " sum(NDEBE7 - NHABER7) + sum(NDEBE8 - NHABER8) + sum(NDEBE9 - NHABER9) + sum(NDEBE10 - NHABER10) + sum(NDEBE11 - NHABER11)+ sum(NDEBE12 - NHABER12) + sum(NDEBE13 - NHABER13) + sum(NDEBE14 - NHABER14)) as l, "
-            + " (sum(NDEBED0 - NHABERD0) + sum(NDEBED1 - NHABERD1) + sum(NDEBED2 - NHABERD2) + sum(NDEBED3 - NHABERD3) + sum(NDEBED4 - NHABERD4) + sum(NDEBED5 - NHABERD5) + sum(NDEBED6 - NHABERD6) +"
-            + " sum(NDEBED7 - NHABERD7) + sum(NDEBED8 - NHABERD8) + sum(NDEBED9 - NHABERD9) + sum(NDEBED10 - NHABERD10) + sum(NDEBED11 - NHABERD11) + sum(NDEBED12 - NHABERD12) + sum(NDEBED13 - NHABERD13) + sum(NDEBED14 - NHABERD14)) as ld from PLAN "
-            + " where " + filter + " = '" + idRubro + "'";
-            return dat.extrae(query, pathConnection);
-        }
         //Flujo de caja
         //Flujo de caja detallado
         //Jorge Luis|19/01/2018|RW-93
@@ -387,11 +345,34 @@ namespace BusinessLayer
         }
         //Correcciones: Entrega final de la primera versión
         //query de prueba
-        public DataTable GetTableByRubro(string pathConnection, string nameColumnRubro1, string nameColumnRubro2, string rubro)
+        public DataTable GetTableByRubro(string pathConnection, string nameColumnRubro1, string nameColumnRubro2, string rubro, bool tipoReporte)
         {
-            query = " (NDEBE0 - NHABER0) as s0, (NDEBE1 - NHABER1) as s1, (NDEBE2 - NHABER2) as s2, (NDEBE3 - NHABER3) as s3, (NDEBE4 - NHABER4) as s4, (NDEBE5 - NHABER5) as s5, (NDEBE6 - NHABER6) as s6, (NDEBE7 - NHABER7) as s7, (NDEBE8 - NHABER8) as s8, (NDEBE9 - NHABER9) as s9, (NDEBE1 - NHABER10) as s10, (NDEBE1 - NHABER11) as s11, (NDEBE1 - NHABER12) as s12, (NDEBE1 - NHABER13) as s13, "
-                + " (NDEBED0 - NHABERD0) as d0, (NDEBED1 - NHABERD1) as d1, (NDEBED2 - NHABERD2) as d2, (NDEBED3 - NHABERD3) as d3, (NDEBED4 - NHABERD4) as d4, (NDEBED5 - NHABERD5) as d5, (NDEBED6 - NHABERD6) as d6, (NDEBED7 - NHABERD7) as d7, (NDEBED8 - NHABERD8) as d8, (NDEBED9 - NHABERD9) as d9, (NDEBED1 - NHABERD10) as d10, (NDEBED1 - NHABERD11) as d11, (NDEBED1 - NHABERD12) as d12, (NDEBED1 - NHABERD13) as d13 "
-                + " from DIARIO where " + nameColumnRubro1 + " = '" + rubro + "' or " + nameColumnRubro2 + " = '" + rubro;
+            if (tipoReporte)
+            {
+                query = " select CCOD_CUE as a, (NDEBE0 - NHABER0) as s0, (NDEBE1 - NHABER1) as s1, (NDEBE2 - NHABER2) as s2, (NDEBE3 - NHABER3) as s3, (NDEBE4 - NHABER4) as s4, (NDEBE5 - NHABER5) as s5, (NDEBE6 - NHABER6) as s6, (NDEBE7 - NHABER7) as s7, (NDEBE8 - NHABER8) as s8, (NDEBE9 - NHABER9) as s9, (NDEBE1 - NHABER10) as s10, (NDEBE1 - NHABER11) as s11, (NDEBE1 - NHABER12) as s12, (NDEBE1 - NHABER13) as s13, "
+                    + " (NDEBED0 - NHABERD0) as d0, (NDEBED1 - NHABERD1) as d1, (NDEBED2 - NHABERD2) as d2, (NDEBED3 - NHABERD3) as d3, (NDEBED4 - NHABERD4) as d4, (NDEBED5 - NHABERD5) as d5, (NDEBED6 - NHABERD6) as d6, (NDEBED7 - NHABERD7) as d7, (NDEBED8 - NHABERD8) as d8, (NDEBED9 - NHABERD9) as d9, (NDEBED1 - NHABERD10) as d10, (NDEBED1 - NHABERD11) as d11, (NDEBED1 - NHABERD12) as d12, (NDEBED1 - NHABERD13) as d13 "
+                    + " from PLAN where " + nameColumnRubro1 + " = '" + rubro + "' or " + nameColumnRubro2 + " = '" + rubro + "' ";
+            }
+            else
+            {
+                query = " select CCOD_CUE as a, (NDEBE0 - NHABER0)*(-1) as s0, (NDEBE1 - NHABER1)*(-1) as s1, (NDEBE2 - NHABER2)*(-1) as s2, (NDEBE3 - NHABER3)*(-1) as s3, (NDEBE4 - NHABER4)*(-1) as s4, (NDEBE5 - NHABER5)*(-1) as s5, (NDEBE6 - NHABER6)*(-1) as s6, (NDEBE7 - NHABER7)*(-1) as s7, (NDEBE8 - NHABER8)*(-1) as s8, (NDEBE9 - NHABER9)*(-1) as s9, (NDEBE1 - NHABER10)*(-1) as s10, (NDEBE1 - NHABER11)*(-1) as s11, (NDEBE1 - NHABER12)*(-1) as s12, (NDEBE1 - NHABER13)*(-1) as s13, "
+                    + " (NDEBED0 - NHABERD0)*(-1) as d0, (NDEBED1 - NHABERD1)*(-1) as d1, (NDEBED2 - NHABERD2)*(-1) as d2, (NDEBED3 - NHABERD3)*(-1) as d3, (NDEBED4 - NHABERD4)*(-1) as d4, (NDEBED5 - NHABERD5)*(-1) as d5, (NDEBED6 - NHABERD6)*(-1) as d6, (NDEBED7 - NHABERD7)*(-1) as d7, (NDEBED8 - NHABERD8)*(-1) as d8, (NDEBED9 - NHABERD9)*(-1) as d9, (NDEBED1 - NHABERD10)*(-1) as d10, (NDEBED1 - NHABERD11)*(-1) as d11, (NDEBED1 - NHABERD12)*(-1) as d12, (NDEBED1 - NHABERD13)*(-1) as d13 "
+                    + " from PLAN where " + nameColumnRubro1 + " = '" + rubro + "' or " + nameColumnRubro2 + " = '" + rubro + "' ";
+            }
+            return dat.extrae(query, pathConnection);
+        }
+        public DataTable listCuentasByRubros(string pathConnection, bool tipoConsulta)
+        {
+            if (tipoConsulta) // true = activos, false = pasivos
+            {
+                query = " select CCOD_CUE from plan where CCOD_BAL in ('A105', 'A110', 'A115', 'A121', 'A123', 'A125', 'A135', 'A142', 'A151', 'A153', 'A157', 'A159', 'A164', 'A177', 'A179', 'A185', 'A106', 'A111', 'A120', 'A122', 'A124', 'A130', 'A140', 'A145', 'A152', 'A158', 'A160', 'A176', 'A178', 'A180') "
+                    + " or CCOD_BALN in ('A151', 'A155')";
+            }
+            else // false = pasivos
+            {
+                query = " select CCOD_CUE from plan where CCOD_BAL in ('P115', 'P120', 'P122', 'P129', 'P135', 'P505', 'P510', 'P515', 'P530', 'P540', 'P110', 'P541', 'P121', 'P128', 'P133', 'P141', 'P507', 'P511', 'P520', 'P531') "
+                    + " or CCOD_BALN2 in ('P105') ";
+            }
             return dat.extrae(query, pathConnection);
         }
     }

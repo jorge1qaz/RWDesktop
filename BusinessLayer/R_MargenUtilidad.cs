@@ -335,7 +335,7 @@ namespace BusinessLayer
                         }
                         val++;
                         /*Recorre y crea  archivos json de acuerdo a los productos que existen en la base de datos, con el filtro de código de cliente*/
-                        using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false))
+                        using (StreamWriter json = new StreamWriter(pathSaveFile + "CustomerProducts" + j + ".json", false)) // Revisar la ruta 
                             json.WriteLine(JsonConvert.SerializeObject(dsListProductsByCustomer, Formatting.None).ToString().Trim().Replace("  ", ""));
                     }
                 }
