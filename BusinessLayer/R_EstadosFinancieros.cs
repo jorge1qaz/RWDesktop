@@ -97,7 +97,7 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F560", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F605", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F705", false, "4");
 
-            ExportListCuentas(pathSaveFile, pathConnection, true);  ExportListCuentas(pathSaveFile, pathConnection, false);
+            //ExportListCuentas(pathSaveFile, pathConnection, true);  ExportListCuentas(pathSaveFile, pathConnection, false);
         }
         //Jorge Luis|10/01/2018|RW-109
         /*Método ...*/
