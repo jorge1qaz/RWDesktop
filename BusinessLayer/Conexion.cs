@@ -28,7 +28,8 @@ namespace BusinessLayer
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error de tipo:" + ex.Message, "Conexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Restart();
+                //MessageBox.Show("Error de tipo:" + ex.Message, "Conexión fallida a la base de datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Jorge Luis|23/10/2017|RW-19
@@ -56,7 +57,8 @@ namespace BusinessLayer
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Restart();
+                //MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         //Jorge Luis|02/11/2017|RW-19

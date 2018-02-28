@@ -28,13 +28,22 @@ namespace BusinessLayer
             {
                 if (File.Exists(item[4].ToString() + "/VENTASL.DBF"))
                 {
-                    //Alterado
                     dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim());
-                    dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
-                    CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                    if (Directory.Exists(paths.PathMU))
+                    {
+                        dirs.CreateDirectory(paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim());
+                        CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathMU + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
+                    }
                 }
             }
-            dirs.CheckDataBaseStockJson();
+            try
+            {
+                if (Directory.Exists(paths.PathMU))
+                    dirs.CheckDataBaseStockJson();
+            }
+            catch
+            {
+            }
         }
         public void CreateBigQueryEachOne(string save, string path)
         {

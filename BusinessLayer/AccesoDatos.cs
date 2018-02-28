@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.Odbc;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace BusinessLayer
 {
@@ -21,7 +22,14 @@ namespace BusinessLayer
             //cmd.CommandTimeout = 0;
             cmd.Connection = con.cn;
             OdbcDataAdapter da = new OdbcDataAdapter(cmd);
-            da.Fill(tabla);
+            try
+            {
+                da.Fill(tabla);
+            }
+            catch (System.Exception)
+            {
+                Application.Restart();
+            }
             con.cn.Close();
             return tabla;
         }

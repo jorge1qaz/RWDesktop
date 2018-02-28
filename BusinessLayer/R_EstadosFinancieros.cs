@@ -97,7 +97,8 @@ namespace BusinessLayer
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F560", false, "4"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F605", false, "4");
             ExportTable(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "F705", false, "4");
 
-            //ExportListCuentas(pathSaveFile, pathConnection, true);  ExportListCuentas(pathSaveFile, pathConnection, false);
+            ExportListCuentas(pathSaveFile, pathConnection, true);
+            ExportListCuentas(pathSaveFile, pathConnection, false);
         }
         //Jorge Luis|10/01/2018|RW-109
         /*Método ...*/
@@ -105,7 +106,6 @@ namespace BusinessLayer
         {
             DataSet dataSet = new DataSet();
             DataTable table = new DataTable();
-            //table = consb.GetTotalMonthByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
             table = consb.GetTotalMonthByRubro(@pathConnection, filter1, filter2, idRubro, tipoOperacion);
             dataSet.Tables.Add(table);
             dataSet.Tables[0].TableName = "data";
@@ -125,6 +125,8 @@ namespace BusinessLayer
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
         }
+        /*Se necesita que se obtenga los datos en dos consultas sql odbc, para ello se obtienen en las tablas: table1 y table2, ya que sí 
+         se hace con un solo query retorna una excepción  de "SQL expression is too complex" */
         public void ExportListCuentas(string pathSaveFile, string pathConnection, bool tipoLista)
         {
             string nameList = "";
@@ -133,9 +135,12 @@ namespace BusinessLayer
             else
                 nameList = "Pasivo";
             DataSet dataSet = new DataSet();
-            DataTable table = new DataTable();
-            table = consb.listCuentasByRubros(@pathConnection, tipoLista);
-            dataSet.Tables.Add(table);
+            DataTable table1 = new DataTable();
+            DataTable table2 = new DataTable();
+            table1 = consb.listCuentasByRubrosGroup1(@pathConnection, tipoLista);
+            table2 = consb.listCuentasByRubrosGroup2(@pathConnection, tipoLista);
+            table1.Merge(table2);
+            dataSet.Tables.Add(table1);
             dataSet.Tables[0].TableName = "data";
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameList + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));

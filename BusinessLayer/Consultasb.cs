@@ -361,18 +361,29 @@ namespace BusinessLayer
             }
             return dat.extrae(query, pathConnection);
         }
-        public DataTable listCuentasByRubros(string pathConnection, bool tipoConsulta)
+        public DataTable listCuentasByRubrosGroup1(string pathConnection, bool tipoConsulta)
         {
             if (tipoConsulta) // true = activos, false = pasivos
             {
-                query = " select CCOD_CUE from plan where CCOD_BAL in ('A105', 'A110', 'A115', 'A121', 'A123', 'A125', 'A135', 'A142', 'A151', 'A153', 'A157', 'A159', 'A164', 'A177', 'A179', 'A185', 'A106', 'A111', 'A120', 'A122', 'A124', 'A130', 'A140', 'A145', 'A152', 'A158', 'A160', 'A176', 'A178', 'A180') "
-                    + " or CCOD_BALN in ('A151', 'A155')";
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('A105', 'A110', 'A115', 'A121', 'A123', 'A125', 'A135', 'A142', 'A151', 'A153', 'A157', 'A159', 'A164', 'A177', 'A179') "
+                    + " or CCOD_BALN in ('A155')";
             }
             else // false = pasivos
             {
-                query = " select CCOD_CUE from plan where CCOD_BAL in ('P115', 'P120', 'P122', 'P129', 'P135', 'P505', 'P510', 'P515', 'P530', 'P540', 'P110', 'P541', 'P121', 'P128', 'P133', 'P141', 'P507', 'P511', 'P520', 'P531') "
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('P115', 'P120', 'P122', 'P129', 'P135', 'P505', 'P510', 'P515', 'P530', 'P540') "
                     + " or CCOD_BALN2 in ('P105') ";
             }
+            return dat.extrae(query, pathConnection);
+        }
+        public DataTable listCuentasByRubrosGroup2(string pathConnection, bool tipoConsulta)
+        {
+            if (tipoConsulta) // true = activos, false = pasivos
+            {
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('A185', 'A106', 'A111', 'A120', 'A122', 'A124', 'A130', 'A140', 'A145', 'A152', 'A158', 'A160', 'A176', 'A178', 'A180') "
+                    + " or CCOD_BALN in ('A151')";
+            }
+            else // false = pasivos
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('P110', 'P541', 'P121', 'P128', 'P133', 'P141', 'P507', 'P511', 'P520', 'P531') ";
             return dat.extrae(query, pathConnection);
         }
     }
