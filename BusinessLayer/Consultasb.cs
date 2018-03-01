@@ -386,5 +386,27 @@ namespace BusinessLayer
                 query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('P110', 'P541', 'P121', 'P128', 'P133', 'P141', 'P507', 'P511', 'P520', 'P531') ";
             return dat.extrae(query, pathConnection);
         }
+        public DataTable listCuentasByRubrosEstadoSituacionFinancieraGroup1(string pathConnection, bool tipoConsulta)
+        {
+            if (tipoConsulta) // true = activos, false = pasivos
+            {
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL2 in ('A105', 'A110', 'A115', 'A120', 'A125', 'A128', 'A130', 'A131', 'A133', 'A140', 'A210', 'A220', 'A510', 'A513') "
+                    + " or CCOD_BALN2 in ('A105', 'A110', 'A115', 'A120', 'A125', 'A128', 'A130', 'A131', 'A133', 'A140', 'A210', 'A220', 'A510', 'A513') ";
+            }
+            else // false = pasivos
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL2 in ('P105', 'P110', 'P120', 'P121', 'P123', 'P125', 'P130', 'P135', 'P137', 'P210', 'P410', 'P415', 'P420') ";
+            return dat.extrae(query, pathConnection);
+        }
+        public DataTable listCuentasByRubrosEstadoSituacionFinancieraGroup2(string pathConnection, bool tipoConsulta)
+        {
+            if (tipoConsulta) // true = activos, false = pasivos
+            {
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL2 in ('A105', 'A110', 'A115', 'A120', 'A125', 'A128', 'A130', 'A131', 'A133', 'A140', 'A210', 'A220', 'A510', 'A513') "
+                    + " or CCOD_BALN2 in ('A105', 'A110', 'A115', 'A120', 'A125', 'A128', 'A130', 'A131', 'A133', 'A140', 'A210', 'A220', 'A510', 'A513')";
+            }
+            else // false = pasivos
+                query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('') ";
+            return dat.extrae(query, pathConnection);
+        }
     }
 }

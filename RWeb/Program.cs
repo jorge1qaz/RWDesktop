@@ -29,7 +29,14 @@ namespace RWeb
                         Application.Run(new frmRWeb());
                     // Sí existen estos dos archivos, se procede a enviar al formulario principal
                     else
-                        Application.Run(new frmEleccionEmpresa());
+                        try
+                        {
+                            Application.Run(new frmEleccionEmpresa());
+                        }
+                        catch (Exception)
+                        {
+                            // Pendiente ejecutar vsi
+                        }
                 }
                 else
                     Application.Run(new frmLogin());

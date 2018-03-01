@@ -4,8 +4,8 @@
     <PublishUrlHistory>ftp://70.38.70.172/Updates/|D:\Jorge Luis\Compilados\</PublishUrlHistory>
     <InstallUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/|http://licenciacontasis.net/ReportWeb/Updates/publish.htm/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/publish.htm/|http://licenciacontasis.net/ReportWeb/Updates/SmartReport.zip/</UpdateUrlHistory>
-    <BootstrapperUrlHistory />
+    <UpdateUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/|http://licenciacontasis.net/ReportWeb/Updates/publish.htm/|http://licenciacontasis.net/ReportWeb/Updates/SmartReport.zip/</UpdateUrlHistory>
+    <BootstrapperUrlHistory>http://licenciacontasis.net/ReportWeb/Updates/</BootstrapperUrlHistory>
     <ErrorReportUrlHistory />
     <FallbackCulture>es-ES</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
