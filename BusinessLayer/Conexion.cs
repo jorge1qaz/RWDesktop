@@ -44,7 +44,18 @@ namespace BusinessLayer
             }
             catch (System.Exception ex)
             {
-                MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Error de tipo: " + ex.Message, " Conexión fallida a la base de datos inicial", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (MessageBox.Show("Estimado usuario, hemos detectado que no tienes instalado el driver (Visual FoxPro ODBC Driver), pulsa el botón “Aceptar” para descargarlo, ejecútalo y vuelve a iniciar. En caso de que no se abra la ventana de descarga, descárguelo de forma manual en el siguiente enlace. \r" + paths.nameDomain + "/updates/vfpodbc.msi", "Error de driver", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                {
+                    System.Diagnostics.Process.Start(paths.nameDomain + "/updates/vfpodbc.msi");
+                    Application.Exit();
+                    Application.ExitThread();
+                }
+                else
+                {
+                    Application.Exit();
+                    Application.ExitThread();
+                }
             }
         }
         //Jorge Luis|23/10/2017|RW-19

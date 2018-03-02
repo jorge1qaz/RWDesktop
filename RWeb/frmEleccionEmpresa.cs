@@ -26,14 +26,17 @@ namespace RWeb
             column.ColumnName = "Seleccione";
             dataCompany.Columns.Add(column);
             grdEmpresas.DataSource = dataCompany;
-            grdEmpresas.Font = new Font("Calibri", 12);
+            grdEmpresas.Columns[2].MinimumWidth = 300;
+            grdEmpresas.Columns[0].ReadOnly = true;
+            grdEmpresas.Columns[1].ReadOnly = true;
+            grdEmpresas.Columns[2].ReadOnly = true;
         }
         private void grdEmpresas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             try
             {
                 lblDescripcion.Text = "Usted a selecionado la empresa de código: " + grdEmpresas.Rows[e.RowIndex].Cells[0].Value.ToString().Replace("  ", "") +
-                                    " Razón social: " + grdEmpresas.Rows[e.RowIndex].Cells[2].Value.ToString().Replace("  ", "") + "  y de RUC: " +
+                                    " \r Razón social: " + grdEmpresas.Rows[e.RowIndex].Cells[2].Value.ToString().Replace("  ", "") + "  y de RUC: " +
                                     grdEmpresas.Rows[e.RowIndex].Cells[1].Value.ToString().Replace("  ", "");
                 idCompany = grdEmpresas.Rows[e.RowIndex].Cells[0].Value.ToString().Replace(" ", "");
                 ruc = grdEmpresas.Rows[e.RowIndex].Cells[1].Value.ToString().Replace(" ", "");

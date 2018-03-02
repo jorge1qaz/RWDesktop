@@ -31,44 +31,43 @@ namespace BusinessLayer
         /*Método para generar  listas de las diversas consultas*/
         public void CreateBigQueryEachOne(string pathSaveFile, string pathConnection)
         {
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A105", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A110", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A115", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A120", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A125", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A128", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A130", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A131", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A133", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A140", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A210", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A220", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A510", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A513", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A515", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A517", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A520", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A525", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A530", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A540", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A550", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A560", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A570", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A575", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A580", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A610", true, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A630", true, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN", "P105", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A105", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A110", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A115", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A120", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A125", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A128", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A130", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A131", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A133", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A140", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A210", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A220", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A510", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A513", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A515", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A517", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A520", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A525", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A530", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A540", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A550", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A560", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A570", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A575", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A580", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A610", true, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A630", true, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN", "P105", false, "1");
 
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P110", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P120", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P121", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P123", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P125", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P130", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P135", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P137", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P210", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P410", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P415", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P420", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P425", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P430", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P435", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P440", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P445", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P450", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P805", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P810", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P815", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P820", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P830", false, "1"); ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P835", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P110", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P120", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P121", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P123", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P125", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P130", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P135", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P137", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P210", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P410", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P415", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P420", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P425", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P430", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P435", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P440", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P445", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P450", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P805", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P810", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P815", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P820", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P830", false, "1"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "P835", false, "1");
 
             // Cuentas agregadas
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A135", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A204", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A550", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A230", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A235", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A236", false, "1");
-            ExportTable(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A240", false, "1");
-
-
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A135", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A204", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A550", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A230", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A235", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A236", false, "1");
+            ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A240", false, "1");
+            
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A105", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A106", true, "3");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A110", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A111", true, "3");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A115", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A120", true, "3");

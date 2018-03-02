@@ -65,23 +65,25 @@ namespace RWeb
         }
         public async void StartMassiveUpdate(object sender, EventArgs e)
         {
-            btnCerrarSesion.Enabled = false;
-            btnUpdateNow.Enabled = false;
-            btnEmpresas.Enabled = false;
-            Task task = new Task(() =>
-            {
-                margenUtilidad.StartModule();
-                cuentasPendientes.StartModule();
-                miNegocioAlDia.StartModule();
-                estadoDeResultadoPMS.StartModule();
-                estadosFinancieros.StartModule();
-                flujoCajaDetallado.StartModule();
-            });
-            task.Start();
-            lblProcessing.Text = "Procesando datos...";
-            await task;
-            lblProcessing.Text = "¡Procesamiento completado!";
-            transferencia.StartTransfer(backgroundWorker);
+            if (transferencia.ComprobarAccesoInternet()) {
+                btnCerrarSesion.Enabled = false;
+                btnUpdateNow.Enabled = false;
+                btnEmpresas.Enabled = false;
+                Task task = new Task(() =>
+                {
+                    margenUtilidad.StartModule();
+                    cuentasPendientes.StartModule();
+                    miNegocioAlDia.StartModule();
+                    estadoDeResultadoPMS.StartModule();
+                    estadosFinancieros.StartModule();
+                    flujoCajaDetallado.StartModule();
+                });
+                task.Start();
+                lblProcessing.Text = "Procesando datos...";
+                await task;
+                lblProcessing.Text = "¡Procesamiento completado!";
+                transferencia.StartTransfer(backgroundWorker);
+            }
         }
         private async void btnUpdateNow_Click(object sender, EventArgs e)
         {

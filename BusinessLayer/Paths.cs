@@ -24,6 +24,7 @@ namespace BusinessLayer
         public string PathREF       =   "rptStdFncr/";
         public string PathFCD       =   "rptFldcd/";  
         public string PathImagenLogo = "./images/logo.png";
+        public string nameDomain    = "http://licenciacontasis.net/ReportWeb";
         VerificarInstancia verificarInstancia = new VerificarInstancia();
         //Jorge Luis|24/10/2017|RW-19
         /*Método para leer un txt con el path de la instancia de Contasis*/
