@@ -24,10 +24,6 @@ namespace RWeb
         }
         private void pruebas_Load(object sender, EventArgs e)
         {
-
-            if (MessageBox.Show("Estimado usuario, hemos detectado que no tienes instalado el driver (Visual FoxPro ODBC Driver), pulsa el botón “Aceptar” para descargarlo, ejecútalo y vuelve a iniciar. En caso de que no se abra la ventana de descarga, descárguelo de forma manual en el siguiente enlace. \r" + paths.nameDomain + "/updates/vfpodbc.msi", "Error de driver", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
-                System.Diagnostics.Process.Start(paths.nameDomain + "/updates/vfpodbc.msi");
-
             //grdPruebas2.DataSource = miNegocioAlDia.GetTotalByRubro("d:", @"C:\Contasis14\2017\01\conta", "N005", true);
             //grdPruebas.DataSource = consb.FilterRubro(@"C:\Contasis14\2016\01\conta", "N005");
             //grdPruebas3.DataSource = consb.SumNhaberDiario(@"C:\Contasis14\2016\01\conta", 12, "701102");
@@ -44,7 +40,7 @@ namespace RWeb
             //using (StreamWriter json = new StreamWriter("d:/list1.json", false))
             //    json.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
 
-            grdPruebas.DataSource = consb.GetTableByRubro(@"D:\contasis\empresas\2015\01\conta", "CCOD_BAL2", "CCOD_BALN2", "A105", false);
+            grdPruebas.DataSource = consb.GetListRubrosByFormato(@"D:\contasis\empresas\2015\01\conta", "formato2", "P5", "P8");
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();

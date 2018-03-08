@@ -26,6 +26,24 @@ namespace BusinessLayer
                     CreateBigQueryEachOne(paths.PathPrincipalDirectory + paths.PathREF + "/" + item[0].ToString().Trim() + "/" + item[2].ToString().Trim() + "/", item[4].ToString().Trim());
                 }
             }
+            // Se decidió enviar toda la tabla completa de plan en esta clase
+
+        }
+        struct AttributesForQuery
+        {
+            public string _pathSaveFile;
+            public string _pathConnection;
+            public string _tableDBFFormatoName;
+            public string _tableDBFFormatoFilter1;
+            public string _tableDBFFormatoFilter2;
+
+            public DataTable GetListRubrosByFormato()
+            {
+                DataTable lista = new DataTable();
+                Consultasb consultasb = new Consultasb();
+                lista = consultasb.GetListRubrosByFormato(_pathConnection, _tableDBFFormatoName, _tableDBFFormatoFilter1, _tableDBFFormatoFilter2);
+                return lista;
+            }
         }
         //Jorge Luis|09/01/2018|RW-109
         /*Método para generar  listas de las diversas consultas*/
@@ -67,7 +85,7 @@ namespace BusinessLayer
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A235", false, "1");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A236", false, "1");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL2", "CCOD_BALN2", "A240", false, "1");
-            
+
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A105", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A106", true, "3");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A110", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A111", true, "3");
             ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A115", true, "3"); ExportTable2(pathSaveFile, pathConnection, "CCOD_BAL", "CCOD_BAL", "A120", true, "3");
@@ -108,6 +126,10 @@ namespace BusinessLayer
 
             ExportListCuentas(pathSaveFile, pathConnection, true);
             ExportListCuentas(pathSaveFile, pathConnection, false);
+
+            // Nuevas modificaciones
+            GetDataforReportEstadoSituacionFinanciera(pathSaveFile, pathConnection);
+            ExportCompleteTables(pathSaveFile, pathConnection);
         }
         //Jorge Luis|10/01/2018|RW-109
         /*Método ...*/
@@ -154,6 +176,45 @@ namespace BusinessLayer
             using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameList + ".json", false))
                 jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
             dataSet.Clear();
+        }
+
+        public void GetDataforReportEstadoSituacionFinanciera(string pathSaveFile, string pathConnection) {
+            DataSet dataSet         = new DataSet();
+            DataTable listNamesActivo = new DataTable();
+            DataTable listNamesPasivo = new DataTable();
+            DataTable listNamesPatrimonio = new DataTable();
+            AttributesForQuery attributesForQuery = new AttributesForQuery()
+            {
+                _pathSaveFile           = pathSaveFile,
+                _pathConnection         = pathConnection,
+                _tableDBFFormatoName    = "FORMATO2",
+                _tableDBFFormatoFilter1 = "P5",
+                _tableDBFFormatoFilter2 = "P8",
+            };
+            //
+            listNamesActivo.TableName = "listNamesActivo";
+            //
+            listNamesPasivo.TableName = "listNamesPasivo";
+            listNamesPatrimonio = attributesForQuery.GetListRubrosByFormato();
+            listNamesPatrimonio.TableName = "listNamesPatrimonio";
+
+            dataSet.Tables.Add(listNamesActivo);
+            dataSet.Tables.Add(listNamesPasivo);
+            dataSet.Tables.Add(listNamesPatrimonio);
+            GenerateFileJson(pathSaveFile, dataSet, "listNamesRubros");
+        }
+        public void GenerateFileJson(string pathSaveFile, DataSet dataSet, string nameFile) {
+            using (StreamWriter jsonFile = new StreamWriter(pathSaveFile + nameFile + ".json", false))
+                jsonFile.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
+            dataSet.Clear();
+        }
+        public void ExportCompleteTables(string pathSaveFile, string pathConnection) {
+            DataSet dataSet         = new DataSet();
+            DataTable dataTablePlan = new DataTable();
+            dataTablePlan           = consb.GetCompleteTablePlan(pathConnection);
+            dataTablePlan.TableName = "plan";
+            dataSet.Tables.Add(dataTablePlan);
+            GenerateFileJson(pathSaveFile, dataSet, "DataBaseConta");
         }
     }
 }

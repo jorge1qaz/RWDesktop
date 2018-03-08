@@ -408,5 +408,17 @@ namespace BusinessLayer
                 query = " select dist CCOD_CUE as a from plan where CCOD_BAL in ('') ";
             return dat.extrae(query, pathConnection);
         }
+        // FIltros para rubros según NIIF o tributario
+        public DataTable GetListRubrosByFormato(string pathConnection, string formatoTableDBFName, string codigoRaiz1, string codigoRaiz2) {
+            query = " select CCOD_BAL as a, cdsc as b from " + formatoTableDBFName + " order by ccod_bal asc where ccod_bal like '" + codigoRaiz1 + "__' OR ccod_bal like '" + codigoRaiz2 + "__'";
+            return dat.extrae(query, pathConnection);
+        }
+        public DataTable GetCompleteTablePlan(string pathConnection) {
+            // las columnas completas y en éste orden se detallan a continuación:
+            // ccod_cue as a, cdsc as b, nnivel as c, ntipo as d, nanalisis as e, ccod_bal as f, cdes_d as g, cdes_h as h, ndebe0 as i, nhaber0 as j, ndebe1 as k, nhaber1 as l, ndebe2 as m, nhaber2 as n, ndebe3 as o, nhaber3 as p, ndebe4 as q, nhaber4 as r, ndebe5 as s, nhaber5 as t, ndebe6 as u, nhaber6 as v, ndebe7 as w, nhaber7 as x, ndebe8 as y, nhaber8 as z, ndebe9 as aa, nhaber9 as ab, ndebe10 as ac, nhaber10 as ad, ndebe11 as ae, nhaber11 as af, ndebe12 as ag, nhaber12 as ah, ndebe13 as ai, nhaber13 as aj, ndebe14 as ak, nhaber14 as al, ndebe15 as am, nhaber15 as an, nganper as ao, ccue_acm as ap, ndebed0 as aq, nhaberd0 as ar, ndebed1 as as, nhaberd1 as at, ndebed2 as au, nhaberd2 as av, ndebed3 as aw, nhaberd3 as ax, ndebed4 as ay, nhaberd4 as az, ndebed5 as ba, nhaberd5 as bb, ndebed6 as bc, nhaberd6 as bd, ndebed7 as be, nhaberd7 as bf, ndebed8 as bg, nhaberd8 as bh, ndebed9 as bi, nhaberd9 as bj, ndebed10 as bk, nhaberd10 as bl, ndebed11 as bm, nhaberd11 as bn, ndebed12 as bo, nhaberd12 as bp, ndebed13 as bq, nhaberd13 as br, ndebed14 as bs, nhaberd14 as bt, ndebed15 as bu, nhaberd15 as bv, ccod_baln as bw, ccod_bal2 as bx, ccod_baln2 as by, lajusneg as bz, lexpsunat as ca, neducat as cb, ccod_enfin as cc, cnumcta as cd, cmoneda as ce, npresup as cf, ccod_balr as cg, ccod_cueci as ch, cnocorr1 as ci, cnocorr2 as cj, lccadest as ck, lsaldosme as cl, cref as cm, cale as cn, cmle as co, mesmod as cp, anomod as cq
+            query = " select ccod_cue as a, cdsc as b, nnivel as c, ntipo as d, nanalisis as e, ccod_bal as f, ndebe0 as i, nhaber0 as j, ndebe1 as k, nhaber1 as l, ndebe2 as m, nhaber2 as n, ndebe3 as o, nhaber3 as p, ndebe4 as q, nhaber4 as r, ndebe5 as s, nhaber5 as t, ndebe6 as u, nhaber6 as v, ndebe7 as w, nhaber7 as x, ndebe8 as y, nhaber8 as z, ndebe9 as aa, nhaber9 as ab, ndebe10 as ac, nhaber10 as ad, ndebe11 as ae, nhaber11 as af, ndebe12 as ag, nhaber12 as ah, ndebe13 as ai, nhaber13 as aj, ndebe14 as ak, nhaber14 as al, ndebe15 as am, nhaber15 as an, ndebed0 as aq, nhaberd0 as ar, ndebed1 as as, nhaberd1 as at, ndebed2 as au, nhaberd2 as av, ndebed3 as aw, nhaberd3 as ax, ndebed4 as ay, nhaberd4 as az, ndebed5 as ba, nhaberd5 as bb, ndebed6 as bc, nhaberd6 as bd, ndebed7 as be, nhaberd7 as bf, ndebed8 as bg, nhaberd8 as bh, ndebed9 as bi, nhaberd9 as bj, ndebed10 as bk, nhaberd10 as bl, ndebed11 as bm, nhaberd11 as bn, ndebed12 as bo, nhaberd12 as bp, ndebed13 as bq, nhaberd13 as br, ndebed14 as bs, nhaberd14 as bt, ndebed15 as bu, nhaberd15 as bv, ccod_baln as bw, ccod_bal2 as bx, ccod_baln2 as by, cmoneda as ce, ccod_balr as cg "
+                    + " from plan";
+            return dat.extrae(query, pathConnection);
+        }
     }
 }
