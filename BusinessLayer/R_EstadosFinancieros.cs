@@ -34,14 +34,13 @@ namespace BusinessLayer
             public string _pathSaveFile;
             public string _pathConnection;
             public string _tableDBFFormatoName;
-            public string _tableDBFFormatoFilter1;
-            public string _tableDBFFormatoFilter2;
+            public string _tableDBFFormatoFilter;
 
             public DataTable GetListRubrosByFormato()
             {
                 DataTable lista = new DataTable();
                 Consultasb consultasb = new Consultasb();
-                lista = consultasb.GetListRubrosByFormato(_pathConnection, _tableDBFFormatoName, _tableDBFFormatoFilter1, _tableDBFFormatoFilter2);
+                lista = consultasb.GetListRubrosByFormato(_pathConnection, _tableDBFFormatoName, _tableDBFFormatoFilter);
                 return lista;
             }
         }
@@ -180,27 +179,194 @@ namespace BusinessLayer
 
         public void GetDataforReportEstadoSituacionFinanciera(string pathSaveFile, string pathConnection) {
             DataSet dataSet         = new DataSet();
-            DataTable listNamesActivo = new DataTable();
-            DataTable listNamesPasivo = new DataTable();
-            DataTable listNamesPatrimonio = new DataTable();
-            AttributesForQuery attributesForQuery = new AttributesForQuery()
+            AttributesForQuery queryNamesActivo1 = new AttributesForQuery()
             {
-                _pathSaveFile           = pathSaveFile,
-                _pathConnection         = pathConnection,
-                _tableDBFFormatoName    = "FORMATO2",
-                _tableDBFFormatoFilter1 = "P5",
-                _tableDBFFormatoFilter2 = "P8",
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A1",
             };
-            //
-            listNamesActivo.TableName = "listNamesActivo";
-            //
-            listNamesPasivo.TableName = "listNamesPasivo";
-            listNamesPatrimonio = attributesForQuery.GetListRubrosByFormato();
-            listNamesPatrimonio.TableName = "listNamesPatrimonio";
+            AttributesForQuery queryNamesActivo2 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A2",
+            };
+            AttributesForQuery queryNamesActivo3 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A3",
+            };
+            AttributesForQuery queryNamesActivo4 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A4",
+            };
+            AttributesForQuery queryNamesActivo5 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A5",
+            };
+            AttributesForQuery queryNamesActivo6 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A6",
+            };
+            AttributesForQuery queryNamesActivo7 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A7",
+            };
+            AttributesForQuery queryNamesActivo8 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A8",
+            };
+            AttributesForQuery queryNamesActivo9 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "A9",
+            };
 
-            dataSet.Tables.Add(listNamesActivo);
-            dataSet.Tables.Add(listNamesPasivo);
-            dataSet.Tables.Add(listNamesPatrimonio);
+            AttributesForQuery queryNamesPasivo1 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P1",
+            };
+            AttributesForQuery queryNamesPasivo2 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P2",
+            };
+            AttributesForQuery queryNamesPasivo3 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P3",
+            };
+            AttributesForQuery queryNamesPasivo4 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P4",
+            };
+            AttributesForQuery queryNamesPasivo5 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P5",
+            };
+            AttributesForQuery queryNamesPasivo6 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P6",
+            };
+            AttributesForQuery queryNamesPasivo7 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P7",
+            };
+            AttributesForQuery queryNamesPasivo8 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P8",
+            };
+            AttributesForQuery queryNamesPasivo9 = new AttributesForQuery()
+            {
+                _pathSaveFile = pathSaveFile,
+                _pathConnection = pathConnection,
+                _tableDBFFormatoName = "FORMATO2",
+                _tableDBFFormatoFilter = "P9",
+            };
+
+            DataTable listNamesActivo1 = queryNamesActivo1.GetListRubrosByFormato(); // 1 formato raíz de los rubros que empiezan por 1
+            DataTable listNamesActivo2 = queryNamesActivo2.GetListRubrosByFormato();
+            DataTable listNamesActivo3 = queryNamesActivo3.GetListRubrosByFormato();
+            DataTable listNamesActivo4 = queryNamesActivo4.GetListRubrosByFormato();
+            DataTable listNamesActivo5 = queryNamesActivo5.GetListRubrosByFormato();
+            DataTable listNamesActivo6 = queryNamesActivo6.GetListRubrosByFormato();
+            DataTable listNamesActivo7 = queryNamesActivo7.GetListRubrosByFormato();
+            DataTable listNamesActivo8 = queryNamesActivo8.GetListRubrosByFormato();
+            DataTable listNamesActivo9 = queryNamesActivo9.GetListRubrosByFormato();
+
+            DataTable listNamesPasivo1 = queryNamesPasivo1.GetListRubrosByFormato(); // 1 formato raíz de los rubros que empiezan por 1
+            DataTable listNamesPasivo2 = queryNamesPasivo2.GetListRubrosByFormato();
+            DataTable listNamesPasivo3 = queryNamesPasivo3.GetListRubrosByFormato();
+            DataTable listNamesPasivo4 = queryNamesPasivo4.GetListRubrosByFormato();
+            DataTable listNamesPasivo5 = queryNamesPasivo5.GetListRubrosByFormato();
+            DataTable listNamesPasivo6 = queryNamesPasivo6.GetListRubrosByFormato();
+            DataTable listNamesPasivo7 = queryNamesPasivo7.GetListRubrosByFormato();
+            DataTable listNamesPasivo8 = queryNamesPasivo8.GetListRubrosByFormato();
+            DataTable listNamesPasivo9 = queryNamesPasivo9.GetListRubrosByFormato();
+
+            listNamesActivo1.TableName = "listNamesActivo1";
+            listNamesActivo2.TableName = "listNamesActivo2";
+            listNamesActivo3.TableName = "listNamesActivo3";
+            listNamesActivo4.TableName = "listNamesActivo4";
+            listNamesActivo5.TableName = "listNamesActivo5";
+            listNamesActivo6.TableName = "listNamesActivo6";
+            listNamesActivo7.TableName = "listNamesActivo7";
+            listNamesActivo8.TableName = "listNamesActivo8";
+            listNamesActivo9.TableName = "listNamesActivo9";
+
+            listNamesPasivo1.TableName = "listNamesPasivo1";
+            listNamesPasivo2.TableName = "listNamesPasivo2";
+            listNamesPasivo3.TableName = "listNamesPasivo3";
+            listNamesPasivo4.TableName = "listNamesPasivo4";
+            listNamesPasivo5.TableName = "listNamesPasivo5";
+            listNamesPasivo6.TableName = "listNamesPasivo6";
+            listNamesPasivo7.TableName = "listNamesPasivo7";
+            listNamesPasivo8.TableName = "listNamesPasivo8";
+            listNamesPasivo9.TableName = "listNamesPasivo9";
+
+            dataSet.Tables.Add(listNamesActivo1);
+            dataSet.Tables.Add(listNamesActivo2);
+            dataSet.Tables.Add(listNamesActivo3);
+            dataSet.Tables.Add(listNamesActivo4);
+            dataSet.Tables.Add(listNamesActivo5);
+            dataSet.Tables.Add(listNamesActivo6);
+            dataSet.Tables.Add(listNamesActivo7);
+            dataSet.Tables.Add(listNamesActivo8);
+            dataSet.Tables.Add(listNamesActivo9);
+
+            dataSet.Tables.Add(listNamesPasivo1);
+            dataSet.Tables.Add(listNamesPasivo2);
+            dataSet.Tables.Add(listNamesPasivo3);
+            dataSet.Tables.Add(listNamesPasivo4);
+            dataSet.Tables.Add(listNamesPasivo5);
+            dataSet.Tables.Add(listNamesPasivo6);
+            dataSet.Tables.Add(listNamesPasivo7);
+            dataSet.Tables.Add(listNamesPasivo8);
+            dataSet.Tables.Add(listNamesPasivo9);
+
             GenerateFileJson(pathSaveFile, dataSet, "listNamesRubros");
         }
         public void GenerateFileJson(string pathSaveFile, DataSet dataSet, string nameFile) {

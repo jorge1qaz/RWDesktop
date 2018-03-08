@@ -409,8 +409,8 @@ namespace BusinessLayer
             return dat.extrae(query, pathConnection);
         }
         // FIltros para rubros según NIIF o tributario
-        public DataTable GetListRubrosByFormato(string pathConnection, string formatoTableDBFName, string codigoRaiz1, string codigoRaiz2) {
-            query = " select CCOD_BAL as a, cdsc as b from " + formatoTableDBFName + " order by ccod_bal asc where ccod_bal like '" + codigoRaiz1 + "__' OR ccod_bal like '" + codigoRaiz2 + "__'";
+        public DataTable GetListRubrosByFormato(string pathConnection, string formatoTableDBFName, string codigoRaiz) {
+            query = " select CCOD_BAL as a, cdsc as b from " + formatoTableDBFName + " order by ccod_bal asc where ccod_bal like '" + codigoRaiz + "__' ";
             return dat.extrae(query, pathConnection);
         }
         public DataTable GetCompleteTablePlan(string pathConnection) {

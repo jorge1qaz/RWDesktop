@@ -40,7 +40,7 @@ namespace RWeb
             //using (StreamWriter json = new StreamWriter("d:/list1.json", false))
             //    json.WriteLine(JsonConvert.SerializeObject(dataSet, Formatting.None).ToString().Replace("  ", ""));
 
-            grdPruebas.DataSource = consb.GetListRubrosByFormato(@"D:\contasis\empresas\2015\01\conta", "formato2", "P5", "P8");
+            //grdPruebas.DataSource = consb.GetListRubrosByFormato(@"D:\contasis\empresas\2015\01\conta", "formato2", "P5", "P8");
         }
         AccesoDatos dat = new AccesoDatos();
         Consultas cons = new Consultas();

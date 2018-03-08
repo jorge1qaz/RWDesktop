@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="93184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BusinessLayer.dll" size="95232">
       <assemblyIdentity name="BusinessLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JtqMX8XPUnMl6niQ1EbsssLHiplZR02WqPznBOhEWI8=</dsig:DigestValue>
+        <dsig:DigestValue>AoxpFIPveX3HzXmbriewwz8JrJfJTlgCDt3Hw9spRYM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -115,14 +115,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartReport.exe" size="87024">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SmartReport.exe" size="86512">
       <assemblyIdentity name="SmartReport" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nclbgVP1N1z2Irfbn71NtzSRqINxO08s5EctFzmsrNE=</dsig:DigestValue>
+        <dsig:DigestValue>hrmATpIQ94oJGNVSIS3GLPC4vEYvPkkOf45DK9JKu0M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
