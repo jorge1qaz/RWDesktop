@@ -179,6 +179,13 @@ namespace BusinessLayer
 
         public void GetDataforReportEstadoSituacionFinanciera(string pathSaveFile, string pathConnection) {
             DataSet dataSet         = new DataSet();
+            AttributesForQuery queryNamesActivo0 = new AttributesForQuery()
+            {
+                _pathSaveFile           = pathSaveFile,
+                _pathConnection         = pathConnection,
+                _tableDBFFormatoName    = "FORMATO2",
+                _tableDBFFormatoFilter  = "A0",
+            };
             AttributesForQuery queryNamesActivo1 = new AttributesForQuery()
             {
                 _pathSaveFile = pathSaveFile,
@@ -243,6 +250,13 @@ namespace BusinessLayer
                 _tableDBFFormatoFilter = "A9",
             };
 
+            AttributesForQuery queryNamesPasivo0 = new AttributesForQuery()
+            {
+                _pathSaveFile           = pathSaveFile,
+                _pathConnection         = pathConnection,
+                _tableDBFFormatoName    = "FORMATO2",
+                _tableDBFFormatoFilter  = "P0",
+            };
             AttributesForQuery queryNamesPasivo1 = new AttributesForQuery()
             {
                 _pathSaveFile = pathSaveFile,
@@ -307,6 +321,7 @@ namespace BusinessLayer
                 _tableDBFFormatoFilter = "P9",
             };
 
+            DataTable listNamesActivo0 = queryNamesActivo0.GetListRubrosByFormato();
             DataTable listNamesActivo1 = queryNamesActivo1.GetListRubrosByFormato(); // 1 formato raíz de los rubros que empiezan por 1
             DataTable listNamesActivo2 = queryNamesActivo2.GetListRubrosByFormato();
             DataTable listNamesActivo3 = queryNamesActivo3.GetListRubrosByFormato();
@@ -317,6 +332,7 @@ namespace BusinessLayer
             DataTable listNamesActivo8 = queryNamesActivo8.GetListRubrosByFormato();
             DataTable listNamesActivo9 = queryNamesActivo9.GetListRubrosByFormato();
 
+            DataTable listNamesPasivo0 = queryNamesPasivo0.GetListRubrosByFormato();
             DataTable listNamesPasivo1 = queryNamesPasivo1.GetListRubrosByFormato(); // 1 formato raíz de los rubros que empiezan por 1
             DataTable listNamesPasivo2 = queryNamesPasivo2.GetListRubrosByFormato();
             DataTable listNamesPasivo3 = queryNamesPasivo3.GetListRubrosByFormato();
@@ -327,6 +343,7 @@ namespace BusinessLayer
             DataTable listNamesPasivo8 = queryNamesPasivo8.GetListRubrosByFormato();
             DataTable listNamesPasivo9 = queryNamesPasivo9.GetListRubrosByFormato();
 
+            listNamesActivo0.TableName = "listNamesActivo0";
             listNamesActivo1.TableName = "listNamesActivo1";
             listNamesActivo2.TableName = "listNamesActivo2";
             listNamesActivo3.TableName = "listNamesActivo3";
@@ -337,6 +354,7 @@ namespace BusinessLayer
             listNamesActivo8.TableName = "listNamesActivo8";
             listNamesActivo9.TableName = "listNamesActivo9";
 
+            listNamesPasivo0.TableName = "listNamesPasivo0";
             listNamesPasivo1.TableName = "listNamesPasivo1";
             listNamesPasivo2.TableName = "listNamesPasivo2";
             listNamesPasivo3.TableName = "listNamesPasivo3";
@@ -347,6 +365,7 @@ namespace BusinessLayer
             listNamesPasivo8.TableName = "listNamesPasivo8";
             listNamesPasivo9.TableName = "listNamesPasivo9";
 
+            dataSet.Tables.Add(listNamesActivo0);
             dataSet.Tables.Add(listNamesActivo1);
             dataSet.Tables.Add(listNamesActivo2);
             dataSet.Tables.Add(listNamesActivo3);
@@ -357,6 +376,7 @@ namespace BusinessLayer
             dataSet.Tables.Add(listNamesActivo8);
             dataSet.Tables.Add(listNamesActivo9);
 
+            dataSet.Tables.Add(listNamesPasivo0);
             dataSet.Tables.Add(listNamesPasivo1);
             dataSet.Tables.Add(listNamesPasivo2);
             dataSet.Tables.Add(listNamesPasivo3);
